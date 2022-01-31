@@ -1,0 +1,21 @@
+[src='img/pokeapi.png'] {
+	max-height: 45px;
+}
+
+.bg-dark-gray {
+	background-color: rgb(26, 26, 26);
+}
+.bg-light-yellow {
+	background-color: rgb(255, 248, 155);
+}
+.bg-light-cherry {
+	background-color: rgb(255, 169, 169);
+}
+
+.bg-dark-red {
+	background-color: rgb(107, 2, 2);
+}
+
+.bg-dark-blue {
+	background-color: rgb(17, 22, 80);
+}
