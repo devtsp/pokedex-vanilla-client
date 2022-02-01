@@ -19,34 +19,164 @@
 		<title>Pokedex</title>
 	</head>
 	<body>
-		<!-- NAV -->
 		<div id="viewport" class="vw-100 vh-100 d-flex flex-column">
-			<nav>
-				<ul class="text-white bg-dark-blue list-unstyled m-0 p-1">
+			<!-- MAIN NAV -->
+			<nav id="main-nav" class="d-flex justify-content-center bg-dark-blue">
+				<form class="d-flex align-items-center h-100">
+					<div class="position-relative" style="height: 30px">
+						<input
+							id="search-pokemon"
+							type="text"
+							placeholder="Search Pokemon"
+							aria-label="Search Pokemon"
+							class="h-100 border border-0 ps-3"
+						/>
+						<button
+							aria-label="search"
+							role="search"
+							class="position-absolute end-0 top-50 translate-middle-y"
+						>
+							<i class="bi bi-search h-100 px-1"></i>
+						</button>
+					</div>
+				</form>
+			</nav>
+
+			<!-- MAIN -->
+			<main
+				class="d-flex flex-column flex-fill justify-content-center align-items-center bg-light-yellow"
+			>
+				<!-- PAGINATION NAV -->
+				<nav id="pagination">
+					<ul
+						class="text-black h-100 list-unstyled m-0 px-3 d-flex justify-content-center align-items-center"
+					>
+						<li class="px-3">
+							<a
+								href="#"
+								class="text-decoration-none text-black"
+								role="next-page"
+								aria-label="next-page"
+							>
+								<i class="bi bi-chevron-left"></i>
+							</a>
+						</li>
+						<li class="px-3 text-ali">
+							<a
+								href="#"
+								class="text-decoration-none text-black"
+								role="previous-page"
+								aria-label="previous-page"
+							>
+								<i class="bi bi-chevron-right"></i>
+							</a>
+						</li>
+					</ul>
+				</nav>
+
+				<div class="row g-0">
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+				</div>
+				<div class="row g-0">
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+				</div>
+				<div class="row g-0">
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+				</div>
+				<div class="row g-0">
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="poke-card">
+							<img src="img/pokeball.png" class="img-fluid" />
+							<span>Pokemon</span>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<!-- FOOTER -->
+			<footer>
+				<ul
+					class="m-0 p-1 d-flex justify-content-center align-items-center list-unstyled text-center bg-dark-blue"
+				>
+					<li class="me-5">
+						<a href="https://pokeapi.co/" data-cy="api-link">
+							<img src="img/pokeapi.png" alt="PokeApi" class="img-fluid" />
+						</a>
+					</li>
 					<li>
-						<a href="https://pokeapi.co/">
-							<img src="img/pokeapi.png" alt="PokeApi" class="" />
+						<a
+							href="https://github.com/devtsp/pokedex"
+							class="d-inline-flex align-items-center justify-content-center text-decoration-none text-white"
+							data-cy="source-code-link"
+						>
+							<i class="bi bi-github fs-4" aria-label="Github"></i>
+							<span class="ps-2">Source Code</span>
 						</a>
 					</li>
 				</ul>
-			</nav>
-
-			<main
-				class="d-flex flex-fill justify-content-center align-items-center bg-light-yellow"
-			>
-				:D
-			</main>
-			<footer
-				class="d-flex p-1 align-items-center justify-content-center bg-dark-blue"
-			>
-				<a
-					href="https://github.com/devtsp/pokedex"
-					class="d-flex align-items-center justify-content-center text-decoration-none text-white"
-					data-cy="source-code-link"
-				>
-					<i class="bi bi-github fs-4" aria-label="Github"></i>
-					<span class="ps-2">Source Code</span>
-				</a>
 			</footer>
 		</div>
 
@@ -55,5 +185,6 @@
 			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 			crossorigin="anonymous"
 		></script>
+		<script src="js/index.js"></script>
 	</body>
 </html>

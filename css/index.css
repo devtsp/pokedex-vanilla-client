@@ -1,12 +1,24 @@
 [src='img/pokeapi.png'] {
-	max-height: 45px;
+	max-height: 40px;
+}
+
+[src='img/pokeball.png'] {
+	max-height: 40px;
+}
+
+#main-nav {
+	min-height: 40px;
+}
+
+li {
+	display: inline;
 }
 
 .bg-dark-gray {
 	background-color: rgb(26, 26, 26);
 }
 .bg-light-yellow {
-	background-color: rgb(255, 248, 155);
+	background-color: rgb(252, 249, 216);
 }
 .bg-light-cherry {
 	background-color: rgb(255, 169, 169);
@@ -17,5 +29,32 @@
 }
 
 .bg-dark-blue {
-	background-color: rgb(17, 22, 80);
+	background-color: rgb(52, 53, 70);
+}
+
+.poke-card img {
+	min-height: 60px;
+	display: block;
+	border: 1px solid rgb(212, 212, 212);
+}
+
+.poke-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid rgb(212, 212, 212);
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.322);
+}
+
+#main-nav input {
+	border-radius: 20px;
+}
+
+#main-nav button {
+	background-color: transparent;
+	border: none;
 }
