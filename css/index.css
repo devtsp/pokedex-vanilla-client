@@ -33,9 +33,10 @@ li {
 }
 
 .poke-card img {
-	min-height: 60px;
+	height: 80px;
 	display: block;
-	border: 1px solid rgb(212, 212, 212);
+	border: 1px solid rgba(255, 255, 255, 0.863);
+	background-color: rgba(255, 255, 255, 0.13);
 }
 
 .poke-card {
@@ -47,7 +48,7 @@ li {
 	padding: 10px;
 	border: 1px solid rgb(212, 212, 212);
 	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 0.322);
+	background-color: rgba(255, 0, 0, 0.171);
 }
 
 #main-nav input {
