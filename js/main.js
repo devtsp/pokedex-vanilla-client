@@ -4,16 +4,38 @@ const $previousPage = document.querySelector('#previous-page');
 const $nextPage = document.querySelector('#next-page');
 let paginationPrevious = '';
 let paginationNext = '';
+const cacheName = 'v1';
 
-const fetchData = (URL, callback) => {
-	fetch(URL)
-		.then(response => {
-			return response.json();
-		})
-		.then(data => {
-			callback(data);
-		})
+const fetchData = URL => {
+	return fetch(URL)
+		.then(response => response)
 		.catch(err => console.log(err));
+};
+
+const handleMatch = (request, match, cache, callback) => {
+	if (!match) {
+		console.log('Not in cache! proceeding to fetch and clone');
+		fetchData(request)
+			.then(response => {
+				cache.put(request, response.clone());
+				return response.json();
+			})
+			.then(response => callback(response));
+	} else {
+		console.log('Found in cache!');
+		cache
+			.match(request)
+			.then(response => response.json())
+			.then(response => callback(response));
+	}
+};
+
+const handleRequest = (request, callback) => {
+	caches.open(cacheName).then(cache => {
+		cache
+			.match(request)
+			.then(match => handleMatch(request, match, cache, callback));
+	});
 };
 
 const displayChanges = object => {
@@ -26,6 +48,7 @@ const displayChanges = object => {
 };
 
 const displayPokemonCards = data => {
+	console.log(data);
 	paginationPrevious = data.previous;
 	paginationNext = data.next;
 	const pokemons = [];
@@ -35,26 +58,34 @@ const displayPokemonCards = data => {
 	});
 	const sprites = {};
 	pokemons.forEach((pokemon, i) => {
-		fetch(`${API_URL}/${pokemon}`)
-			.then(response => response.json())
-			.then(data => {
-				const spriteUrl = data.sprites.front_default;
-				const pair = {};
-				pair[pokemon] = spriteUrl;
-				sprites[i] = pair;
-				return sprites;
-			})
-			.then(sprites => {
-				Object.entries(sprites).length == 12 && displayChanges(sprites);
-			});
+		handleRequest(`${API_URL}/${pokemon}`, data => {
+			const spriteUrl = data.sprites.front_default;
+			const pair = {};
+			pair[pokemon] = spriteUrl;
+			sprites[i] = pair;
+			Object.entries(sprites).length == 12 && displayChanges(sprites);
+		});
+		// fetch(`${API_URL}/${pokemon}`)
+		// 	.then(response => response.json())
+		// 	.then(data => {
+		// 		const spriteUrl = data.sprites.front_default;
+		// 		const pair = {};
+		// 		pair[pokemon] = spriteUrl;
+		// 		sprites[i] = pair;
+		// 		return sprites;
+		// 	})
+		// 	.then(sprites => {
+		// 		Object.entries(sprites).length == 12 && displayChanges(sprites);
+		// 	});
 	});
 };
 
 $previousPage.onclick = e => {
-	fetchData(paginationPrevious, displayPokemonCards);
-};
-$nextPage.onclick = e => {
-	fetchData(paginationNext, displayPokemonCards);
+	handleRequest(paginationPrevious, displayPokemonCards);
 };
 
-fetchData(`${API_URL}?limit=12`, displayPokemonCards);
+$nextPage.onclick = e => {
+	handleRequest(paginationNext, displayPokemonCards);
+};
+
+handleRequest(`${API_URL}?limit=12`, displayPokemonCards);
