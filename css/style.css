@@ -6,6 +6,10 @@
 	max-height: 40px;
 }
 
+#viewport {
+	min-width: 324px;
+}
+
 #main-nav {
 	min-height: 40px;
 }
@@ -58,4 +62,18 @@ li {
 #main-nav button {
 	background-color: transparent;
 	border: none;
+}
+
+@media all and (max-width: 384px) {
+	:root {
+		font-size: 13px;
+	}
+	.poke-card {
+		margin: 5px;
+		padding: 5px;
+	}
+
+	.poke-card img {
+		height: 70px;
+	}
 }

@@ -56,3 +56,15 @@ $nextPage.onclick = e => {
 };
 
 fetchData(`${API_URL}?limit=12`, displayPokemonCards);
+
+/////////////////////////////////////////
+
+if ('serviceWorker' in navigator) {
+	console.log('Service Worker Supported');
+	window.addEventListener('load', () => {
+		navigator.serviceWorker
+			.register('../cache.js')
+			.then(reg => console.log('Service Worker Registered'))
+			.catch(err => console.log(`Service Worker Error: ${err}`));
+	});
+}
