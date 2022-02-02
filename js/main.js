@@ -1,7 +1,9 @@
 API_URL = 'https://pokeapi.co/api/v2/pokemon';
+const $index = document.querySelector('#index');
 const $pokeCards = document.querySelectorAll('.poke-card');
 const $previousPage = document.querySelector('#previous-page');
 const $nextPage = document.querySelector('#next-page');
+const $pokeInfo = document.querySelector('#pokemon-info');
 let paginationPrevious = '';
 let paginationNext = '';
 const cacheName = 'v1';
@@ -14,10 +16,10 @@ const fetchData = URL => {
 
 const handleMatch = (request, match, cache, callback) => {
 	if (!match) {
-		console.log('Not in cache! proceeding to fetch and clone');
+		// console.log('Not in cache! proceeding to fetch and clone');
 		fetchData(request)
 			.then(response => {
-				console.log(response);
+				// console.log(response);
 				if (response.ok) {
 					cache.put(request, response.clone());
 					return response.json();
@@ -29,11 +31,11 @@ const handleMatch = (request, match, cache, callback) => {
 			})
 			.catch(err => console.log(err));
 	} else {
-		console.log('Found in cache!');
+		// console.log('Found in cache!');
 		cache
 			.match(request)
 			.then(response => {
-				console.log(response);
+				// console.log(response);
 				return response.json();
 			})
 			.then(response => callback(response));
@@ -52,13 +54,14 @@ const displayChanges = object => {
 	for (let index in object) {
 		const pokemonName = Object.keys(object[index]);
 		const spriteUrl = Object.values(object[index]);
+		$pokeCards[index].id = pokemonName;
 		$pokeCards[index].children[1].innerText = pokemonName;
 		$pokeCards[index].children[0].setAttribute('src', spriteUrl);
 	}
 };
 
 const displayPokemonCards = data => {
-	console.log(data);
+	// console.log(data);
 	paginationPrevious = data.previous;
 	paginationNext = data.next;
 	const pokemons = [];
@@ -84,6 +87,16 @@ $previousPage.onclick = e => {
 
 $nextPage.onclick = e => {
 	handleRequest(paginationNext, displayPokemonCards);
+};
+
+$pokeInfo.querySelector('i').onclick = e => {
+	$pokeInfo.classList.add('visually-hidden');
+};
+
+$index.onclick = e => {
+	if (e.target.parentNode.classList.contains('poke-card')) {
+		$pokeInfo.classList.remove('visually-hidden');
+	}
 };
 
 handleRequest(`${API_URL}?limit=12`, displayPokemonCards);

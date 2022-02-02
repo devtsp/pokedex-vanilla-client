@@ -49,13 +49,13 @@
 				<!-- PAGINATION NAV -->
 				<nav id="pagination">
 					<ul
-						class="text-black h-100 list-unstyled m-0 px-3 d-flex justify-content-center align-items-center"
+						class="text-black h-100 list-unstyled m-0 px-3 pb-2 d-flex justify-content-center align-items-center"
 					>
 						<li class="px-3">
 							<a
 								id="previous-page"
 								href="#"
-								class="text-decoration-none text-black"
+								class="text-decoration-none text-black fs-1"
 								role="next-page"
 								aria-label="next-page"
 							>
@@ -66,7 +66,7 @@
 							<a
 								id="next-page"
 								href="#"
-								class="text-decoration-none text-black"
+								class="text-decoration-none text-black fs-1"
 								role="previous-page"
 								aria-label="previous-page"
 							>
@@ -76,88 +76,134 @@
 					</ul>
 				</nav>
 
-				<!-- CARDS -->
+				<!-- CONTENT -->
+				<section>
+					<!-- INFO CARD -->
+					<div
+						id="pokemon-info"
+						class="position-absolute top-50 start-50 translate-middle rounded rounded-3 visually-hidden"
+					>
+						<div class="d-flex flex-column align-items-stretch">
+							<div class="top-bar d-flex align-items-center">
+								<div class="flex-grow-1 fs-5 py-1">
+									<h4 class="d-inline ps-3 m-0">Pokemon</h4>
+									<span class="pok-number d-inline align-bottom px-2">X</span>
+								</div>
+								<span class="px-2">
+									<i class="bi bi-x fs-4" role="close" aria-labe="close"></i>
+								</span>
+							</div>
 
-				<div class="row g-0">
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
+							<img src="img/pokeball.png" alt="Pokemon X" />
+
+							<div class="px-3 text-white">
+								<div>
+									<h6 class="m-0">Habitat:</h6>
+									<p class="text-white-50 lh-1">Somewhere</p>
+								</div>
+								<div>
+									<h6 class="m-0">Habilites:</h6>
+									<p class="text-white-50 lh-1">
+										Hability 1, Hability 2, Hability 3, Hability 4
+									</p>
+								</div>
+								<div>
+									<h6 class="m-0">Locarion Area:</h6>
+									<p class="text-white-50 lh-1">Area wheere can be found</p>
+								</div>
+								<div>
+									<h6 class="m-0">Charactereistics:</h6>
+									<p class="text-white-50 lh-1">
+										Particular charactereistics of this pokemon
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
+
+					<div id="index">
+						<div class="row g-0">
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+						</div>
+						<div class="row g-0">
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+						</div>
+						<div class="row g-0">
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+						</div>
+						<div class="row g-0">
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img src="img/pokeball.png" class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-				</div>
-				<div class="row g-0">
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-				</div>
-				<div class="row g-0">
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-				</div>
-				<div class="row g-0">
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-					<div class="col">
-						<div class="poke-card">
-							<img src="img/pokeball.png" class="img-fluid" />
-							<span>Pokemon</span>
-						</div>
-					</div>
-				</div>
+				</section>
 			</main>
 
 			<!-- FOOTER -->

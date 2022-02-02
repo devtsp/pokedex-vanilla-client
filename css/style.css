@@ -1,18 +1,27 @@
-[src='img/pokeapi.png'] {
-	max-height: 40px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;900&display=swap');
 
-[src='img/pokeball.png'] {
-	max-height: 40px;
-}
+/* ___________________________________ */
 
 #viewport {
 	min-width: 324px;
+	font-family: montserrat, sans-serif;
 }
+
+/* ______________________________________ */
 
 #main-nav {
 	min-height: 40px;
 }
+
+#main-nav input {
+	border-radius: 20px;
+}
+
+#main-nav button {
+	background-color: transparent;
+	border: none;
+}
+/* ____________________________________________ */
 
 li {
 	display: inline;
@@ -36,12 +45,7 @@ li {
 	background-color: rgb(52, 53, 70);
 }
 
-.poke-card img {
-	height: 80px;
-	display: block;
-	border: 1px solid rgba(255, 255, 255, 0.863);
-	background-color: rgba(255, 255, 255, 0.13);
-}
+/* ________________________________________________ */
 
 .poke-card {
 	display: flex;
@@ -52,17 +56,55 @@ li {
 	padding: 10px;
 	border: 1px solid rgb(212, 212, 212);
 	border-radius: 5px;
-	background-color: rgba(255, 0, 0, 0.171);
+	background-color: #ff00002c;
+	cursor: pointer;
 }
 
-#main-nav input {
-	border-radius: 20px;
+.poke-card img {
+	display: block;
+	border: 1px solid rgba(255, 255, 255, 0.863);
+	background-color: rgba(255, 255, 255, 0.13);
+	max-width: 100%;
+	margin-bottom: 3px;
+	height: auto;
 }
 
-#main-nav button {
-	background-color: transparent;
-	border: none;
+.poke-card span {
+	font-size: 14px;
 }
+
+/* ____________________________________________________ */
+
+#pokemon-info {
+	background-color: rgba(220, 20, 60, 0.897);
+	width: 80vw;
+	max-width: 360px;
+}
+
+.top-bar {
+	background-color: darkslategrey;
+	font-family: 'montserrat', sans-serif;
+	font-weight: 300;
+	color: white;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.top-bar i {
+	cursor: pointer;
+}
+
+.pok-number {
+	color: rgb(176, 177, 221);
+}
+
+/* ____________________________________________________ */
+
+[src='img/pokeapi.png'] {
+	max-height: 40px;
+}
+
+/* ________________________________________________ */
 
 @media all and (max-width: 576px) {
 	:root {
