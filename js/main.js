@@ -17,11 +17,11 @@ const fetchData = (URL, callback) => {
 };
 
 const displayChanges = object => {
-	let count = 0;
-	for (let key in object) {
-		$pokeCards[count].children[1].innerText = key;
-		$pokeCards[count].children[0].setAttribute('src', object[key]);
-		count++;
+	for (let index in object) {
+		const pokemonName = Object.keys(object[index]);
+		const spriteUrl = Object.values(object[index]);
+		$pokeCards[index].children[1].innerText = pokemonName;
+		$pokeCards[index].children[0].setAttribute('src', spriteUrl);
 	}
 };
 
@@ -38,8 +38,10 @@ const displayPokemonCards = data => {
 		fetch(`${API_URL}/${pokemon}`)
 			.then(response => response.json())
 			.then(data => {
-				const sprite = data.sprites.front_default;
-				sprites[pokemon] = sprite;
+				const spriteUrl = data.sprites.front_default;
+				const pair = {};
+				pair[pokemon] = spriteUrl;
+				sprites[i] = pair;
 				return sprites;
 			})
 			.then(sprites => {
@@ -56,15 +58,3 @@ $nextPage.onclick = e => {
 };
 
 fetchData(`${API_URL}?limit=12`, displayPokemonCards);
-
-/////////////////////////////////////////
-
-if ('serviceWorker' in navigator) {
-	console.log('Service Worker Supported');
-	window.addEventListener('load', () => {
-		navigator.serviceWorker
-			.register('../cache.js')
-			.then(reg => console.log('Service Worker Registered'))
-			.catch(err => console.log(`Service Worker Error: ${err}`));
-	});
-}
