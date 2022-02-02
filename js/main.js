@@ -17,15 +17,25 @@ const handleMatch = (request, match, cache, callback) => {
 		console.log('Not in cache! proceeding to fetch and clone');
 		fetchData(request)
 			.then(response => {
-				cache.put(request, response.clone());
-				return response.json();
+				console.log(response);
+				if (response.ok) {
+					cache.put(request, response.clone());
+					return response.json();
+				}
+				throw new Error('Response not ok:', response);
 			})
-			.then(response => callback(response));
+			.then(response => {
+				callback(response);
+			})
+			.catch(err => console.log(err));
 	} else {
 		console.log('Found in cache!');
 		cache
 			.match(request)
-			.then(response => response.json())
+			.then(response => {
+				console.log(response);
+				return response.json();
+			})
 			.then(response => callback(response));
 	}
 };
@@ -65,18 +75,6 @@ const displayPokemonCards = data => {
 			sprites[i] = pair;
 			Object.entries(sprites).length == 12 && displayChanges(sprites);
 		});
-		// fetch(`${API_URL}/${pokemon}`)
-		// 	.then(response => response.json())
-		// 	.then(data => {
-		// 		const spriteUrl = data.sprites.front_default;
-		// 		const pair = {};
-		// 		pair[pokemon] = spriteUrl;
-		// 		sprites[i] = pair;
-		// 		return sprites;
-		// 	})
-		// 	.then(sprites => {
-		// 		Object.entries(sprites).length == 12 && displayChanges(sprites);
-		// 	});
 	});
 };
 
