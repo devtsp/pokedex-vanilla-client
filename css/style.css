@@ -64,7 +64,7 @@ li {
 	border: none;
 }
 
-@media all and (max-width: 384px) {
+@media all and (max-width: 576px) {
 	:root {
 		font-size: 13px;
 	}
