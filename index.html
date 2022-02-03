@@ -25,6 +25,7 @@
 				<form class="d-flex align-items-center h-100">
 					<div class="position-relative" style="height: 30px">
 						<input
+							name="search"
 							id="search-pokemon"
 							type="text"
 							placeholder="Search Pokemon"
@@ -96,20 +97,41 @@
 								</span>
 							</div>
 
-							<img id="main-pic" src="img/pokeball.png" alt="Pokeball" />
-
-							<div class="px-3 text-white">
-								<div>
-									<h6 class="m-0">Abilities:</h6>
-									<p id="abilities" class="text-white-50 lh-1">-</p>
+							<div class="d-flex align-items-center justify-content-around">
+								<div class="flex-shrink-1">
+									<img
+										id="main-pic"
+										src="img/pokeball.png"
+										alt="Pokeball"
+										class="img-fluid"
+									/>
 								</div>
-								<div>
-									<h6 class="m-0">Evolution:</h6>
-									<p id="evolution" class="text-white-50 lh-1">-</p>
-								</div>
-								<div>
-									<h6 class="m-0">Habitat:</h6>
-									<p id="habitat" class="text-white-50 lh-1">-</p>
+								<div class="px-3 text-white card-text flex-shrink-0">
+									<div class="info-field">
+										<h6 class="m-0 mb-1">Abilities</h6>
+										<p id="abilities" class="text-white-50 lh-1">-</p>
+									</div>
+									<div class="info-field">
+										<h6 class="m-0 mb-1">Evolves from</h6>
+										<p
+											id="evolves-from"
+											class="text-white-50 lh-1 mb-2 text-nowrap"
+										>
+											-
+										</p>
+									</div>
+									<div class="info-field">
+										<h6 class="m-0 mb-1">Evolves to</h6>
+										<p id="evolves-to" class="text-white-50 lh-1 mb-2">-</p>
+									</div>
+									<div class="info-field">
+										<h6 class="m-0 mb-1">Habitat</h6>
+										<p id="habitat" class="text-white-50 lh-1 mb-2">-</p>
+									</div>
+									<div class="info-field">
+										<h6 class="m-0 mb-1">Shape</h6>
+										<p id="shape" class="text-white-50 lh-1 mb-2">-</p>
+									</div>
 								</div>
 							</div>
 						</div>

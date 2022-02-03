@@ -78,7 +78,8 @@ li {
 #pokemon-info {
 	background-color: rgba(220, 20, 60, 0.897);
 	width: 80vw;
-	max-width: 360px;
+	max-width: 765px;
+	min-height: 240px;
 }
 
 .top-bar {
@@ -117,5 +118,9 @@ li {
 
 	.poke-card img {
 		height: 70px;
+	}
+
+	#pokemon-info {
+		width: 100%;
 	}
 }

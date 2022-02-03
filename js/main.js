@@ -101,11 +101,32 @@ const setInfoCard = pokemon => {
 		q('#abilities').innerText = abilities.join(', ');
 	});
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
+		// console.log(specie);
 		q('#habitat').innerText = specie.habitat.name;
+		q('#shape').innerText = specie.shape.name;
+		q('#evolves-from').innerText = specie.evolves_from_species?.name || '-';
 		handleRequest(specie.evolution_chain.url, evolutionChain => {
 			// console.log(evolutionChain);
-			q('#evolution').innerText =
-				evolutionChain.chain.evolves_to[0]?.species?.name || '-';
+			if (!specie.evolves_from_species) {
+				// console.log('first');
+				q('#evolves-to').innerText =
+					evolutionChain.chain.evolves_to[0].species.name;
+			} else {
+				if (
+					evolutionChain.chain.evolves_to[0].evolves_to[0].species.name ==
+					specie.name
+				) {
+					// console.log('last');
+					q('#evolves-to').innerText =
+						evolutionChain.chain.evolves_to[0]?.evolves_to[0]?.evolves_to[0]
+							?.species?.name || '-';
+				} else {
+					// console.log('middle');
+					q('#evolves-to').innerText =
+						evolutionChain.chain.evolves_to[0].evolves_to[0].species.name ||
+						'-';
+				}
+			}
 		});
 	});
 
@@ -122,19 +143,27 @@ $nextPage.onclick = e => {
 
 $pokeInfo.querySelector('i').onclick = e => {
 	$pokeInfo.classList.add('visually-hidden');
+	q('#name').src = '';
+	q('#type').innertText = '';
+	q('#pokemon-info img').src = 'img/pokeball.png';
+	q('#pokemon-info img').alt = e.target.parentNode.id;
+	q('#abilities').innerText = '';
+	q('#habitat').innerText = '';
+	q('#evolves-from').innerText = '';
+	q('#evolves-to').innerText = '';
+	q('#shape').innerText = '';
 };
 
 $index.onclick = e => {
 	if (e.target.parentNode.classList.contains('poke-card')) {
-		q('#name').src = '';
-		q('#type').innertText = '';
-		q('#pokemon-info img').src = 'img/pokeball.png';
-		q('#pokemon-info img').alt = e.target.parentNode.id;
-		q('#abilities').innerText = '';
-		q('#habitat').innerText = '';
-		q('#evolution').innerText = '';
 		setInfoCard(e.target.parentNode.id);
 	}
+};
+
+q('#main-nav form').onsubmit = e => {
+	e.preventDefault();
+	$pokeInfo.classList.add('visually-hidden');
+	setInfoCard(q('#main-nav form').search.value);
 };
 
 handleRequest(`${API_URL}/pokemon?limit=12`, displayPokemonCards);
