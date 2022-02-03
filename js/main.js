@@ -102,15 +102,15 @@ const setInfoCard = pokemon => {
 	});
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
 		// console.log(specie);
-		q('#habitat').innerText = specie.habitat.name;
-		q('#shape').innerText = specie.shape.name;
+		q('#habitat').innerText = specie?.habitat?.name || '-';
+		q('#shape').innerText = specie?.shape?.name || '-';
 		q('#evolves-from').innerText = specie.evolves_from_species?.name || '-';
 		handleRequest(specie.evolution_chain.url, evolutionChain => {
 			// console.log(evolutionChain);
 			if (!specie.evolves_from_species) {
 				// console.log('first');
 				q('#evolves-to').innerText =
-					evolutionChain?.chain.evolves_to[0]?.species?.name || '-';
+					evolutionChain.chain?.evolves_to[0]?.species?.name || '-';
 			} else {
 				if (
 					evolutionChain.chain?.evolves_to[0]?.evolves_to[0]?.species?.name ==
