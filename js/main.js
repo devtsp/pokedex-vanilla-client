@@ -110,11 +110,12 @@ const setInfoCard = pokemon => {
 			if (!specie.evolves_from_species) {
 				// console.log('first');
 				q('#evolves-to').innerText =
-					evolutionChain.chain.evolves_to[0].species.name;
+					evolutionChain?.chain.evolves_to[0]?.species?.name || '-';
 			} else {
 				if (
-					evolutionChain.chain.evolves_to[0].evolves_to[0].species.name ==
-					specie.name
+					evolutionChain.chain?.evolves_to[0]?.evolves_to[0]?.species?.name ==
+						specie.name ||
+					'-'
 				) {
 					// console.log('last');
 					q('#evolves-to').innerText =
