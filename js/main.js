@@ -103,7 +103,7 @@ q('#main-nav form').onsubmit = e => {
 
 q('#random-pokemon').onclick = e => {
 	const random = Math.ceil(Math.random() * 898);
-	console.log(random);
+	// console.log(random);
 	setInfoCard(random);
 };
 
