@@ -20,6 +20,63 @@
 	</head>
 	<body>
 		<div id="viewport" class="vw-100 vh-100 d-flex flex-column">
+			<!-- INFO CARD -->
+			<div
+				id="pokemon-info"
+				class="position-absolute top-50 start-50 translate-middle rounded rounded-3 visually-hidden"
+			>
+				<div class="d-flex flex-column align-items-stretch">
+					<!-- TOPBAR -->
+					<div class="top-bar d-flex align-items-center">
+						<div class="flex-grow-1 fs-5 py-1">
+							<h4 id="name" class="d-inline ps-3 m-0">Pokemon</h4>
+							<span id="type" class="d-inline align-bottom px-2">-</span>
+						</div>
+						<span class="px-2">
+							<i
+								id="close-info"
+								class="bi bi-x fs-3"
+								role="close"
+								aria-labe="close"
+							></i>
+						</span>
+					</div>
+
+					<!-- CONTENT -->
+					<div class="d-flex align-items-center justify-content-around">
+						<div class="position-relative w-50">
+							<img id="main-pic" alt="Pokeball" class="img-fluid" />
+						</div>
+						<div id="info-container" class="px-4 py-3 text-white card-text">
+							<div class="info-field">
+								<h6 class="m-0 mb-1">Abilities</h6>
+								<p id="abilities" class="text-white-50 lh-1">-</p>
+							</div>
+							<div class="info-field">
+								<h6 class="m-0 mb-1">Evolves from</h6>
+								<p
+									id="evolves-from"
+									class="text-white-50 lh-1 mb-2 text-nowrap"
+								>
+									-
+								</p>
+							</div>
+							<div class="info-field">
+								<h6 class="m-0 mb-1">Evolves to</h6>
+								<p id="evolves-to" class="text-white-50 lh-1 mb-2">-</p>
+							</div>
+							<div class="info-field">
+								<h6 class="m-0 mb-1">Habitat</h6>
+								<p id="habitat" class="text-white-50 lh-1 mb-2">-</p>
+							</div>
+							<div class="info-field">
+								<h6 class="m-0 mb-1">Shape</h6>
+								<p id="shape" class="text-white-50 lh-1 mb-2">-</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- MAIN NAV -->
 			<nav id="main-nav" class="d-flex justify-content-center bg-dark-blue">
 				<form class="d-flex align-items-center h-100">
@@ -50,7 +107,7 @@
 				<!-- PAGINATION NAV -->
 				<nav id="pagination">
 					<ul
-						class="text-black h-100 list-unstyled m-0 px-3 pb-2 d-flex justify-content-center align-items-center"
+						class="text-black h-100 list-unstyled m-0 d-flex justify-content-center align-items-center"
 					>
 						<li class="px-3">
 							<a
@@ -79,101 +136,23 @@
 
 				<!-- CONTENT -->
 				<section>
-					<!-- INFO CARD -->
-					<div
-						id="pokemon-info"
-						class="position-absolute top-50 start-50 translate-middle rounded rounded-3 visually-hidden"
-					>
-						<div class="d-flex flex-column align-items-stretch">
-							<div class="top-bar d-flex align-items-center">
-								<div class="flex-grow-1 fs-5 py-1">
-									<h4 id="name" class="d-inline ps-3 m-0">Pokemon</h4>
-									<span id="type" class="pok-number d-inline align-bottom px-2"
-										>-</span
-									>
-								</div>
-								<span class="px-2">
-									<i class="bi bi-x fs-4" role="close" aria-labe="close"></i>
-								</span>
-							</div>
-
-							<div class="d-flex align-items-center justify-content-around">
-								<div class="flex-shrink-1">
-									<img
-										id="main-pic"
-										src="img/pokeball.png"
-										alt="Pokeball"
-										class="img-fluid"
-									/>
-								</div>
-								<div class="px-3 text-white card-text flex-shrink-0">
-									<div class="info-field">
-										<h6 class="m-0 mb-1">Abilities</h6>
-										<p id="abilities" class="text-white-50 lh-1">-</p>
-									</div>
-									<div class="info-field">
-										<h6 class="m-0 mb-1">Evolves from</h6>
-										<p
-											id="evolves-from"
-											class="text-white-50 lh-1 mb-2 text-nowrap"
-										>
-											-
-										</p>
-									</div>
-									<div class="info-field">
-										<h6 class="m-0 mb-1">Evolves to</h6>
-										<p id="evolves-to" class="text-white-50 lh-1 mb-2">-</p>
-									</div>
-									<div class="info-field">
-										<h6 class="m-0 mb-1">Habitat</h6>
-										<p id="habitat" class="text-white-50 lh-1 mb-2">-</p>
-									</div>
-									<div class="info-field">
-										<h6 class="m-0 mb-1">Shape</h6>
-										<p id="shape" class="text-white-50 lh-1 mb-2">-</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
 					<div id="index">
 						<div class="row g-0">
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
@@ -181,19 +160,19 @@
 						<div class="row g-0">
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
@@ -201,19 +180,39 @@
 						<div class="row g-0">
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
 							<div class="col">
 								<div class="poke-card">
-									<img src="img/pokeball.png" class="img-fluid" />
+									<img class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+						</div>
+						<div class="row g-0">
+							<div class="col">
+								<div class="poke-card">
+									<img class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img class="img-fluid" />
+									<span>Pokemon</span>
+								</div>
+							</div>
+							<div class="col">
+								<div class="poke-card">
+									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
 							</div>
@@ -251,6 +250,8 @@
 			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 			crossorigin="anonymous"
 		></script>
+		<script src="js/request_handler.js"></script>
 		<script src="js/main.js"></script>
+		<!-- <script src="js/hear_fetch.js"></script> -->
 	</body>
 </html>
