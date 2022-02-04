@@ -88,6 +88,7 @@
 							placeholder="Search Pokemon"
 							aria-label="Search Pokemon"
 							class="h-100 border border-0 ps-3"
+							required
 						/>
 						<button
 							aria-label="search"
@@ -104,6 +105,8 @@
 			<main
 				class="d-flex flex-column flex-fill justify-content-center align-items-center bg-light-yellow"
 			>
+				<div id="error-msg" class="alert-danger"></div>
+
 				<!-- PAGINATION NAV -->
 				<nav id="pagination">
 					<ul
@@ -120,13 +123,29 @@
 								<i class="bi bi-chevron-left"></i>
 							</a>
 						</li>
-						<li class="px-3 text-ali">
+						<li>
+							<div
+								id="random-pokemon"
+								class="d-flex justify-content-center align-items-center position-relative"
+							>
+								<img
+									id="pokeball"
+									src="img/Pokeball.png"
+									alt="random-pokemon"
+								/>
+								<i
+									id="shuffle-icon"
+									class="bi bi-question-circle position-absolute top-50 start-50 translate-middle"
+								></i>
+							</div>
+						</li>
+						<li class="px-3">
 							<a
 								id="next-page"
 								href="#"
 								class="text-decoration-none text-black fs-1"
-								role="previous-page"
-								aria-label="previous-page"
+								role="next-page"
+								aria-label="next-page"
 							>
 								<i class="bi bi-chevron-right"></i>
 							</a>
@@ -250,6 +269,7 @@
 			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 			crossorigin="anonymous"
 		></script>
+		<script src="js/utils.js"></script>
 		<script src="js/request_handler.js"></script>
 		<script src="js/main.js"></script>
 		<!-- <script src="js/hear_fetch.js"></script> -->

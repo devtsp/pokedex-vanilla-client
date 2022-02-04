@@ -1,11 +1,5 @@
 API_URL = 'https://pokeapi.co/api/v2';
 
-const q = (selector, all = false) => {
-	return all
-		? document.querySelectorAll(selector)
-		: document.querySelector(selector);
-};
-
 let paginationPrevious = '';
 let paginationNext = '';
 
@@ -45,6 +39,7 @@ const displayPokemonCards = data => {
 const setInfoCard = pokemon => {
 	handleRequest(`${API_URL}/pokemon/${pokemon}`, pokemon => {
 		// console.log(pokemon);
+		q('#pokemon-info').classList.remove('visually-hidden');
 		q('#name').innerText = pokemon.name;
 		q('#type').innerText = pokemon.types[0].type.name;
 		q('#main-pic').src =
@@ -76,7 +71,6 @@ const setInfoCard = pokemon => {
 			}
 		});
 	});
-	q('#pokemon-info').classList.remove('visually-hidden');
 };
 
 q('#previous-page').onclick = e => {
@@ -90,7 +84,7 @@ q('#next-page').onclick = e => {
 const resetInfoCard = () => {
 	// console.log('reset');
 	q('#pokemon-info').classList.add('visually-hidden');
-	q('#name').src = 'Pokemon';
+	q('#name').innerText = 'Pokemon';
 	q('#type').innertText = 'tpye';
 	q('#main-pic').src = '';
 	q('#main-pic').alt = '';
@@ -101,7 +95,17 @@ const resetInfoCard = () => {
 	q('#shape').innerText = '-';
 };
 
-q('#close-info').onclick = e => resetInfoCard();
+q('#main-nav form').onsubmit = e => {
+	e.preventDefault();
+	resetInfoCard();
+	setInfoCard(e.target.search.value.toLowerCase().trim());
+};
+
+q('#random-pokemon').onclick = e => {
+	const random = Math.ceil(Math.random() * 898);
+	console.log(random);
+	setInfoCard(random);
+};
 
 q('#index').onclick = e => {
 	if (e.target.classList.contains('poke-card')) {
@@ -109,15 +113,11 @@ q('#index').onclick = e => {
 	}
 };
 
-q('#main-nav form').onsubmit = e => {
-	e.preventDefault();
-	q('#pokemon-info').classList.add('visually-hidden');
-	setInfoCard(q('#main-nav form').search.value);
-};
-
 q('#pokemon-info').onclick = e => {
 	e.stopPropagation();
 };
+
+q('#close-info').onclick = e => resetInfoCard();
 
 q('body').onclick = e => {
 	if (
