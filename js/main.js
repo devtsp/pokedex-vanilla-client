@@ -38,7 +38,6 @@ const displayPokemonCards = data => {
 
 const setInfoCard = pokemon => {
 	handleRequest(`${API_URL}/pokemon/${pokemon}`, pokemon => {
-		// console.log(pokemon);
 		q('#pokemon-info').classList.remove('visually-hidden');
 		q('#name').innerText = pokemon.name;
 		q('#type').innerText = pokemon.types[0].type.name;
@@ -51,12 +50,10 @@ const setInfoCard = pokemon => {
 		q('#abilities').innerText = abilities.join(', ');
 	});
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
-		// console.log(specie);
 		q('#habitat').innerText = specie?.habitat?.name || '-';
 		q('#shape').innerText = specie?.shape?.name || '-';
 		q('#evolves-from').innerText = specie.evolves_from_species?.name || '-';
 		handleRequest(specie.evolution_chain.url, evolutionChain => {
-			// console.log(evolutionChain);
 			if (!specie.evolves_from_species) {
 				q('#evolves-to').innerText =
 					evolutionChain.chain?.evolves_to[0]?.species?.name || '-';
@@ -82,7 +79,6 @@ q('#next-page').onclick = e => {
 };
 
 const resetInfoCard = () => {
-	// console.log('reset');
 	q('#pokemon-info').classList.add('visually-hidden');
 	q('#name').innerText = 'Pokemon';
 	q('#type').innertText = 'tpye';
@@ -103,7 +99,6 @@ q('#main-nav form').onsubmit = e => {
 
 q('#random-pokemon').onclick = e => {
 	const random = Math.ceil(Math.random() * 898);
-	// console.log(random);
 	setInfoCard(random);
 };
 
