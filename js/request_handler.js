@@ -1,7 +1,14 @@
-const cacheName = 'v1';
+if (!localStorage.getItem('cache-version')) {
+	localStorage.setItem('cache-version', Date.now());
+} else {
+	if (localStorage.getItem('cache-version') <= Date.now() - 86400000) {
+		caches.delete(localStorage.getItem('cache-version'));
+		localStorage.removeItem('cache-version');
+		localStorage.setItem('cache-version', Date.now());
+	}
+}
 
 const handleError = err => {
-	// console.log(err);
 	if (err == 404) {
 		q('#error-msg').innerText = 'Pokemon not found.';
 	}
@@ -42,7 +49,7 @@ const handleMatch = (request, match, cache, callback) => {
 };
 
 const handleRequest = (request, callback) => {
-	caches.open(cacheName).then(cache => {
+	caches.open(localStorage.getItem('cache-version')).then(cache => {
 		cache
 			.match(request)
 			.then(match => handleMatch(request, match, cache, callback));
