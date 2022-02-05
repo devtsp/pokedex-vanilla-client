@@ -50,13 +50,9 @@ const setInfoCard = pokemon => {
 		q('#abilities').innerText = abilities.join(', ');
 	});
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
-		console.log(
-			specie.flavor_text_entries[0].flavor_text.replace(/\s+/g, ' ').trim()
-		);
-		q('#flavor-text').innerText =
-			'"' +
-			specie.flavor_text_entries[0].flavor_text.replace(/\s+/g, ' ').trim() +
-			'"';
+		q('#flavor-text').innerText = `"${specie.flavor_text_entries[0].flavor_text
+			.replace(/\s+/g, ' ')
+			.trim()}"`;
 		const evolvesFrom = q('#evolves-from');
 		const evolvesTo = q('#evolves-to');
 		q('#habitat').innerText = specie?.habitat?.name || '-';
