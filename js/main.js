@@ -16,7 +16,6 @@ const displayChanges = object => {
 };
 
 const displayPokemonCards = data => {
-	// console.log(data);
 	paginationPrevious = data.previous;
 	paginationNext = data.next;
 	const pokemons = [];
@@ -50,22 +49,30 @@ const setInfoCard = pokemon => {
 		q('#abilities').innerText = abilities.join(', ');
 	});
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
+		const evolvesFrom = q('#evolves-from');
+		const evolvesTo = q('#evolves-to');
 		q('#habitat').innerText = specie?.habitat?.name || '-';
 		q('#shape').innerText = specie?.shape?.name || '-';
-		q('#evolves-from').innerText = specie.evolves_from_species?.name || '-';
+		evolvesFrom.innerText = specie.evolves_from_species?.name || '-';
+		evolvesFrom.innerText == '-'
+			? evolvesFrom.classList.remove('linked-text')
+			: evolvesFrom.classList.add('linked-text');
 		handleRequest(specie.evolution_chain.url, evolutionChain => {
 			if (!specie.evolves_from_species) {
-				q('#evolves-to').innerText =
+				evolvesTo.innerText =
 					evolutionChain.chain?.evolves_to[0]?.species?.name || '-';
 			} else {
 				if (evolutionChain.chain?.evolves_to[0]?.species?.name == pokemon) {
-					q('#evolves-to').innerText =
+					evolvesTo.innerText =
 						evolutionChain.chain.evolves_to[0]?.evolves_to[0]?.species?.name ||
 						'-';
 				} else {
-					q('#evolves-to').innerText = '-';
+					evolvesTo.innerText = '-';
 				}
 			}
+			evolvesTo.innerText == '-'
+				? evolvesTo.classList.remove('linked-text')
+				: evolvesTo.classList.add('linked-text');
 		});
 	});
 };
@@ -113,6 +120,14 @@ q('#pokemon-info').onclick = e => {
 };
 
 q('#close-info').onclick = e => resetInfoCard();
+
+q('#evolves-from').onclick = e => {
+	setInfoCard(e.target.innerText);
+};
+
+q('#evolves-to').onclick = e => {
+	setInfoCard(e.target.innerText);
+};
 
 q('body').onclick = e => {
 	if (
