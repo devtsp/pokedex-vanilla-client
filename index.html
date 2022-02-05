@@ -23,7 +23,7 @@
 			<!-- INFO CARD -->
 			<div
 				id="pokemon-info"
-				class="position-absolute top-50 start-50 translate-middle rounded rounded-3 visually-hidden"
+				class="position-absolute top-50 start-50 translate-middle rounded rounded-3"
 			>
 				<div class="d-flex flex-column align-items-stretch">
 					<!-- TOPBAR -->
@@ -44,8 +44,16 @@
 
 					<!-- CONTENT -->
 					<div class="d-flex align-items-center justify-content-center">
-						<div class="d-inline-flex justify-content-center align-items-midle">
-							<img id="main-pic" alt="Pokeball" class="img-fluid" />
+						<div
+							class="d-inline-flex flex-column justify-content-center align-items-midle"
+						>
+							<div class="d-flex justify-content-center">
+								<img id="main-pic" alt="Pokeball" class="img-fluid" />
+							</div>
+							<p
+								id="flavor-text"
+								class="text-center lh-1 m-4 p-2 fst-italic text-break"
+							></p>
 						</div>
 						<div id="info-container" class="px-4 py-3 card-text">
 							<div class="info-field">

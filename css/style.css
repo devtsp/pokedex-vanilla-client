@@ -135,8 +135,14 @@ li {
 	image-rendering: optimizeQuality;
 }
 
+#flavor-text {
+	background-color: rgba(250, 176, 176, 0.123);
+	color: rgb(7, 58, 58);
+	font-family: 'Trebuchet MS', serif;
+}
+
 .info-field p {
-	color: rgba(255, 255, 255, 0.671);
+	color: rgba(255, 255, 255, 0.692);
 }
 
 .info-field h6 {
