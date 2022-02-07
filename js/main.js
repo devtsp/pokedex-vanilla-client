@@ -51,7 +51,6 @@ const setInfoCard = pokemon => {
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
 		for (let index of specie.flavor_text_entries) {
 			if (index.language.name == 'en') {
-				console.log(index);
 				q('#flavor-text').innerText = `"${index.flavor_text
 					.replace(/\s+/g, ' ')
 					.trim()}"`;
