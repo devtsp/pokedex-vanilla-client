@@ -46,13 +46,17 @@ const setInfoCard = pokemon => {
 		pokemon.abilities.forEach(ability => {
 			abilities.push(ability.ability.name);
 		});
-
 		q('#abilities').innerText = abilities.join(', ');
 	});
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
-		q('#flavor-text').innerText = `"${specie.flavor_text_entries[0].flavor_text
-			.replace(/\s+/g, ' ')
-			.trim()}"`;
+		for (let index of specie.flavor_text_entries) {
+			if (index.language.name == 'en') {
+				console.log(index);
+				q('#flavor-text').innerText = `"${index.flavor_text
+					.replace(/\s+/g, ' ')
+					.trim()}"`;
+			}
+		}
 		const evolvesFrom = q('#evolves-from');
 		const evolvesTo = q('#evolves-to');
 		q('#habitat').innerText = specie?.habitat?.name || '-';
