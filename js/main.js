@@ -85,7 +85,8 @@ const setInfoCard = pokemon => {
 };
 
 query('#previous-page').onclick = e => {
-	handleRequest(paginationPrevious, displayPokemonCards);
+	paginationPrevious != null &&
+		handleRequest(paginationPrevious, displayPokemonCards);
 };
 
 query('#next-page').onclick = e => {
