@@ -147,3 +147,5 @@ q('body').onclick = e => {
 };
 
 handleRequest(`${API_URL}/pokemon?limit=12`, displayPokemonCards);
+
+//auxiliar
