@@ -10,7 +10,7 @@ if (!localStorage.getItem('cache-version')) {
 
 const handleError = err => {
 	if (err == 404) {
-		query('#error-msg').innerText = 'Pokemon not found.';
+		getElement('#error-msg').innerText = 'Pokemon not found.';
 	}
 };
 
