@@ -7,7 +7,7 @@ const displayChanges = object => {
 	for (let index in object) {
 		const pokemonName = Object.keys(object[index]);
 		const spriteUrl = Object.values(object[index]);
-		const cards = q('.poke-card', true);
+		const cards = query('.poke-card', true);
 		cards[index].id = pokemonName;
 		cards[index].children[1].innerText = pokemonName;
 		cards[index].children[0].src = spriteUrl;
@@ -19,7 +19,7 @@ const displayPokemonCards = data => {
 	paginationPrevious = data.previous;
 	paginationNext = data.next;
 	const pokemons = [];
-	q('.poke-card', true).forEach(($thumbnail, i) => {
+	query('.poke-card', true).forEach(($thumbnail, i) => {
 		const pokemon = data.results[i].name;
 		pokemons.push(pokemon);
 	});
@@ -37,29 +37,29 @@ const displayPokemonCards = data => {
 
 const setInfoCard = pokemon => {
 	handleRequest(`${API_URL}/pokemon/${pokemon}`, pokemon => {
-		q('#pokemon-info').classList.remove('visually-hidden');
-		q('#name').innerText = pokemon.name;
-		q('#type').innerText = pokemon.types[0].type.name;
-		q('#main-pic').src =
+		query('#pokemon-info').classList.remove('visually-hidden');
+		query('#name').innerText = pokemon.name;
+		query('#type').innerText = pokemon.types[0].type.name;
+		query('#main-pic').src =
 			pokemon.sprites.other['official-artwork']['front_default'];
 		let abilities = [];
 		pokemon.abilities.forEach(ability => {
 			abilities.push(ability.ability.name);
 		});
-		q('#abilities').innerText = abilities.join(', ');
+		query('#abilities').innerText = abilities.join(', ');
 	});
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
 		for (let index of specie.flavor_text_entries) {
 			if (index.language.name == 'en') {
-				q('#flavor-text').innerText = `"${index.flavor_text
+				query('#flavor-text').innerText = `"${index.flavor_text
 					.replace(/\s+/g, ' ')
 					.trim()}"`;
 			}
 		}
-		const evolvesFrom = q('#evolves-from');
-		const evolvesTo = q('#evolves-to');
-		q('#habitat').innerText = specie?.habitat?.name || '-';
-		q('#shape').innerText = specie?.shape?.name || '-';
+		const evolvesFrom = query('#evolves-from');
+		const evolvesTo = query('#evolves-to');
+		query('#habitat').innerText = specie?.habitat?.name || '-';
+		query('#shape').innerText = specie?.shape?.name || '-';
 		evolvesFrom.innerText = specie.evolves_from_species?.name || '-';
 		evolvesFrom.innerText == '-'
 			? evolvesFrom.classList.remove('linked-text')
@@ -84,63 +84,63 @@ const setInfoCard = pokemon => {
 	});
 };
 
-q('#previous-page').onclick = e => {
+query('#previous-page').onclick = e => {
 	handleRequest(paginationPrevious, displayPokemonCards);
 };
 
-q('#next-page').onclick = e => {
+query('#next-page').onclick = e => {
 	handleRequest(paginationNext, displayPokemonCards);
 };
 
 const resetInfoCard = () => {
-	q('#pokemon-info').classList.add('visually-hidden');
-	q('#name').innerText = 'Pokemon';
-	q('#type').innertText = 'tpye';
-	q('#main-pic').src = '';
-	q('#main-pic').alt = '';
-	q('#abilities').innerText = '-';
-	q('#habitat').innerText = '-';
-	q('#evolves-from').innerText = '-';
-	q('#evolves-to').innerText = '-';
-	q('#shape').innerText = '-';
+	query('#pokemon-info').classList.add('visually-hidden');
+	query('#name').innerText = 'Pokemon';
+	query('#type').innertText = 'tpye';
+	query('#main-pic').src = '';
+	query('#main-pic').alt = '';
+	query('#abilities').innerText = '-';
+	query('#habitat').innerText = '-';
+	query('#evolves-from').innerText = '-';
+	query('#evolves-to').innerText = '-';
+	query('#shape').innerText = '-';
 };
 
-q('#main-nav form').onsubmit = e => {
+query('#main-nav form').onsubmit = e => {
 	e.preventDefault();
 	resetInfoCard();
 	setInfoCard(e.target.search.value.toLowerCase().trim());
 };
 
-q('#random-pokemon').onclick = e => {
+query('#random-pokemon').onclick = e => {
 	const random = Math.ceil(Math.random() * 898);
 	setInfoCard(random);
 };
 
-q('#index').onclick = e => {
+query('#index').onclick = e => {
 	if (e.target.classList.contains('poke-card')) {
 		setInfoCard(e.target.id);
 	}
 };
 
-q('#pokemon-info').onclick = e => {
+query('#pokemon-info').onclick = e => {
 	e.stopPropagation();
 };
 
-q('#close-info').onclick = e => resetInfoCard();
+query('#close-info').onclick = e => resetInfoCard();
 
-q('#evolves-from').onclick = e => {
+query('#evolves-from').onclick = e => {
 	setInfoCard(e.target.innerText);
 };
 
-q('#evolves-to').onclick = e => {
+query('#evolves-to').onclick = e => {
 	setInfoCard(e.target.innerText);
 };
 
-q('body').onclick = e => {
+query('body').onclick = e => {
 	if (
-		e.target !== q('#pokemon-info') &&
+		e.target !== query('#pokemon-info') &&
 		!e.target.classList.contains('poke-card') &&
-		!q('#pokemon-info').classList.contains('visually-hidden')
+		!query('#pokemon-info').classList.contains('visually-hidden')
 	) {
 		resetInfoCard();
 	}
