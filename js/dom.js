@@ -99,4 +99,6 @@ export const resetInfoCard = () => {
 	getElement('#shape').innerText = '-';
 };
 
-handleRequest(FIRST_PAGE, displayPokemonCards);
+export const setInitialCards = () => {
+	handleRequest(FIRST_PAGE, displayPokemonCards);
+};
