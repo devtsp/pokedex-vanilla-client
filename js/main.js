@@ -1,5 +1,4 @@
-// auxiliar
-
+// auxiliar change
 API_URL = 'https://pokeapi.co/api/v2';
 
 let paginationPrevious = '';
@@ -149,5 +148,3 @@ q('body').onclick = e => {
 };
 
 handleRequest(`${API_URL}/pokemon?limit=12`, displayPokemonCards);
-
-//auxiliar
