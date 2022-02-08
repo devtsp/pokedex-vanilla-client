@@ -1,5 +1,5 @@
 describe('Initial App State', () => {
-	it('Displays index of cards, pagination, sarch bar, footer and external links', () => {
+	it('Displays index of cards, pagination, search bar, footer and external links', () => {
 		cy.intercept('**pokemon?limit=12').as('main-req');
 		cy.visit('http://localhost:5500');
 		cy.get('[data-cy=pokemon-info]').should('have.class', 'visually-hidden');
@@ -36,13 +36,13 @@ describe('Interactions', function () {
 		cy.get('[data-cy=test-card]').as('test_card');
 	});
 
-	it('Type and searchs for: "PikaCHu"', function () {
+	it('Type and searches for: "PikaCHu"', function () {
 		cy.get(this.input).type('PikaCHu');
 		cy.get(this.form).submit();
 		cy.get(this.info).should('not.have.class', 'visually-hidden');
 	});
 
-	it('Type and searchs for: "error"', function () {
+	it('Type and searches for: "error"', function () {
 		cy.get(this.input).clear().type('error');
 		cy.get(this.form).submit();
 		cy.get(this.info).should('have.class', 'visually-hidden');
