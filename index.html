@@ -59,6 +59,7 @@
 		<div id="viewport" class="vw-100 vh-100 d-flex flex-column">
 			<!-- INFO CARD -->
 			<div
+				data-cy="pokemon-info"
 				id="pokemon-info"
 				class="position-absolute top-50 start-50 translate-middle rounded rounded-3 visually-hidden"
 			>
@@ -66,11 +67,14 @@
 					<!-- TOPBAR -->
 					<div class="top-bar d-flex align-items-center">
 						<div class="flex-grow-1 fs-5 py-1">
-							<h4 id="name" class="d-inline ps-3 m-0">Pokemon</h4>
+							<h4 data-cy="name" id="name" class="d-inline ps-3 m-0">
+								Pokemon
+							</h4>
 							<span id="type" class="d-inline align-bottom px-2">-</span>
 						</div>
 						<span class="px-2">
 							<i
+								data-cy="close-info"
 								id="close-info"
 								class="bi bi-x fs-3"
 								role="close"
@@ -99,11 +103,17 @@
 							</div>
 							<div class="info-field">
 								<h6 class="m-0 mb-1">Evolves from</h6>
-								<p id="evolves-from" class="lh-1 mb-2 text-nowrap">-</p>
+								<p
+									data-cy="evolves-from"
+									id="evolves-from"
+									class="lh-1 mb-2 text-nowrap"
+								>
+									-
+								</p>
 							</div>
 							<div class="info-field">
 								<h6 class="m-0 mb-1">Evolves to</h6>
-								<p id="evolves-to" class="lh-1 mb-2">-</p>
+								<p data-cy="evolves-to" id="evolves-to" class="lh-1 mb-2">-</p>
 							</div>
 							<div class="info-field">
 								<h6 class="m-0 mb-1">Habitat</h6>
@@ -119,10 +129,11 @@
 			</div>
 			<!-- MAIN NAV -->
 			<nav id="main-nav" class="d-flex justify-content-center bg-dark-blue">
-				<form class="d-flex align-items-center h-100">
+				<form data-cy="nav-search-form" class="d-flex align-items-center h-100">
 					<div class="position-relative" style="height: 30px">
 						<input
 							name="search"
+							data-cy="search-pokemon"
 							id="search-pokemon"
 							type="text"
 							placeholder="Search Pokemon"
@@ -145,26 +156,28 @@
 			<main
 				class="d-flex flex-column flex-fill justify-content-center align-items-center bg-light-yellow"
 			>
-				<div id="error-msg" class="alert-danger"></div>
+				<!-- ERROR -->
+				<div data-cy="error-msg" id="error-msg" class="alert-danger"></div>
 
 				<!-- PAGINATION NAV -->
-				<nav id="pagination">
+				<nav data-cy="pagination" id="pagination">
 					<ul
 						class="text-black h-100 list-unstyled m-0 d-flex justify-content-center align-items-center"
 					>
 						<li class="px-3">
 							<a
+								data-cy="previous-page"
 								id="previous-page"
-								href="#"
 								class="text-decoration-none text-black fs-1"
-								role="next-page"
-								aria-label="next-page"
+								role="previous-page"
+								aria-label="previous-page"
 							>
 								<i class="bi bi-chevron-left"></i>
 							</a>
 						</li>
 						<li>
 							<div
+								data-cy="random-pokemon"
 								id="random-pokemon"
 								class="d-flex justify-content-center align-items-center position-relative"
 							>
@@ -174,15 +187,15 @@
 									alt="random-pokemon"
 								/>
 								<i
-									id="shuffle-icon"
+									id="questionmark-icon"
 									class="bi bi-question-circle position-absolute top-50 start-50 translate-middle"
 								></i>
 							</div>
 						</li>
 						<li class="px-3">
 							<a
+								data-cy="next-page"
 								id="next-page"
-								href="#"
 								class="text-decoration-none text-black fs-1"
 								role="next-page"
 								aria-label="next-page"
@@ -195,10 +208,10 @@
 
 				<!-- CONTENT -->
 				<section>
-					<div id="index">
+					<div data-cy="index" id="index">
 						<div class="row g-0">
 							<div class="col">
-								<div class="poke-card">
+								<div data-cy="test-card" class="poke-card">
 									<img class="img-fluid" />
 									<span>Pokemon</span>
 								</div>
@@ -283,6 +296,7 @@
 			<!-- FOOTER -->
 			<footer>
 				<ul
+					data-cy="footer"
 					class="m-0 p-1 d-flex justify-content-center align-items-center list-unstyled text-center bg-dark-blue"
 				>
 					<li class="me-5">
