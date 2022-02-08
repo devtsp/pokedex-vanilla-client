@@ -7,6 +7,7 @@ import {
 } from './dom.js';
 import { handleRequest } from './requests.js';
 import { checkCacheVersion } from './cache_version.js';
+
 export const paginationPrevious = { url: '' };
 export const paginationNext = { url: '' };
 

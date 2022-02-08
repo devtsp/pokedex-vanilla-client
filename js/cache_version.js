@@ -3,7 +3,7 @@ export const checkCacheVersion = () => {
 	if (!localStorage.getItem('cache-version')) {
 		localStorage.setItem('cache-version', date);
 	} else {
-		if (localStorage.getItem('cache-version') <= Date.now() - 86400000) {
+		if (localStorage.getItem('cache-version') <= date - 86400000) {
 			caches.delete(localStorage.getItem('cache-version'));
 			localStorage.removeItem('cache-version');
 			localStorage.setItem('cache-version', date);
