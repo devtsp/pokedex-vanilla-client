@@ -7,7 +7,7 @@ const displayChanges = object => {
 	for (let index in object) {
 		const pokemonName = Object.keys(object[index]);
 		const spriteUrl = Object.values(object[index]);
-		const cards = query('.poke-card', true);
+		const cards = getElement('.poke-card', true);
 		cards[index].id = pokemonName;
 		cards[index].children[1].innerText = pokemonName;
 		cards[index].children[0].src = spriteUrl;
@@ -19,7 +19,7 @@ const displayPokemonCards = data => {
 	paginationPrevious = data.previous;
 	paginationNext = data.next;
 	const pokemons = [];
-	query('.poke-card', true).forEach(($thumbnail, i) => {
+	getElement('.poke-card', true).forEach(($thumbnail, i) => {
 		const pokemon = data.results[i].name;
 		pokemons.push(pokemon);
 	});
@@ -37,29 +37,29 @@ const displayPokemonCards = data => {
 
 const setInfoCard = pokemon => {
 	handleRequest(`${API_URL}/pokemon/${pokemon}`, pokemon => {
-		query('#pokemon-info').classList.remove('visually-hidden');
-		query('#name').innerText = pokemon.name;
-		query('#type').innerText = pokemon.types[0].type.name;
-		query('#main-pic').src =
+		getElement('#pokemon-info').classList.remove('visually-hidden');
+		getElement('#name').innerText = pokemon.name;
+		getElement('#type').innerText = pokemon.types[0].type.name;
+		getElement('#main-pic').src =
 			pokemon.sprites.other['official-artwork']['front_default'];
 		let abilities = [];
 		pokemon.abilities.forEach(ability => {
 			abilities.push(ability.ability.name);
 		});
-		query('#abilities').innerText = abilities.join(', ');
+		getElement('#abilities').innerText = abilities.join(', ');
 	});
 	handleRequest(`${API_URL}/pokemon-species/${pokemon}`, specie => {
 		for (let index of specie.flavor_text_entries) {
 			if (index.language.name == 'en') {
-				query('#flavor-text').innerText = `"${index.flavor_text
+				getElement('#flavor-text').innerText = `"${index.flavor_text
 					.replace(/\s+/g, ' ')
 					.trim()}"`;
 			}
 		}
-		const evolvesFrom = query('#evolves-from');
-		const evolvesTo = query('#evolves-to');
-		query('#habitat').innerText = specie?.habitat?.name || '-';
-		query('#shape').innerText = specie?.shape?.name || '-';
+		const evolvesFrom = getElement('#evolves-from');
+		const evolvesTo = getElement('#evolves-to');
+		getElement('#habitat').innerText = specie?.habitat?.name || '-';
+		getElement('#shape').innerText = specie?.shape?.name || '-';
 		evolvesFrom.innerText = specie.evolves_from_species?.name || '-';
 		evolvesFrom.innerText == '-'
 			? evolvesFrom.classList.remove('linked-text')
@@ -84,64 +84,64 @@ const setInfoCard = pokemon => {
 	});
 };
 
-query('#previous-page').onclick = e => {
+getElement('#previous-page').onclick = e => {
 	paginationPrevious != null &&
 		handleRequest(paginationPrevious, displayPokemonCards);
 };
 
-query('#next-page').onclick = e => {
+getElement('#next-page').onclick = e => {
 	handleRequest(paginationNext, displayPokemonCards);
 };
 
 const resetInfoCard = () => {
-	query('#pokemon-info').classList.add('visually-hidden');
-	query('#name').innerText = 'Pokemon';
-	query('#type').innertText = 'tpye';
-	query('#main-pic').src = '';
-	query('#main-pic').alt = '';
-	query('#abilities').innerText = '-';
-	query('#habitat').innerText = '-';
-	query('#evolves-from').innerText = '-';
-	query('#evolves-to').innerText = '-';
-	query('#shape').innerText = '-';
+	getElement('#pokemon-info').classList.add('visually-hidden');
+	getElement('#name').innerText = 'Pokemon';
+	getElement('#type').innertText = 'tpye';
+	getElement('#main-pic').src = '';
+	getElement('#main-pic').alt = '';
+	getElement('#abilities').innerText = '-';
+	getElement('#habitat').innerText = '-';
+	getElement('#evolves-from').innerText = '-';
+	getElement('#evolves-to').innerText = '-';
+	getElement('#shape').innerText = '-';
 };
 
-query('#main-nav form').onsubmit = e => {
+getElement('#main-nav form').onsubmit = e => {
 	e.preventDefault();
 	resetInfoCard();
 	setInfoCard(e.target.search.value.toLowerCase().trim());
 };
 
-query('#random-pokemon').onclick = e => {
+getElement('#random-pokemon').onclick = e => {
 	const random = Math.ceil(Math.random() * 898);
 	setInfoCard(random);
 };
 
-query('#index').onclick = e => {
+getElement('#index').onclick = e => {
 	if (e.target.classList.contains('poke-card')) {
 		setInfoCard(e.target.id);
 	}
 };
 
-query('#pokemon-info').onclick = e => {
+getElement('#pokemon-info').onclick = e => {
 	e.stopPropagation();
 };
 
-query('#close-info').onclick = e => resetInfoCard();
+getElement('#close-info').onclick = e => resetInfoCard();
 
-query('#evolves-from').onclick = e => {
+getElement('#evolves-from').onclick = e => {
 	setInfoCard(e.target.innerText);
 };
 
-query('#evolves-to').onclick = e => {
+getElement('#evolves-to').onclick = e => {
 	setInfoCard(e.target.innerText);
 };
 
-query('body').onclick = e => {
+getElement('body').onclick = e => {
 	if (
-		e.target !== query('#pokemon-info') &&
+		e.target !== getElement('#pokemon-info') &&
 		!e.target.classList.contains('poke-card') &&
-		!query('#pokemon-info').classList.contains('visually-hidden')
+		!getElement('#pokemon-info').classList.contains('visually-hidden')
 	) {
 		resetInfoCard();
 	}

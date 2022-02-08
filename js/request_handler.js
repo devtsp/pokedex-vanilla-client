@@ -10,7 +10,7 @@ if (!localStorage.getItem('cache-version')) {
 
 const handleError = err => {
 	if (err == 404) {
-		query('#error-msg').innerText = 'Pokemon not found.';
+		getElement('#error-msg').innerText = 'Pokemon not found.';
 	}
 };
 
@@ -19,7 +19,7 @@ const handleMatch = (request, match, cache, callback) => {
 		fetch(request)
 			.then(response => {
 				if (response.ok) {
-					query('#error-msg').innerText = '';
+					getElement('#error-msg').innerText = '';
 					cache.put(request, response.clone());
 					response.json().then(body => {
 						callback(body);
@@ -31,7 +31,7 @@ const handleMatch = (request, match, cache, callback) => {
 			})
 			.catch(err => console.log(err));
 	} else {
-		query('#error-msg').innerText = '';
+		getElement('#error-msg').innerText = '';
 		cache
 			.match(request)
 			.then(response => {
