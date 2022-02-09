@@ -1,7 +1,7 @@
-import { getElement } from './utils.js';
+import { getElement } from '../utils.js';
 
 export const handleError = err => {
-	if (err == 404) {
+	if (err.message == 404) {
 		getElement('#error-msg').innerText = 'Pokemon not found.';
 	}
 };
