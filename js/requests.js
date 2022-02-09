@@ -1,24 +1,14 @@
-import { resetErrorMsg, handleError } from './errors.js';
-
-export const handleRequest = async (request, callback) => {
+export const handleRequest = async request => {
 	const cache = await caches.open(localStorage.getItem('cache-version'));
 	const match = await cache.match(request);
 	if (!match) {
-		try {
-			const response = await fetch(request);
-			if (response.ok) {
-				resetErrorMsg();
-				cache.put(request, response.clone());
-				callback(await response.json());
-			} else {
-				handleError(response.status);
-			}
-		} catch (err) {
-			handleError(err);
+		const response = await fetch(request).catch(err => err);
+		if (response.ok) {
+			cache.put(request, response.clone());
+			return response.json();
 		}
-	} else {
-		resetErrorMsg();
-		const response = await cache.match(request);
-		callback(await response.json());
+		return response;
 	}
+	const response = await cache.match(request);
+	return response.json();
 };

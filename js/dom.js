@@ -1,44 +1,32 @@
+import { handleError } from './errors.js';
 import { handleRequest } from './requests.js';
 import { getElement } from './utils.js';
-import { paginationNext, paginationPrevious } from './main.js';
 
 const API_URL = 'https://pokeapi.co/api/v2';
 const FIRST_PAGE = API_URL + '/pokemon?limit=12';
 
-const displayIndexOfCards = object => {
-	for (let index in object) {
-		const pokemonName = Object.keys(object[index]);
-		const spriteUrl = Object.values(object[index]);
-		const cards = getElement('.poke-card', true);
-		cards[index].id = pokemonName;
-		cards[index].children[1].innerText = pokemonName;
-		cards[index].children[0].src = spriteUrl;
-		cards[index].children[0].alt = pokemonName;
+export const paginationPrevious = { url: '' };
+export const paginationNext = { url: '' };
+
+export const paginatePokemons = data => {
+	paginationPrevious.url = data.previous || FIRST_PAGE;
+	paginationNext.url = data.next || FIRST_PAGE;
+	const pokemons = data.results;
+	for (const index in pokemons) {
+		const name = pokemons[index].name;
+		const pokemonData = pokemons[index].url;
+		const card = getElement('.poke-card', true)[index];
+		card.id = name;
+		card.children[1].innerText = name;
+		card.children[0].alt = name;
+		handleRequest(pokemonData).then(response => {
+			card.children[0].src = response.sprites.front_default;
+		});
 	}
 };
 
-export const displayPokemonCards = data => {
-	paginationPrevious.url = data.previous || FIRST_PAGE;
-	paginationNext.url = data.next || FIRST_PAGE;
-	const pokemons = [];
-	getElement('.poke-card', true).forEach(($thumbnail, i) => {
-		const pokemon = data.results[i].name;
-		pokemons.push(pokemon);
-	});
-	const sprites = {};
-	pokemons.forEach((pokemon, i) => {
-		handleRequest(`${API_URL}/pokemon/${pokemon}`, data => {
-			const spriteUrl = data.sprites.front_default;
-			const pair = {};
-			pair[pokemon] = spriteUrl;
-			sprites[i] = pair;
-			Object.entries(sprites).length == 12 && displayIndexOfCards(sprites);
-		});
-	});
-};
-
 export const setInfoCard = pokemon => {
-	handleRequest(`${API_URL}/pokemon/${pokemon}`, pokemon => {
+	handleRequest(`${API_URL}/pokemon/${pokemon}`).then(pokemon => {
 		getElement('#pokemon-info').classList.remove('visually-hidden');
 		getElement('#name').innerText = pokemon.name;
 		getElement('#type').innerText = pokemon.types[0].type.name;
@@ -100,5 +88,7 @@ export const resetInfoCard = () => {
 };
 
 export const setInitialCards = () => {
-	handleRequest(FIRST_PAGE, displayPokemonCards);
+	handleRequest(FIRST_PAGE)
+		.then(data => paginatePokemons(data))
+		.catch(err => handleError(err));
 };
