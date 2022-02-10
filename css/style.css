@@ -2,6 +2,10 @@
 
 /* ___________________________________ */
 
+:root {
+	font-size: 20px;
+}
+
 #viewport {
 	font-family: montserrat, sans-serif;
 }
@@ -147,6 +151,7 @@ li {
 
 .info-field p {
 	color: rgba(255, 255, 255, 0.692);
+	font-weight: 100;
 }
 
 .linked-text {
@@ -170,7 +175,7 @@ li {
 
 @media all and (max-width: 576px) {
 	:root {
-		font-size: 13px;
+		font-size: 15px;
 	}
 	.poke-card {
 		margin: 3px;
@@ -184,7 +189,7 @@ li {
 
 @media all and (max-width: 800px) {
 	:root {
-		font-size: 13px;
+		font-size: 15px;
 	}
 }
 

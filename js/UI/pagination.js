@@ -1,4 +1,4 @@
-import { getElement } from '../utils.js';
+import { querySelector } from '../utils.js';
 import { API_URL } from './pokemon_info.js';
 import { handleRequest } from '../cache/requests.js';
 
@@ -13,7 +13,7 @@ export const paginatePokemons = async data => {
 	for (const index in pokemons) {
 		const name = pokemons[index].name;
 		const pokemonData = pokemons[index].url;
-		const card = getElement('.poke-card', true)[index];
+		const card = querySelector('.poke-card', 'all')[index];
 		card.id = name;
 		card.children[1].innerText = name;
 		card.children[0].alt = name;

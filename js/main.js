@@ -1,4 +1,4 @@
-import { getElement, getRandomPokemonIndex } from './utils.js';
+import { querySelector, getRandomPokemonIndex } from './utils.js';
 import { checkCacheVersion } from './cache/cache_version.js';
 import { handleRequest } from './cache/requests.js';
 import { setInfoCard, resetInfoCard } from './UI/info_card.js';
@@ -21,17 +21,17 @@ const initApp = () => {
 
 	setInitialCards();
 
-	getElement('#previous-page').onclick = e => {
+	querySelector('#previous-page').onclick = e => {
 		resetErrorMsg();
 		handleRequest(paginationPrevious.url).then(data => paginatePokemons(data));
 	};
 
-	getElement('#next-page').onclick = e => {
+	querySelector('#next-page').onclick = e => {
 		resetErrorMsg();
 		handleRequest(paginationNext.url).then(data => paginatePokemons(data));
 	};
 
-	getElement('#main-nav form').onsubmit = async e => {
+	querySelector('#main-nav form').onsubmit = async e => {
 		const search = e.target.search.value.toLowerCase().trim();
 		e.preventDefault();
 		resetErrorMsg();
@@ -40,14 +40,14 @@ const initApp = () => {
 		setInfoCard(pokemonInfo);
 	};
 
-	getElement('#random-pokemon').onclick = async e => {
+	querySelector('#random-pokemon').onclick = async e => {
 		const randomPokemon = getRandomPokemonIndex();
 		resetErrorMsg();
 		const pokemonInfo = await getPokemonInfo(randomPokemon);
 		setInfoCard(pokemonInfo);
 	};
 
-	getElement('#index').onclick = async e => {
+	querySelector('#index').onclick = async e => {
 		if (e.target.classList.contains('poke-card')) {
 			const clicked = e.target.id;
 			resetErrorMsg();
@@ -56,25 +56,25 @@ const initApp = () => {
 		}
 	};
 
-	getElement('#evolves-from').onclick = async e => {
+	querySelector('#evolves-from').onclick = async e => {
 		const clicked = e.target.innerText;
 		const pokemonInfo = await getPokemonInfo(clicked);
 		setInfoCard(pokemonInfo);
 	};
 
-	getElement('#evolves-to').onclick = async e => {
+	querySelector('#evolves-to').onclick = async e => {
 		const clicked = e.target.innerText;
 		const pokemonInfo = await getPokemonInfo(clicked);
 		setInfoCard(pokemonInfo);
 	};
 
-	getElement('#pokemon-info').onclick = e => e.stopPropagation();
-	getElement('#close-info').onclick = e => resetInfoCard();
-	getElement('body').onclick = e => {
+	querySelector('#pokemon-info').onclick = e => e.stopPropagation();
+	querySelector('#close-info').onclick = e => resetInfoCard();
+	querySelector('body').onclick = e => {
 		if (
-			e.target !== getElement('#pokemon-info') &&
+			e.target !== querySelector('#pokemon-info') &&
 			!e.target.classList.contains('poke-card') &&
-			!getElement('#pokemon-info').classList.contains('visually-hidden')
+			!querySelector('#pokemon-info').classList.contains('visually-hidden')
 		) {
 			resetInfoCard();
 		}
