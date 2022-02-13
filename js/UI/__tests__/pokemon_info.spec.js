@@ -1,0 +1,23 @@
+import { setPokemonObject } from '../pokemon_info';
+import { info, specie, evolutionChain } from './fixtures/pokemon_info';
+
+const allInfo = { info, specie, evolutionChain };
+
+describe('setPokemonInfo', () => {
+	test('returns proper pokemon object with specific info', () => {
+		const { name, type, abilities, habitat, shape, evolvesFrom, evolvesTo } =
+			setPokemonObject(allInfo);
+		expect(name).toBe('pikachu');
+		expect(type).toBe('electric');
+		expect(abilities).toBe('static, lightning-rod');
+		expect(habitat).toBe('forest');
+		expect(shape).toBe('quadruped');
+		expect(evolvesFrom).toBe('pichu');
+		expect(evolvesTo).toBe('raichu');
+	});
+	test('returns empty fields when data is empty', () => {
+		const test = setPokemonObject({ info: {}, specie: {}, evolutionChain: {} });
+		// console.log(test);
+		expect(true).toBe(true);
+	});
+});

@@ -15,7 +15,7 @@ export const setInfoCard = info => {
 	$pokemonInfo.classList.remove('visually-hidden');
 	$name.innerText = info.name;
 	$type.innerText = info.type;
-	$mainPic.src = info.image;
+	$mainPic.src = info.imageUrl;
 	$mainPic.alt = info.name;
 	$abilities.innerText = info.abilities;
 	$flavorText.innerText = info.flavorText;
@@ -30,6 +30,7 @@ export const setInfoCard = info => {
 	$evolvesTo.innerText == '-'
 		? $evolvesTo.classList.remove('linked-text')
 		: $evolvesTo.classList.add('linked-text');
+	return $pokemonInfo;
 };
 
 export const resetInfoCard = () => {
@@ -44,4 +45,5 @@ export const resetInfoCard = () => {
 	$shape.innerText = '-';
 	$evolvesFrom.innerText = '-';
 	$evolvesTo.innerText = '-';
+	return $pokemonInfo;
 };
