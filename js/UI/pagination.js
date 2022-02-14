@@ -12,6 +12,7 @@ export const setPaginationState = paginationObject => {
 	return [paginationPrevious, paginationNext];
 };
 
+/* istanbul ignore next */
 export const getSprites = async paginationObject => {
 	const pokemonCards = await Promise.all(
 		paginationObject.results.map(async pokemon => {

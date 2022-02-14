@@ -11,6 +11,7 @@ const $shape = querySelector('#shape');
 const $evolvesFrom = querySelector('#evolves-from');
 const $evolvesTo = querySelector('#evolves-to');
 
+/* istanbul ignore next */
 export const setInfoCard = info => {
 	$pokemonInfo.classList.remove('visually-hidden');
 	$name.innerText = info.name;

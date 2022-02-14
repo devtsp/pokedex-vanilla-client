@@ -16,12 +16,22 @@ describe('setPokemonInfo', () => {
 		expect(evolvesTo).toBe('raichu');
 	});
 	test('returns "-" for empty fields  in pokemon info object', () => {
-		allInfo.info.name = null;
-		allInfo.specie.habitat = null;
-		allInfo.evolutionChain.evolvesTo = null;
-		const { name, habitat, evolvesTo } = setPokemonObject(allInfo);
+		const allInfoEmpty = { ...allInfo };
+		allInfoEmpty.info.name = null;
+		allInfoEmpty.info.types[0].type.name = null;
+		allInfoEmpty.info.sprites.other['official-artwork'].front_default = null;
+		allInfoEmpty.specie.habitat = null;
+		allInfoEmpty.specie.shape.name = null;
+		allInfoEmpty.specie.evolves_from_species.name = null;
+		allInfoEmpty.evolutionChain.evolvesTo = null;
+		const { name, type, imageUrl, habitat, shape, evolvesTo, evolvesFrom } =
+			setPokemonObject(allInfoEmpty);
 		expect(name).toBe('-');
+		expect(type).toBe('-');
+		expect(imageUrl).toBe('-');
 		expect(habitat).toBe('-');
+		expect(shape).toBe('-');
 		expect(evolvesTo).toBe('-');
+		expect(evolvesFrom).toBe('-');
 	});
 });

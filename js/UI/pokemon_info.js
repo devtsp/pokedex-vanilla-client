@@ -10,6 +10,7 @@ const getRandomFlavor = flavors => {
 		?.flavor_text;
 };
 
+/* istanbul ignore next */
 export const fetchPokemonInfo = async pokemon => {
 	const info = await handleRequest(`${API_URL}/pokemon/${pokemon}`);
 	const specie = await handleRequest(`${API_URL}/pokemon-species/${pokemon}`);
@@ -24,9 +25,7 @@ export const setPokemonObject = allInfo => {
 	const type = info?.types[0]?.type?.name || '-';
 	const imageUrl =
 		info?.sprites?.other['official-artwork']?.front_default || '-';
-	const flavorText = getRandomFlavor(
-		specie?.flavor_text_entries || [undefined]
-	);
+	const flavorText = getRandomFlavor(specie?.flavor_text_entries) || '-';
 	let abilities = [...info?.abilities].map(ability => ability?.ability?.name);
 	const habitat = specie?.habitat?.name || '-';
 	const shape = specie?.shape?.name || '-';
@@ -43,7 +42,7 @@ export const setPokemonObject = allInfo => {
 			evolvesTo = '-';
 		}
 	}
-	return {
+	const pokemonObject = {
 		name,
 		type,
 		imageUrl,
@@ -54,4 +53,5 @@ export const setPokemonObject = allInfo => {
 		evolvesFrom,
 		evolvesTo,
 	};
+	return pokemonObject;
 };
