@@ -8,11 +8,16 @@ import {
 	FIRST_PAGE,
 	paginationNext,
 	paginationPrevious,
-	paginatePokemons,
+	setPaginationState,
+	getSprites,
+	setAllCards,
 } from './UI/pagination.js';
 
-const setInitialCards = () => {
-	handleRequest(FIRST_PAGE).then(firstPage => paginatePokemons(firstPage));
+const setInitialCards = async () => {
+	const paginationObject = await handleRequest(FIRST_PAGE);
+	setPaginationState(paginationObject);
+	const cardsArray = await getSprites(paginationObject);
+	setAllCards(cardsArray);
 };
 
 const initApp = () => {
@@ -20,60 +25,63 @@ const initApp = () => {
 
 	setInitialCards();
 
-	querySelector('#previous-page').onclick = e => {
+	querySelector('#previous-page').onclick = async e => {
 		resetErrorMsg();
-		handleRequest(paginationPrevious.url).then(data => paginatePokemons(data));
+		const paginationObject = await handleRequest(paginationPrevious.url);
+		setPaginationState(paginationObject);
+		const cardsArray = await getSprites(paginationObject);
+		setAllCards(cardsArray);
 	};
 
-	querySelector('#next-page').onclick = e => {
+	querySelector('#next-page').onclick = async e => {
 		resetErrorMsg();
-		handleRequest(paginationNext.url).then(data => paginatePokemons(data));
+		const paginationObject = await handleRequest(paginationNext.url);
+		setPaginationState(paginationObject);
+		const cardsArray = await getSprites(paginationObject);
+		setAllCards(cardsArray);
 	};
 
-	querySelector('#main-nav form').onsubmit = e => {
+	querySelector('#main-nav form').onsubmit = async e => {
 		const search = e.target.search.value.toLowerCase().trim();
 		e.preventDefault();
 		resetErrorMsg();
 		resetInfoCard();
-		fetchPokemonInfo(search)
-			.then(fetched => setPokemonObject(fetched))
-			.then(info => setInfoCard(info));
+		const infoObject = await fetchPokemonInfo(search);
+		setInfoCard(setPokemonObject(infoObject));
 	};
 
-	querySelector('#random-pokemon').onclick = e => {
+	querySelector('#random-pokemon').onclick = async e => {
 		const randomPokemon = getRandomPokemonIndex();
 		resetErrorMsg();
-		fetchPokemonInfo(randomPokemon)
-			.then(fetched => setPokemonObject(fetched))
-			.then(info => setInfoCard(info));
+		const infoObject = await fetchPokemonInfo(randomPokemon);
+		setInfoCard(setPokemonObject(infoObject));
 	};
 
-	querySelector('#index').onclick = e => {
+	querySelector('#index').onclick = async e => {
 		if (e.target.classList.contains('poke-card')) {
 			const clicked = e.target.id;
 			resetErrorMsg();
-			fetchPokemonInfo(clicked)
-				.then(fetched => setPokemonObject(fetched))
-				.then(info => setInfoCard(info));
+			const infoObject = await fetchPokemonInfo(clicked);
+			setInfoCard(setPokemonObject(infoObject));
 		}
 	};
 
-	querySelector('#evolves-from').onclick = e => {
+	querySelector('#evolves-from').onclick = async e => {
 		const clicked = e.target.innerText;
-		fetchPokemonInfo(clicked)
-			.then(fetched => setPokemonObject(fetched))
-			.then(info => setInfoCard(info));
+		const infoObject = await fetchPokemonInfo(clicked);
+		setInfoCard(setPokemonObject(infoObject));
 	};
 
-	querySelector('#evolves-to').onclick = e => {
+	querySelector('#evolves-to').onclick = async e => {
 		const clicked = e.target.innerText;
-		fetchPokemonInfo(clicked)
-			.then(fetched => setPokemonObject(fetched))
-			.then(info => setInfoCard(info));
+		const infoObject = await fetchPokemonInfo(clicked);
+		setInfoCard(setPokemonObject(infoObject));
 	};
 
 	querySelector('#pokemon-info').onclick = e => e.stopPropagation();
+
 	querySelector('#close-info').onclick = e => resetInfoCard();
+
 	querySelector('body').onclick = e => {
 		if (
 			e.target !== querySelector('#pokemon-info') &&

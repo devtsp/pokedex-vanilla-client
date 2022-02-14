@@ -1,4 +1,4 @@
-export const secondPage = {
+export const secondPageApiResponse = {
 	'count': 1118,
 	'next': 'https://pokeapi.co/api/v2/pokemon?offset=24&limit=12',
 	'previous': 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=12',

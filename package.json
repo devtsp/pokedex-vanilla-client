@@ -8,7 +8,8 @@
 		"@babel/preset-env": "^7.16.11",
 		"babel-jest": "^27.5.1",
 		"cypress": "^9.4.1",
-		"jest": "^27.5.1"
+		"jest": "^27.5.1",
+		"jest-environment-jsdom-latest": "^26.6.2"
 	},
 	"scripts": {
 		"test": "jest --collect-coverage",
