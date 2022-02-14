@@ -1,89 +1,43 @@
+/**
+ * @jest-environment jsdom-latest
+ */
+
 import {
-	paginatePokemons,
 	paginationPrevious,
 	paginationNext,
+	setAllCards,
+	setPaginationState,
+	FIRST_PAGE,
 } from '../pagination';
-import { getSprites } from '../get_Sprites';
 import { secondPageApiResponse } from './fixtures/secondPageAPIResponse.fixture';
 import { body } from './fixtures/DOM.fixture';
-import { handleRequest } from '../../cache/requests';
+import { pokemonsArray } from './fixtures/pokemonsArray.fixture';
 
-jest.mock('../get_Sprites', () => {
-	const mockReturn = [
-		{
-			'name': 'weedle',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png',
-		},
-		{
-			'name': 'kakuna',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png',
-		},
-		{
-			'name': 'beedrill',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png',
-		},
-		{
-			'name': 'pidgey',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png',
-		},
-		{
-			'name': 'pidgeotto',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png',
-		},
-		{
-			'name': 'pidgeot',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png',
-		},
-		{
-			'name': 'rattata',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png',
-		},
-		{
-			'name': 'raticate',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png',
-		},
-		{
-			'name': 'spearow',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/21.png',
-		},
-		{
-			'name': 'fearow',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png',
-		},
-		{
-			'name': 'ekans',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png',
-		},
-		{
-			'name': 'arbok',
-			'sprite':
-				'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png',
-		},
-	];
-	return mockReturn;
-});
-
-describe('paginatePokemons', () => {
+describe('setPaginationState', () => {
 	test('sets the previous and next page', () => {
 		expect(paginationPrevious.url).toBe('');
 		expect(paginationNext.url).toBe('');
-		paginatePokemons(secondPageApiResponse).then(f => {
-			expect(paginationPrevious).toBe(
-				'https://pokeapi.co/api/v2/pokemon?limit=12'
-			);
-			expect(paginationNext).toInclude('offset=24');
+		setPaginationState(secondPageApiResponse);
+		expect(paginationPrevious.url).toBe(
+			'https://pokeapi.co/api/v2/pokemon?offset=0&limit=12'
+		);
+		expect(paginationNext.url).toContain('offset=24');
+	});
+	test('fallback to first page if previous or next page are null or undefined', () => {
+		setPaginationState({ next: null, previous: undefined });
+		expect(paginationPrevious.url).toBe(FIRST_PAGE);
+		expect(paginationNext.url).toBe(FIRST_PAGE);
+	});
+});
+
+describe('setAllCards', () => {
+	test('set cards with proper name and sprite into the DOM', () => {
+		document.body.innerHTML = body;
+		const $cards = setAllCards(pokemonsArray);
+		document.querySelectorAll('.poke-card').forEach(($card, i) => {
+			expect($card.id).toBe(pokemonsArray[i].name);
+			expect($card.children[1].innerText).toBe(pokemonsArray[i].name);
+			expect($card.children[0].src).toBe(pokemonsArray[i].sprite);
 		});
-		// document.body.innerHTML = body;
 	});
 });
