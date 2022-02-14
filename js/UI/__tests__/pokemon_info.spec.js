@@ -1,5 +1,5 @@
 import { setPokemonObject } from '../pokemon_info';
-import { info, specie, evolutionChain } from './fixtures/pokemon_info';
+import { info, specie, evolutionChain } from './fixtures/pokemon_info.fixture';
 
 const allInfo = { info, specie, evolutionChain };
 
@@ -15,9 +15,13 @@ describe('setPokemonInfo', () => {
 		expect(evolvesFrom).toBe('pichu');
 		expect(evolvesTo).toBe('raichu');
 	});
-	test('returns empty fields when data is empty', () => {
-		const test = setPokemonObject({ info: {}, specie: {}, evolutionChain: {} });
-		// console.log(test);
-		expect(true).toBe(true);
+	test('returns "-" for empty fields  in pokemon info object', () => {
+		allInfo.info.name = null;
+		allInfo.specie.habitat = null;
+		allInfo.evolutionChain.evolvesTo = null;
+		const { name, habitat, evolvesTo } = setPokemonObject(allInfo);
+		expect(name).toBe('-');
+		expect(habitat).toBe('-');
+		expect(evolvesTo).toBe('-');
 	});
 });

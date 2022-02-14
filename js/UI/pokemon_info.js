@@ -19,44 +19,39 @@ export const fetchPokemonInfo = async pokemon => {
 };
 
 export const setPokemonObject = allInfo => {
-	if (allInfo.info && allInfo.specie && allInfo.evolutionChain) {
-		const { info, specie, evolutionChain } = allInfo;
-		const name = info?.name || '-';
-		const type = info?.types[0]?.type?.name || '-';
-		const imageUrl =
-			info?.sprites?.other['official-artwork']?.front_default || '-';
-		const flavorText = getRandomFlavor(
-			specie?.flavor_text_entries || [undefined]
-		);
-		const abilities = [...info?.abilities].map(
-			ability => ability?.ability?.name
-		) || ['-'];
-		const habitat = specie?.habitat?.name || '-';
-		const shape = specie?.shape?.name || '-';
-		const evolvesFrom = specie.evolves_from_species?.name || '-';
-		let evolvesTo;
-		if (!specie?.evolves_from_species) {
-			evolvesTo = evolutionChain.chain?.evolves_to[0]?.species?.name || '-';
+	const { info, specie, evolutionChain } = allInfo;
+	const name = info?.name || '-';
+	const type = info?.types[0]?.type?.name || '-';
+	const imageUrl =
+		info?.sprites?.other['official-artwork']?.front_default || '-';
+	const flavorText = getRandomFlavor(
+		specie?.flavor_text_entries || [undefined]
+	);
+	let abilities = [...info?.abilities].map(ability => ability?.ability?.name);
+	const habitat = specie?.habitat?.name || '-';
+	const shape = specie?.shape?.name || '-';
+	const evolvesFrom = specie.evolves_from_species?.name || '-';
+	let evolvesTo;
+	if (!specie?.evolves_from_species) {
+		evolvesTo = evolutionChain.chain?.evolves_to[0]?.species?.name || '-';
+	} else {
+		if (evolutionChain?.chain?.evolves_to[0]?.species?.name == name) {
+			evolvesTo =
+				evolutionChain?.chain?.evolves_to[0]?.evolves_to[0]?.species?.name ||
+				'-';
 		} else {
-			if (evolutionChain?.chain?.evolves_to[0]?.species?.name == name) {
-				evolvesTo =
-					evolutionChain?.chain?.evolves_to[0]?.evolves_to[0]?.species?.name ||
-					'-';
-			} else {
-				evolvesTo = '-';
-			}
+			evolvesTo = '-';
 		}
-		return {
-			name,
-			type,
-			imageUrl,
-			flavorText,
-			abilities: abilities.join(', '),
-			habitat,
-			shape,
-			evolvesFrom,
-			evolvesTo,
-		};
 	}
-	return;
+	return {
+		name,
+		type,
+		imageUrl,
+		flavorText,
+		abilities: abilities.join(', '),
+		habitat,
+		shape,
+		evolvesFrom,
+		evolvesTo,
+	};
 };
