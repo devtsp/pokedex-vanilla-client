@@ -1,27 +1,20 @@
 import { querySelector } from '../utils.js';
 
-const $pokemonInfo = querySelector('#pokemon-info');
-const $name = querySelector('#name');
-const $type = querySelector('#type');
-const $mainPic = querySelector('#main-pic');
-const $abilities = querySelector('#abilities');
-const $flavorText = querySelector('#flavor-text');
-const $habitat = querySelector('#habitat');
-const $shape = querySelector('#shape');
-const $evolvesFrom = querySelector('#evolves-from');
-const $evolvesTo = querySelector('#evolves-to');
-
-/* istanbul ignore next */
 export const setInfoCard = info => {
-	$pokemonInfo.classList.remove('visually-hidden');
-	$name.innerText = info.name;
-	$type.innerText = info.type;
-	$mainPic.src = info.imageUrl;
-	$mainPic.alt = info.name;
-	$abilities.innerText = info.abilities;
-	$flavorText.innerText = info.flavorText;
-	$habitat.innerText = info.habitat;
-	$shape.innerText = info.shape;
+	querySelector('#pokemon-info').classList.remove('visually-hidden');
+	querySelector('#pokemon-info').style.display = 'inline-block';
+	querySelector('#name').innerText = info.name;
+	querySelector('#type').innerText = info.type;
+	querySelector('#main-pic').src = info.imageUrl;
+	querySelector('#main-pic').alt = info.name;
+	querySelector('#abilities').innerText = info.abilities;
+	querySelector('#flavor-text').innerText = info.flavorText;
+	querySelector('#habitat').innerText = info.habitat;
+	querySelector('#shape').innerText = info.shape;
+
+	const $evolvesFrom = querySelector('#evolves-from');
+	const $evolvesTo = querySelector('#evolves-to');
+
 	$evolvesFrom.innerText = info.evolvesFrom;
 	$evolvesTo.innerText = info.evolvesTo;
 
@@ -31,20 +24,21 @@ export const setInfoCard = info => {
 	$evolvesTo.innerText == '-'
 		? $evolvesTo.classList.remove('linked-text')
 		: $evolvesTo.classList.add('linked-text');
-	return $pokemonInfo;
+
+	return querySelector('#pokemon-info');
 };
 
 export const resetInfoCard = () => {
-	$pokemonInfo.classList.add('visually-hidden');
-	$name.innerText = 'Pokemon';
-	$type.innertText = 'tpye';
-	$mainPic.src = '';
-	$mainPic.alt = '';
-	$abilities.innerText = '-';
-	$flavorText.innerText = '';
-	$habitat.innerText = '-';
-	$shape.innerText = '-';
-	$evolvesFrom.innerText = '-';
-	$evolvesTo.innerText = '-';
-	return $pokemonInfo;
+	querySelector('#pokemon-info').classList.add('visually-hidden');
+	querySelector('#name').innerText = 'Pokemon';
+	querySelector('#type').innertText = 'tpye';
+	querySelector('#main-pic').src = '';
+	querySelector('#main-pic').alt = '';
+	querySelector('#abilities').innerText = '-';
+	querySelector('#flavor-text').innerText = '';
+	querySelector('#habitat').innerText = '-';
+	querySelector('#shape').innerText = '-';
+	querySelector('#evolves-from').innerText = '-';
+	querySelector('#evolves-to').innerText = '-';
+	return querySelector('#pokemon-info');
 };

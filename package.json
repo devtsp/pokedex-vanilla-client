@@ -1,31 +1,26 @@
 {
 	"name": "pokedex",
 	"version": "1.0.0",
-	"description": "pokedex",
-	"main": "main.js",
-	"devDependencies": {
-		"@babel/core": "^7.17.2",
-		"@babel/preset-env": "^7.16.11",
-		"babel-jest": "^27.5.1",
-		"cypress": "^9.4.1",
-		"jest": "^27.5.1",
-		"jest-environment-jsdom-latest": "^26.6.2"
-	},
+	"description": "An UI to manipulate https://pokeapi.co/api/v2 resources",
+	"main": "babel.config.js",
 	"scripts": {
-		"test": "jest --collect-coverage",
-		"test:dev": "jest --watch"
+		"test": "jest"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/devtsp/pokedex.git"
 	},
-	"keywords": [
-		"pokedex"
-	],
-	"author": "tomas paez",
+	"keywords": [],
+	"author": "",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/devtsp/pokedex/issues"
 	},
-	"homepage": "https://github.com/devtsp/pokedex#readme"
+	"homepage": "https://github.com/devtsp/pokedex#readme",
+	"devDependencies": {
+		"@babel/core": "^7.17.2",
+		"@babel/preset-env": "^7.16.11",
+		"babel-jest": "^27.5.1",
+		"jest": "^27.5.1"
+	}
 }

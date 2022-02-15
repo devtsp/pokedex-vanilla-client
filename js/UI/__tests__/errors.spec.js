@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom-latest
+ * @jest-environment jsdom
  */
 
 import { handleError, resetErrorMsg } from '../errors';
