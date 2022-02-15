@@ -31,7 +31,7 @@ export const setInfoCard = info => {
 export const resetInfoCard = () => {
 	querySelector('#pokemon-info').classList.add('visually-hidden');
 	querySelector('#name').innerText = 'Pokemon';
-	querySelector('#type').innertText = 'tpye';
+	querySelector('#type').innertText = '';
 	querySelector('#main-pic').src = '';
 	querySelector('#main-pic').alt = '';
 	querySelector('#abilities').innerText = '-';
