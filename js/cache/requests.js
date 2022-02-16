@@ -1,6 +1,5 @@
 import { handleError } from '../UI/errors.js';
 
-/* istanbul ignore next */
 export const handleRequest = async request => {
 	const cache = await caches.open(localStorage.getItem('cache-version'));
 	const match = await cache.match(request);

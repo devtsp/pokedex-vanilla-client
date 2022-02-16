@@ -18,48 +18,48 @@ const pikachuObject = {
 };
 
 document.body.innerHTML = body;
-
-const $pokemonInfo = document.querySelector('#pokemon-info');
-const $name = document.querySelector('#name');
-const $type = document.querySelector('#type');
-const $mainPic = document.querySelector('#main-pic');
-const $abilities = document.querySelector('#abilities');
-const $flavorText = document.querySelector('#flavor-text');
-const $habitat = document.querySelector('#habitat');
-const $shape = document.querySelector('#shape');
-const $evolvesFrom = document.querySelector('#evolves-from');
-const $evolvesTo = document.querySelector('#evolves-to');
+const elements = setInfoCard(pikachuObject);
 
 describe('setInfoCard', () => {
 	test('correctly displays contents of info object to the DOM', () => {
-		setInfoCard(pikachuObject);
-		expect($pokemonInfo.classList).toEqual(
+		expect(elements.$pokemonInfo.classList).toEqual(
 			expect.not.stringContaining('visually-hidden')
 		);
-		expect($name.innerText).toBe('pikachu');
-		expect($type.innerText).toBe('electric');
-		expect($mainPic.src).toBe('https://google.com/');
-		expect($abilities.innerText).toBe('static, lighting-rod');
-		expect($flavorText.innerText).toBe('Test flavor text');
-		expect($habitat.innerText).toBe('forest');
-		expect($shape.innerText).toBe('quadruped');
-		expect($evolvesFrom.innerText).toBe('pichu');
-		expect($evolvesTo.innerText).toBe('raichu');
+		expect(elements.$name.innerText).toBe('pikachu');
+		expect(elements.$type.innerText).toBe('electric');
+		expect(elements.$mainPic.src).toBe('https://google.com/');
+		expect(elements.$abilities.innerText).toBe('static, lighting-rod');
+		expect(elements.$flavorText.innerText).toBe('Test flavor text');
+		expect(elements.$habitat.innerText).toBe('forest');
+		expect(elements.$shape.innerText).toBe('quadruped');
+		expect(elements.$evolvesFrom.innerText).toBe('pichu');
+		expect(elements.$evolvesTo.innerText).toBe('raichu');
+	});
+	test('correctly changes the class of evolution/prevolution field to be linked or not', () => {
+		pikachuObject.evolvesFrom = '-';
+		pikachuObject.evolvesTo = '-';
+		const elements = setInfoCard(pikachuObject);
+		expect(elements.$evolvesFrom.classList).toEqual(
+			expect.not.stringContaining('linked-text')
+		);
+		expect(elements.$evolvesTo.classList).toEqual(
+			expect.not.stringContaining('linked-text')
+		);
 	});
 });
 
 describe('resetInfoCard', () => {
 	test('correctly displays contents of info object to the DOM', () => {
 		resetInfoCard();
-		expect($pokemonInfo.classList).toContain('visually-hidden');
-		expect($name.innerText).toBe('Pokemon');
-		// expect($type.innerText).toBe('type');
-		expect($mainPic.src).toBe('http://localhost/');
-		expect($abilities.innerText).toBe('-');
-		expect($flavorText.innerText).toBe('');
-		expect($habitat.innerText).toBe('-');
-		expect($shape.innerText).toBe('-');
-		expect($evolvesFrom.innerText).toBe('-');
-		expect($evolvesTo.innerText).toBe('-');
+		expect(elements.$pokemonInfo.classList).toContain('visually-hidden');
+		expect(elements.$name.innerText).toBe('Pokemon');
+		// expect(elements.$type.innerText).toBe(''); dont know why is not working
+		expect(elements.$mainPic.src).toBe('http://localhost/');
+		expect(elements.$abilities.innerText).toBe('-');
+		expect(elements.$flavorText.innerText).toBe('');
+		expect(elements.$habitat.innerText).toBe('-');
+		expect(elements.$shape.innerText).toBe('-');
+		expect(elements.$evolvesFrom.innerText).toBe('-');
+		expect(elements.$evolvesTo.innerText).toBe('-');
 	});
 });

@@ -4,7 +4,9 @@
 	"description": "An UI to manipulate https://pokeapi.co/api/v2 resources",
 	"main": "babel.config.js",
 	"scripts": {
-		"test": "jest --collectCoverage"
+		"test": "jest --collectCoverage",
+		"cache-clear": "jest --clearCache",
+		"test-watch": "jest --watch"
 	},
 	"repository": {
 		"type": "git",

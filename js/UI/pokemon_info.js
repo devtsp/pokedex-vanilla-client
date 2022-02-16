@@ -21,24 +21,28 @@ export const fetchPokemonInfo = async pokemon => {
 
 export const setPokemonObject = allInfo => {
 	const { info, specie, evolutionChain } = allInfo;
-	const name = info?.name || '-';
-	const type = info?.types[0]?.type?.name || '-';
+	const name = info.name || '-';
+	const type = info.types[0]?.type?.name || '-';
 	const imageUrl =
 		info?.sprites?.other['official-artwork']?.front_default || '-';
-	const flavorText = getRandomFlavor(specie?.flavor_text_entries) || '-';
-	let abilities = [...info?.abilities].map(ability => ability?.ability?.name);
-	const habitat = specie?.habitat?.name || '-';
-	const shape = specie?.shape?.name || '-';
+	const flavorText = specie?.flavor_text_entries
+		? getRandomFlavor(specie?.flavor_text_entries)
+		: '';
+	let abilities = [...info.abilities].map(ability => ability?.ability?.name);
+	const habitat = specie.habitat?.name || '-';
+	const shape = specie.shape?.name || '-';
 	const evolvesFrom = specie.evolves_from_species?.name || '-';
 	let evolvesTo;
 	if (!specie?.evolves_from_species) {
-		evolvesTo = evolutionChain.chain?.evolves_to[0]?.species?.name || '-';
+		// first in chain and maybe evolution
+		evolvesTo = evolutionChain.chain.evolves_to[0]?.species?.name || '-';
 	} else {
-		if (evolutionChain?.chain?.evolves_to[0]?.species?.name == name) {
+		if (evolutionChain.chain?.evolves_to[0]?.species?.name == name) {
+			// second in chain: maybe third or not
 			evolvesTo =
-				evolutionChain?.chain?.evolves_to[0]?.evolves_to[0]?.species?.name ||
-				'-';
+				evolutionChain.chain.evolves_to[0]?.evolves_to[0]?.species?.name || '-';
 		} else {
+			// if third in chain no more evolutions
 			evolvesTo = '-';
 		}
 	}

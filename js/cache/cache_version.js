@@ -1,4 +1,3 @@
-/* istanbul ignore next */
 export const checkCacheVersion = () => {
 	const date = Date.now();
 	if (!localStorage.getItem('cache-version')) {
