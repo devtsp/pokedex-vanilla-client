@@ -20,8 +20,8 @@ const pikachuObject = {
 document.body.innerHTML = body;
 const elements = setInfoCard(pikachuObject);
 
-describe('setInfoCard', () => {
-	test('correctly displays contents of info object to the DOM', () => {
+describe('setInfoCard()', () => {
+	test('displays contents of info object to the DOM', () => {
 		expect(elements.$pokemonInfo.classList).toEqual(
 			expect.not.stringContaining('visually-hidden')
 		);
@@ -35,7 +35,20 @@ describe('setInfoCard', () => {
 		expect(elements.$evolvesFrom.innerText).toBe('pichu');
 		expect(elements.$evolvesTo.innerText).toBe('raichu');
 	});
-	test('correctly changes the class of evolution/prevolution field to be linked or not', () => {
+	test('corrects undefined fields to be "-"', () => {
+		const pikachuObjectB = JSON.parse(JSON.stringify(pikachuObject));
+		pikachuObjectB.habitat = undefined;
+		pikachuObjectB.shape = undefined;
+		pikachuObjectB.evolvesFrom = undefined;
+		pikachuObjectB.evolvesTo = undefined;
+		const elementsB = setInfoCard(pikachuObjectB);
+		expect(elementsB.$habitat.innerText).toBe('-');
+		expect(elementsB.$shape.innerText).toBe('-');
+		expect(elementsB.$evolvesFrom.innerText).toBe('-');
+		expect(elementsB.$evolvesTo.innerText).toBe('-');
+	});
+
+	test('changes the class of evolution/prevolution field to be linked or not', () => {
 		pikachuObject.evolvesFrom = '-';
 		pikachuObject.evolvesTo = '-';
 		const elements = setInfoCard(pikachuObject);
@@ -48,12 +61,11 @@ describe('setInfoCard', () => {
 	});
 });
 
-describe('resetInfoCard', () => {
-	test('correctly displays contents of info object to the DOM', () => {
+describe('resetInfoCard()', () => {
+	test("reset contents of DOM's pokemon info card", () => {
 		resetInfoCard();
 		expect(elements.$pokemonInfo.classList).toContain('visually-hidden');
 		expect(elements.$name.innerText).toBe('Pokemon');
-		// expect(elements.$type.innerText).toBe(''); dont know why is not working
 		expect(elements.$mainPic.src).toBe('http://localhost/');
 		expect(elements.$abilities.innerText).toBe('-');
 		expect(elements.$flavorText.innerText).toBe('');

@@ -18,15 +18,6 @@ const filterEnglishFlavor = flavors => {
 	return englishFlavors[0].flavor_text;
 };
 
-export const getSpecieDetails = specie => {
-	const flavorTextRaw = `${filterEnglishFlavor(specie.flavor_text_entries)}`;
-	const flavorText = flavorTextRaw.replace(/[\n\f]/g, ' ');
-	const habitat = specie.habitat?.name;
-	const shape = specie.shape?.name;
-	const specieDetails = { flavorText, habitat, shape };
-	return specieDetails;
-};
-
 export const getMainInfo = info => {
 	const name = info.name;
 	const type = info.types[0].type.name;
@@ -36,6 +27,15 @@ export const getMainInfo = info => {
 		.join(', ');
 	const mainInfo = { name, type, imgUrl, abilities };
 	return mainInfo;
+};
+
+export const getSpecieDetails = specie => {
+	const flavorTextRaw = `${filterEnglishFlavor(specie.flavor_text_entries)}`;
+	const flavorText = flavorTextRaw.replace(/[\n\f]/g, ' ');
+	const habitat = specie.habitat?.name;
+	const shape = specie.shape?.name;
+	const specieDetails = { flavorText, habitat, shape };
+	return specieDetails;
 };
 
 export const getEvolutionDetails = (pokemon, evolutionChain) => {

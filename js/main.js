@@ -1,4 +1,4 @@
-import { checkCacheVersion } from './cache/cache_version.js';
+import { handleCacheVersion } from './cache/cache_version.js';
 import { handleRequest } from './cache/requests.js';
 import {
 	FIRST_PAGE,
@@ -16,7 +16,7 @@ const setInitialCards = async () => {
 };
 
 const initApp = () => {
-	checkCacheVersion();
+	handleCacheVersion(localStorage);
 	setInitialCards();
 	setEventHandlers();
 };

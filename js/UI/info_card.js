@@ -32,7 +32,7 @@ export const setInfoCard = pokemon => {
 
 	for (let key in elements) {
 		const $el = elements[key];
-		if ($el.innerText == 'undefined') {
+		if ($el.innerText == 'undefined' || !$el.innerText) {
 			$el.innerText = '-';
 		}
 	}
