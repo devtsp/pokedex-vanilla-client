@@ -6,7 +6,7 @@ import {
 	getSprites,
 	setAllCards,
 } from './UI/pagination.js';
-import { setEventHandlers } from './set_event_handlers.js';
+import { setEventHandlers } from './event_handlers.js';
 
 const setInitialCards = async () => {
 	const paginationObject = await handleRequest(FIRST_PAGE);
