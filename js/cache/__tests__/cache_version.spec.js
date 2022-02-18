@@ -8,9 +8,6 @@ const fakeLocalStorage = (function () {
 	let store = {};
 
 	return {
-		getAll() {
-			return store;
-		},
 		getItem(key) {
 			return store[key] || null;
 		},
@@ -50,7 +47,7 @@ describe('ceckCacheVersion()', () => {
 	test('sets cache version with a timestamp on local storage when it is missing', () => {
 		expect(localStorage.store).toEqual({});
 		storageGlobal = handleCacheVersion(localStorage);
-		expect(storageGlobal.getAll()).toHaveProperty('pokedex-cache-version');
+		expect(storageGlobal.store).toHaveProperty('pokedex-cache-version');
 	});
 	test('if the cache stills fresh (less than a day has passed) the local storage keeps the version reference as it is', () => {
 		const storagePartial = handleCacheVersion(storageGlobal);
@@ -58,10 +55,9 @@ describe('ceckCacheVersion()', () => {
 	});
 	test('if the cache is outdated (24hs have passed), the reference in storage is updated with the newer timestamp', () => {
 		storageGlobal.setItem('pokedex-cache-version', 100);
-		const oldVersion = JSON.stringify(storageGlobal.getAll());
+		const oldVersion = JSON.stringify(storageGlobal.store);
 		const storagePartial = handleCacheVersion(storageGlobal);
-		const newVersion = JSON.stringify(storagePartial.getAll());
-		console.log(oldVersion, newVersion);
+		const newVersion = JSON.stringify(storagePartial.store);
 		expect(oldVersion).not.toEqual(newVersion);
 	});
 });
