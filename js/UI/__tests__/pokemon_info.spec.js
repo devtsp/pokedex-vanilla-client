@@ -1,4 +1,4 @@
-import { setPokemonObject } from '../pokemon_info';
+import { Pokemon } from '../pokemon_info';
 import { info, specie, evolutionChain } from './fixtures/pokemon_info.fixture';
 
 const allInfo = { info, specie, evolutionChain };
@@ -6,7 +6,7 @@ const allInfo = { info, specie, evolutionChain };
 describe('setPokemonObject', () => {
 	test('returns proper pokemon object with specific info', () => {
 		const { name, type, abilities, habitat, shape, evolvesFrom, evolvesTo } =
-			setPokemonObject(allInfo);
+			new Pokemon(allInfo);
 		expect(name).toBe('pikachu');
 		expect(type).toBe('electric');
 		expect(abilities).toBe('static, lightning-rod');
@@ -25,7 +25,7 @@ describe('setPokemonObject', () => {
 		allInfoAux.specie.shape.name = null;
 		allInfoAux.specie.evolves_from_species = null;
 		allInfoAux.evolutionChain.chain.evolves_to[0] = null;
-		const pokemon = setPokemonObject(allInfoAux);
+		const pokemon = new Pokemon(allInfoAux);
 		expect(pokemon.name).toBe('-');
 		expect(pokemon.type).toBe('-');
 		expect(pokemon.imageUrl).toBe('-');
@@ -43,13 +43,13 @@ describe('setPokemonObject', () => {
 
 		//-> with evolution
 		allInfoAux.evolutionChain.chain.evolves_to[0].species.name = 'second';
-		const pokemonB = setPokemonObject(allInfoAux);
+		const pokemonB = new Pokemon(allInfoAux);
 		expect(pokemonB.evolvesFrom).toBe('-');
 		expect(pokemonB.evolvesTo).toBe('second');
 
 		//-> without evolution
 		allInfoAux.evolutionChain.chain.evolves_to[0].species.name = null;
-		const pokemonC = setPokemonObject(allInfoAux);
+		const pokemonC = new Pokemon(allInfoAux);
 		expect(pokemonC.evolvesFrom).toBe('-');
 		expect(pokemonC.evolvesTo).toBe('-');
 
@@ -57,7 +57,7 @@ describe('setPokemonObject', () => {
 		allInfoAux.specie.evolves_from_species = true;
 
 		//-> second in chain with evolution
-		const pokemonD = setPokemonObject(allInfo);
+		const pokemonD = new Pokemon(allInfo);
 		expect(pokemonD.evolvesFrom).toBe('pichu');
 		expect(pokemonD.evolvesTo).toBe('raichu');
 
@@ -65,12 +65,12 @@ describe('setPokemonObject', () => {
 		allInfoAux.specie.evolves_from_species = true;
 		allInfoAux.evolutionChain.chain.evolves_to[0].species.name = 'pikachu';
 		allInfoAux.evolutionChain.chain.evolves_to[0].evolves_to[0].species.name = false;
-		const pokemonG = setPokemonObject(allInfoAux);
+		const pokemonG = new Pokemon(allInfoAux);
 		expect(pokemonG.evolvesTo).toBe('-');
 
 		//-> third in chain
 		allInfoAux.evolutionChain.chain.evolves_to[0].species.name = 'not pikachu';
-		const pokemonF = setPokemonObject(allInfoAux);
+		const pokemonF = new Pokemon(allInfoAux);
 		expect(pokemonF.evolvesTo).toBe('-');
 	});
 });

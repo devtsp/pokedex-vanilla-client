@@ -2,7 +2,13 @@ import { querySelector, getRandomPokemonIndex } from './utils.js';
 import { checkCacheVersion } from './cache/cache_version.js';
 import { handleRequest } from './cache/requests.js';
 import { setInfoCard, resetInfoCard } from './UI/info_card.js';
-import { fetchPokemonInfo, setPokemonObject } from './UI/pokemon_info.js';
+import {
+	fetchPokemonInfo,
+	getMainInfo,
+	getSpecieDetails,
+	getEvolutionDetails,
+	Pokemon,
+} from './UI/pokemon_info.js';
 import { resetErrorMsg } from './UI/errors.js';
 import {
 	FIRST_PAGE,
@@ -46,36 +52,61 @@ const initApp = () => {
 		e.preventDefault();
 		resetErrorMsg();
 		resetInfoCard();
-		const infoObject = await fetchPokemonInfo(search);
-		setInfoCard(setPokemonObject(infoObject));
+		const { info, specie, evolutionChain } = await fetchPokemonInfo(search);
+		const mainInfo = getMainInfo(info);
+		const specieDetails = getSpecieDetails(specie);
+		const evolutionDetails = getEvolutionDetails(mainInfo.name, evolutionChain);
+		const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
+		setInfoCard(pokemon);
 	};
 
 	querySelector('#random-pokemon').onclick = async e => {
 		const randomPokemon = getRandomPokemonIndex();
 		resetErrorMsg();
-		const infoObject = await fetchPokemonInfo(randomPokemon);
-		setInfoCard(setPokemonObject(infoObject));
+		const { info, specie, evolutionChain } = await fetchPokemonInfo(
+			randomPokemon
+		);
+		const mainInfo = getMainInfo(info);
+		const specieDetails = getSpecieDetails(specie);
+		const evolutionDetails = getEvolutionDetails(mainInfo.name, evolutionChain);
+		const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
+		setInfoCard(pokemon);
 	};
 
 	querySelector('#index').onclick = async e => {
 		if (e.target.classList.contains('poke-card')) {
 			const clicked = e.target.id;
 			resetErrorMsg();
-			const infoObject = await fetchPokemonInfo(clicked);
-			setInfoCard(setPokemonObject(infoObject));
+			const { info, specie, evolutionChain } = await fetchPokemonInfo(clicked);
+			const mainInfo = getMainInfo(info);
+			const specieDetails = getSpecieDetails(specie);
+			const evolutionDetails = getEvolutionDetails(
+				mainInfo.name,
+				evolutionChain
+			);
+			const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
+			setInfoCard(pokemon);
 		}
 	};
 
 	querySelector('#evolves-from').onclick = async e => {
 		const clicked = e.target.innerText;
-		const infoObject = await fetchPokemonInfo(clicked);
-		setInfoCard(setPokemonObject(infoObject));
+		const { info, specie, evolutionChain } = await fetchPokemonInfo(clicked);
+		const mainInfo = getMainInfo(info);
+		const specieDetails = getSpecieDetails(specie);
+		const evolutionDetails = getEvolutionDetails(mainInfo.name, evolutionChain);
+		const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
+		setInfoCard(pokemon);
 	};
 
 	querySelector('#evolves-to').onclick = async e => {
 		const clicked = e.target.innerText;
-		const infoObject = await fetchPokemonInfo(clicked);
-		setInfoCard(setPokemonObject(infoObject));
+		const { info, specie, evolutionChain } = await fetchPokemonInfo(clicked);
+		const mainInfo = getMainInfo(info);
+		const specieDetails = getSpecieDetails(specie);
+		const evolutionDetails = getEvolutionDetails(mainInfo.name, evolutionChain);
+		const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
+		setInfoCard(pokemon);
 	};
 
 	querySelector('#pokemon-info').onclick = e => e.stopPropagation();

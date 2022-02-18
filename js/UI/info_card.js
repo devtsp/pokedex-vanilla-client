@@ -15,20 +15,27 @@ const getElements = () => {
 	};
 };
 
-export const setInfoCard = info => {
+export const setInfoCard = pokemon => {
 	const elements = getElements();
 
 	elements.$pokemonInfo.classList.remove('visually-hidden');
-	elements.$name.innerText = info.name;
-	elements.$type.innerText = info.type;
-	elements.$mainPic.src = info.imageUrl;
-	elements.$mainPic.alt = info.name;
-	elements.$flavorText.innerText = info.flavorText;
-	elements.$abilities.innerText = info.abilities;
-	elements.$evolvesFrom.innerText = info.evolvesFrom;
-	elements.$evolvesTo.innerText = info.evolvesTo;
-	elements.$habitat.innerText = info.habitat;
-	elements.$shape.innerText = info.shape;
+	elements.$name.innerText = pokemon.name;
+	elements.$type.innerText = pokemon.type;
+	elements.$mainPic.src = pokemon.imageUrl;
+	elements.$mainPic.alt = pokemon.name;
+	elements.$flavorText.innerText = pokemon.flavorText;
+	elements.$abilities.innerText = pokemon.abilities;
+	elements.$evolvesFrom.innerText = pokemon.evolvesFrom;
+	elements.$evolvesTo.innerText = pokemon.evolvesTo;
+	elements.$habitat.innerText = pokemon.habitat;
+	elements.$shape.innerText = pokemon.shape;
+
+	for (let key in elements) {
+		const $el = elements[key];
+		if ($el.innerText == 'undefined') {
+			$el.innerText = '-';
+		}
+	}
 
 	elements.$evolvesFrom.innerText == '-'
 		? elements.$evolvesFrom.classList.remove('linked-text')
