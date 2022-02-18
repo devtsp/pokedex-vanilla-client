@@ -27,12 +27,24 @@ const fakeLocalStorage = (function () {
 	};
 })();
 
+const fakeCache = (function () {
+	let caches = {};
+	return {
+		delete(key) {
+			delete caches[key];
+		},
+	};
+})();
+
 let storageGlobal;
 
 describe('ceckCacheVersion()', () => {
 	beforeAll(() => {
 		Object.defineProperty(window, 'localStorage', {
 			value: fakeLocalStorage,
+		});
+		Object.defineProperty(window, 'caches', {
+			value: fakeCache,
 		});
 	});
 	test('sets cache version with a timestamp on local storage when it is missing', () => {
