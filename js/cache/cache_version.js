@@ -1,12 +1,13 @@
-export const checkCacheVersion = () => {
-	const date = Date.now();
-	if (!localStorage.getItem('cache-version')) {
-		localStorage.setItem('cache-version', date);
-	} else {
-		if (localStorage.getItem('cache-version') <= date - 86400000) {
-			caches.delete(localStorage.getItem('cache-version'));
-			localStorage.removeItem('cache-version');
-			localStorage.setItem('cache-version', date);
-		}
+export const handleCacheVersion = localStorage => {
+	const key = 'pokedex-cache-version';
+	const actualDate = Date.now();
+	const dayInMs = 86400000;
+	const alreadyStoredCacheVersion = localStorage.getItem(key);
+	const isFresh = +alreadyStoredCacheVersion + dayInMs > actualDate;
+	!alreadyStoredCacheVersion && localStorage.setItem(key, actualDate);
+	if (!isFresh) {
+		caches.delete(alreadyStoredCacheVersion);
+		localStorage.setItem(key, actualDate);
 	}
+	return localStorage;
 };

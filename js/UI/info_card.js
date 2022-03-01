@@ -1,47 +1,66 @@
 import { querySelector } from '../utils.js';
 
-const $pokemonInfo = querySelector('#pokemon-info');
-const $name = querySelector('#name');
-const $type = querySelector('#type');
-const $mainPic = querySelector('#main-pic');
-const $abilities = querySelector('#abilities');
-const $flavorText = querySelector('#flavor-text');
-const $habitat = querySelector('#habitat');
-const $shape = querySelector('#shape');
-const $evolvesFrom = querySelector('#evolves-from');
-const $evolvesTo = querySelector('#evolves-to');
+const getElements = () => {
+	return {
+		$pokemonInfo: querySelector('#pokemon-info'),
+		$name: querySelector('#name'),
+		$type: querySelector('#type'),
+		$mainPic: querySelector('#main-pic'),
+		$flavorText: querySelector('#flavor-text'),
+		$abilities: querySelector('#abilities'),
+		$evolvesFrom: querySelector('#evolves-from'),
+		$evolvesTo: querySelector('#evolves-to'),
+		$habitat: querySelector('#habitat'),
+		$shape: querySelector('#shape'),
+	};
+};
 
-export const setInfoCard = info => {
-	$pokemonInfo.classList.remove('visually-hidden');
-	$name.innerText = info.name;
-	$type.innerText = info.type;
-	$mainPic.src = info.image;
-	$mainPic.alt = info.name;
-	$abilities.innerText = info.abilities;
-	$flavorText.innerText = info.flavorText;
-	$habitat.innerText = info.habitat;
-	$shape.innerText = info.shape;
-	$evolvesFrom.innerText = info.evolvesFrom;
-	$evolvesTo.innerText = info.evolvesTo;
+export const setInfoCard = pokemon => {
+	const elements = getElements();
 
-	$evolvesFrom.innerText == '-'
-		? $evolvesFrom.classList.remove('linked-text')
-		: $evolvesFrom.classList.add('linked-text');
-	$evolvesTo.innerText == '-'
-		? $evolvesTo.classList.remove('linked-text')
-		: $evolvesTo.classList.add('linked-text');
+	elements.$pokemonInfo.classList.remove('visually-hidden');
+	elements.$name.innerText = pokemon.name;
+	elements.$type.innerText = pokemon.type;
+	elements.$mainPic.src = pokemon.imageUrl;
+	elements.$mainPic.alt = pokemon.name;
+	elements.$flavorText.innerText = pokemon.flavorText;
+	elements.$abilities.innerText = pokemon.abilities;
+	elements.$evolvesFrom.innerText = pokemon.evolvesFrom;
+	elements.$evolvesTo.innerText = pokemon.evolvesTo;
+	elements.$habitat.innerText = pokemon.habitat;
+	elements.$shape.innerText = pokemon.shape;
+
+	for (let key in elements) {
+		const $el = elements[key];
+		if ($el.innerText == 'undefined' || !$el.innerText) {
+			$el.innerText = '-';
+		}
+	}
+
+	elements.$evolvesFrom.innerText == '-'
+		? elements.$evolvesFrom.classList.remove('linked-text')
+		: elements.$evolvesFrom.classList.add('linked-text');
+	elements.$evolvesTo.innerText == '-'
+		? elements.$evolvesTo.classList.remove('linked-text')
+		: elements.$evolvesTo.classList.add('linked-text');
+
+	return elements;
 };
 
 export const resetInfoCard = () => {
-	$pokemonInfo.classList.add('visually-hidden');
-	$name.innerText = 'Pokemon';
-	$type.innertText = 'tpye';
-	$mainPic.src = '';
-	$mainPic.alt = '';
-	$abilities.innerText = '-';
-	$flavorText.innerText = '';
-	$habitat.innerText = '-';
-	$shape.innerText = '-';
-	$evolvesFrom.innerText = '-';
-	$evolvesTo.innerText = '-';
+	const elements = getElements();
+
+	elements.$pokemonInfo.classList.add('visually-hidden');
+	elements.$name.innerText = 'Pokemon';
+	elements.$type.innertText = '';
+	elements.$mainPic.src = '';
+	elements.$mainPic.alt = '';
+	elements.$flavorText.innerText = '';
+	elements.$abilities.innerText = '-';
+	elements.$evolvesFrom.innerText = '-';
+	elements.$evolvesTo.innerText = '-';
+	elements.$habitat.innerText = '-';
+	elements.$shape.innerText = '-';
+
+	return elements;
 };
