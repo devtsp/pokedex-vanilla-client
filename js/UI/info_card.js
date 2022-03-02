@@ -1,4 +1,4 @@
-import { querySelector } from '../utils.js';
+import { querySelector } from './utils.js';
 
 const getElements = () => {
 	return {

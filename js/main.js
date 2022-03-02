@@ -1,22 +1,21 @@
-import { handleCacheVersion } from './cache/cache_version.js';
-import { handleRequest } from './cache/requests.js';
-import {
-	FIRST_PAGE,
-	setPaginationState,
-	getSprites,
-	setAllCards,
-} from './UI/pagination.js';
-import { setEventHandlers } from './event_handlers.js';
+import { routeRequest, handleCacheVersion } from './cache/cache.js';
+import { setEventHandlers } from './UI/event_handlers.js';
+import { handleError } from './UI/errors.js';
 
 const setInitialCards = async () => {
-	const paginationObject = await handleRequest(FIRST_PAGE);
-	setPaginationState(paginationObject);
-	const cardsArray = await getSprites(paginationObject);
-	setAllCards(cardsArray);
+	const FIRST_PAGE = 'https://pokeapi.co/api/v2/pokemon?limit=12';
+	const { results } = await routeRequest(FIRST_PAGE, handleError);
+	const pokemons = await Promise.all(
+		results.map(async result => {
+			return await routeRequest(result.url);
+		})
+	);
+	console.log(results);
+	console.log(pokemons);
 };
 
 const initApp = () => {
-	handleCacheVersion(localStorage);
+	handleCacheVersion();
 	setInitialCards();
 	setEventHandlers();
 };

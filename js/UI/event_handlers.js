@@ -1,4 +1,4 @@
-import { setInfoCard, resetInfoCard } from './UI/info_card.js';
+import { setInfoCard, resetInfoCard } from './info_card.js';
 import { querySelector, getRandomPokemonIndex } from './utils.js';
 import {
 	fetchPokemonInfo,
@@ -13,13 +13,14 @@ import {
 	setPaginationState,
 	getSprites,
 	setAllCards,
-} from './UI/pagination.js';
-import { resetErrorMsg } from './UI/errors.js';
+} from '../api/fetch_pagination.js';
+import { resetErrorMsg } from './errors.js';
+import { routeRequest } from '../cache/cache.js';
 
 export const setEventHandlers = () => {
 	querySelector('#previous-page').onclick = async e => {
 		resetErrorMsg();
-		const paginationObject = await handleRequest(paginationPrevious.url);
+		const paginationObject = await routeRequest(paginationPrevious.url);
 		setPaginationState(paginationObject);
 		const cardsArray = await getSprites(paginationObject);
 		setAllCards(cardsArray);
@@ -27,7 +28,7 @@ export const setEventHandlers = () => {
 
 	querySelector('#next-page').onclick = async e => {
 		resetErrorMsg();
-		const paginationObject = await handleRequest(paginationNext.url);
+		const paginationObject = await routeRequest(paginationNext.url);
 		setPaginationState(paginationObject);
 		const cardsArray = await getSprites(paginationObject);
 		setAllCards(cardsArray);

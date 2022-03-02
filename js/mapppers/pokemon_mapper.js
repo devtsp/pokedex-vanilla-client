@@ -1,15 +1,4 @@
-import { handleRequest } from '../cache/requests.js';
-
-export const API_URL = 'https://pokeapi.co/api/v2';
-
-/* istanbul ignore next */
-export const fetchPokemonInfo = async pokemon => {
-	const info = await handleRequest(`${API_URL}/pokemon/${pokemon}`);
-	const specie = await handleRequest(`${API_URL}/pokemon-species/${pokemon}`);
-	const evolutionChain = await handleRequest(specie.evolution_chain.url);
-	const allInfo = { info, specie, evolutionChain };
-	return allInfo;
-};
+import { Pokemon } from '../entities/pokemon.js';
 
 const filterEnglishFlavor = flavors => {
 	const englishFlavors = [...flavors].filter(
@@ -18,7 +7,7 @@ const filterEnglishFlavor = flavors => {
 	return englishFlavors[0].flavor_text;
 };
 
-export const getMainInfo = info => {
+const getMainInfo = info => {
 	const name = info.name;
 	const type = info.types[0].type.name;
 	const imgUrl = info.sprites.other['official-artwork'].front_default;
@@ -29,7 +18,7 @@ export const getMainInfo = info => {
 	return mainInfo;
 };
 
-export const getSpecieDetails = specie => {
+const getSpecieDetails = specie => {
 	const flavorTextRaw = `${filterEnglishFlavor(specie.flavor_text_entries)}`;
 	const flavorText = flavorTextRaw.replace(/[\n\f]/g, ' ');
 	const habitat = specie.habitat?.name;
@@ -38,7 +27,7 @@ export const getSpecieDetails = specie => {
 	return specieDetails;
 };
 
-export const getEvolutionDetails = (pokemon, evolutionChain) => {
+const getEvolutionDetails = (pokemon, evolutionChain) => {
 	const firstOne = evolutionChain.chain.species.name;
 	const secondOne = evolutionChain.chain.evolves_to[0]?.species?.name;
 	const thirdOne =
@@ -58,18 +47,20 @@ export const getEvolutionDetails = (pokemon, evolutionChain) => {
 	return evolutionDetails;
 };
 
-export class Pokemon {
-	constructor(mainInfo, specieDetails, evolutionDetails) {
-		this.name = mainInfo.name;
-		this.type = mainInfo.type;
-		this.abilities = mainInfo.abilities;
-		this.imageUrl = mainInfo.imgUrl;
-
-		this.flavorText = specieDetails.flavorText;
-		this.habitat = specieDetails.habitat;
-		this.shape = specieDetails.shape;
-
-		this.evolvesFrom = evolutionDetails.evolvesFrom;
-		this.evolvesTo = evolutionDetails.evolvesTo;
-	}
-}
+export const mapPokemon = (mainInfo, specieDetails, evolutionDetails) => {
+	const { name, type, habilities, imgUrl } = getMainInfo(mainInfo);
+	const { flavorText, habitat, shape } = getSpecieDetails(specieDetails);
+	const { evolvesFrom, evolvesTo } = getEvolutionDetails(evolutionDetails);
+	const pokemonInfo = {
+		name,
+		type,
+		habilities,
+		imgUrl,
+		flavorText,
+		habitat,
+		shape,
+		evolvesFrom,
+		evolvesTo,
+	};
+	return new Pokemon(pokemonInfo);
+};
