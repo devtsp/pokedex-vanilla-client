@@ -46,3 +46,21 @@ export const renderFullPokemon = pokemon => {
 
 	return elements;
 };
+
+export const resetInfoCard = () => {
+	const elements = getElements();
+
+	elements.$pokemonInfo.classList.add('visually-hidden');
+	elements.$name.innerText = 'Pokemon';
+	elements.$type.innertText = '';
+	elements.$mainPic.src = '';
+	elements.$mainPic.alt = '';
+	elements.$flavorText.innerText = '';
+	elements.$abilities.innerText = '-';
+	elements.$evolvesFrom.innerText = '-';
+	elements.$evolvesTo.innerText = '-';
+	elements.$habitat.innerText = '-';
+	elements.$shape.innerText = '-';
+
+	return elements;
+};

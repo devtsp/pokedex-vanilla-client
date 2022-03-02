@@ -1,7 +1,6 @@
 import { fetchPokemonInfo } from './api/fetch_pokemon.js';
 import { mapPokemon } from './mapppers/pokemon_mapper.js';
-import { resetInfoCard } from './UI/info_card.js';
-import { renderFullPokemon } from './UI/render_full_pokemon.js';
+import { resetInfoCard, renderFullPokemon } from './UI/render_full_pokemon.js';
 
 const getRandomPokemonIndex = () => {
 	return Math.ceil(Math.random() * 898);
