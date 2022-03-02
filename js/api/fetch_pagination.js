@@ -1,12 +1,16 @@
-import { querySelector } from '../UI/utils.js';
+import { routeRequest } from './cache/cache.js';
+import { handleError } from './UI/errors.js';
 
-export const setAllCards = pokemons => {
-	const $cards = querySelector('.poke-card', 'all');
-	$cards.forEach(($card, index) => {
-		$card.id = pokemons[index].name;
-		$card.children[1].innerText = pokemons[index].name;
-		$card.children[0].src = pokemons[index].sprite;
-		$card.children[0].alt = pokemons[index].sprite;
-	});
-	return $cards;
+const API_URL = 'https://pokeapi.co/api/v2/';
+
+export const fetchPagination = async (
+	pageOrder = API_URL + 'pokemon?offset=0&limit=12'
+) => {
+	const pagination = await routeRequest(pageOrder, handleError);
+	const pokemons = await Promise.all(
+		pagination.results.map(async result => {
+			return await routeRequest(result.url);
+		})
+	);
+	return { pagination, pokemons };
 };

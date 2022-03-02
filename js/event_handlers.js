@@ -4,8 +4,6 @@ import { resetErrorMsg } from './UI/errors.js';
 import { routeRequest } from './cache/cache.js';
 import { handlePagination } from './pagination.js';
 
-// const API_URL = 'https://pokeapi.co/api/v2/';
-
 export const setEventHandlers = () => {
 	querySelector('#previous-page').onclick = async e => {
 		const direction = e.target.parentNode.dataset.direction;
