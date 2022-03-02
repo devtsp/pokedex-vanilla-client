@@ -1,22 +1,23 @@
 import { routeRequest } from '../cache/cache.js';
 export const API_URL = 'https://pokeapi.co/api/v2';
 
-export const fetchPokemon = pokemon => {
-	return routeRequest(`${API_URL}/pokemon/${pokemon}`);
+export const fetchPokemon = pokemonNameOrId => {
+	return routeRequest(`${API_URL}/pokemon/${pokemonNameOrId}`);
 };
 
-const fetchPokemonSpecie = pokemon => {
-	return routeRequest(`${API_URL}/pokemon-species/${pokemon}`);
+const fetchPokemonSpecie = pokemonNameOrId => {
+	return routeRequest(`${API_URL}/pokemon-species/${pokemonNameOrId}`);
 };
 
-const fetchEvolutionChain = specie => {
-	return routeRequest(specie.evolution_chain.url);
+const fetchEvolutionChain = specie_url => {
+	return routeRequest(specie_url);
 };
 
-export const fetchPokemonInfo = async pokemon => {
-	const info = await fetchPokemon(pokemon);
-	const specie = await fetchPokemonSpecie(pokemon);
-	const evolutionChain = await fetchEvolutionChain(specie.evolution_chain.url);
-	const allInfo = { info, specie, evolutionChain };
+export const fetchPokemonInfo = async pokemonNameOrId => {
+	const pokemon = await fetchPokemon(pokemonNameOrId);
+	const pokemon_species = await fetchPokemonSpecie(pokemonNameOrId);
+	const urlToEvolutionChain = pokemon_species.evolution_chain.url;
+	const evolution_chain = await fetchEvolutionChain(urlToEvolutionChain);
+	const allInfo = { pokemon, pokemon_species, evolution_chain };
 	return allInfo;
 };

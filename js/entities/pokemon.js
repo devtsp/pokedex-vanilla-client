@@ -8,6 +8,6 @@ export class Pokemon {
 		this.habitat = info.habitat;
 		this.shape = info.shape;
 		this.evolvesFrom = info.evolvesFrom;
-		this.evolvesTo = infovolvesTo;
+		this.evolvesTo = info.evolvesTo;
 	}
 }

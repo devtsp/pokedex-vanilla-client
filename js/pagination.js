@@ -1,4 +1,5 @@
 import { fetchPagination } from './api/fetch_pagination.js';
+import { setPaginationEvents } from './event_handlers.js';
 import { mapMiniature } from './mapppers/miniature_mapper.js';
 import { mapPage } from './mapppers/page_mapper.js';
 import { renderPage } from './UI/render_page.js';
@@ -10,4 +11,5 @@ export const handlePagination = async (direction = FIRST_PAGE) => {
 	const page = mapPage(pagination);
 	const miniatures = pokemons.map(pokemon => mapMiniature(pokemon));
 	renderPage(page, miniatures);
+	setPaginationEvents();
 };
