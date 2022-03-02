@@ -1,4 +1,4 @@
-import { querySelector } from '../utils.js';
+import { querySelector } from './utils.js';
 
 export const handleError = err => {
 	if (err.message == 404) {

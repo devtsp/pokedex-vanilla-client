@@ -1,4 +1,4 @@
-import { querySelector } from '../utils.js';
+import { querySelector } from './utils.js';
 
 const getElements = () => {
 	return {
@@ -15,7 +15,7 @@ const getElements = () => {
 	};
 };
 
-export const setInfoCard = pokemon => {
+export const renderFullPokemon = pokemon => {
 	const elements = getElements();
 
 	elements.$pokemonInfo.classList.remove('visually-hidden');

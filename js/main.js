@@ -1,24 +1,21 @@
-import { handleCacheVersion } from './cache/cache_version.js';
-import { handleRequest } from './cache/requests.js';
+import { handleCacheVersion } from './cache/cache.js';
+import { handlePagination } from './pagination.js';
 import {
-	FIRST_PAGE,
-	setPaginationState,
-	getSprites,
-	setAllCards,
-} from './UI/pagination.js';
-import { setEventHandlers } from './event_handlers.js';
-
-const setInitialCards = async () => {
-	const paginationObject = await handleRequest(FIRST_PAGE);
-	setPaginationState(paginationObject);
-	const cardsArray = await getSprites(paginationObject);
-	setAllCards(cardsArray);
-};
+	setClickConfig,
+	setRandomPokemonEvent,
+	setSearchEvent,
+	setEvolutionEvents,
+	setMiniatureEvent,
+} from './event_handlers.js';
 
 const initApp = () => {
-	handleCacheVersion(localStorage);
-	setInitialCards();
-	setEventHandlers();
+	handleCacheVersion();
+	handlePagination();
+	setSearchEvent();
+	setRandomPokemonEvent();
+	setMiniatureEvent();
+	setClickConfig();
+	setEvolutionEvents();
 };
 
 window.addEventListener('DOMContentLoaded', () => {
