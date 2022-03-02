@@ -6,29 +6,20 @@ export const routeRequest = async (request, handleError) => {
 	const existsOnCache = await checkRequestOnCache(request);
 	let data;
 	if (existsOnCache) {
-		data = await getFromCache(request, cache);
+		data = await cache.match(request);
 	} else {
 		try {
 			const response = await fetch(request);
 			if (!response.ok) {
 				throw Error(response.status);
 			}
-			storeToCache(request, response, cache);
+			cache.put(request, response.clone());
 			data = response;
 		} catch (error) {
 			handleError(error);
 		}
 	}
 	return data.json();
-};
-
-const storeToCache = async (request, response, cache) => {
-	cache.put(request, response.clone());
-};
-
-const getFromCache = async (request, cache) => {
-	const response = await cache.match(request);
-	return response.json();
 };
 
 const checkRequestOnCache = async request => {

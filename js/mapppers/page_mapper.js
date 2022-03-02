@@ -1,8 +1,8 @@
-import { Pagination } from '../entities/pagination.js';
+import { Page } from '../entities/page.js';
 
-export const mapPagination = apiData => {
+export const mapPage = apiData => {
 	const { previous, next, results } = apiData;
-	const miniatures = mergeData(results);
-	const paginationInfo = { previous, next, results };
-	return new Pagination(paginationInfo);
+	const pokemonNames = results.map(result => result.name);
+	const pageInfo = { previous, next, pokemonNames };
+	return new Page(pageInfo);
 };

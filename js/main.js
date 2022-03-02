@@ -1,23 +1,30 @@
 import { routeRequest, handleCacheVersion } from './cache/cache.js';
-import { setEventHandlers } from './UI/event_handlers.js';
+// import { setEventHandlers } from './UI/event_handlers.js';
 import { handleError } from './UI/errors.js';
+import { mapMiniature } from './mapppers/miniature_mapper.js';
+import { mapPage } from './mapppers/page_mapper.js';
+import { renderPage } from './UI/render_page.js';
 
-const setInitialCards = async () => {
-	const FIRST_PAGE = 'https://pokeapi.co/api/v2/pokemon?limit=12';
-	const { results } = await routeRequest(FIRST_PAGE, handleError);
+const API_URL = 'https://pokeapi.co/api/v2/';
+
+const setPage = async (pageOrder = 'pokemon?limit=12') => {
+	const pagination = await routeRequest(API_URL + pageOrder, handleError);
 	const pokemons = await Promise.all(
-		results.map(async result => {
+		pagination.results.map(async result => {
 			return await routeRequest(result.url);
 		})
 	);
-	console.log(results);
-	console.log(pokemons);
+	const page = mapPage(pagination);
+	const miniatures = pokemons.map(pokemon => mapMiniature(pokemon));
+	// console.log(page);
+	// console.log(miniatures);
+	// renderPage(page, miniatures);
 };
 
 const initApp = () => {
 	handleCacheVersion();
-	setInitialCards();
-	setEventHandlers();
+	setPage();
+	// setEventHandlers();
 };
 
 window.addEventListener('DOMContentLoaded', () => {
