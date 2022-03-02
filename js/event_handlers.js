@@ -7,14 +7,12 @@ import { handlePagination } from './pagination.js';
 export const setEventHandlers = () => {
 	querySelector('#previous-page').onclick = async e => {
 		const direction = e.target.parentNode.dataset.direction;
-		console.log(direction);
 		resetErrorMsg();
 		handlePagination(direction);
 	};
 
 	querySelector('#next-page').onclick = async e => {
 		const direction = e.target.parentNode.dataset.direction;
-		console.log(direction);
 		resetErrorMsg();
 		handlePagination(direction);
 	};

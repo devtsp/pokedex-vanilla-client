@@ -1,5 +1,5 @@
-import { routeRequest } from './cache/cache.js';
-import { handleError } from './UI/errors.js';
+import { routeRequest } from '../cache/cache.js';
+import { handleError } from '../UI/errors.js';
 
 const API_URL = 'https://pokeapi.co/api/v2/';
 
