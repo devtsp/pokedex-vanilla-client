@@ -6,7 +6,8 @@ export const routeRequest = async (request, handleError) => {
 	const existsOnCache = await checkRequestOnCache(request);
 	let data;
 	if (existsOnCache) {
-		data = await cache.match(request);
+		const response = await cache.match(request);
+		data = response.json();
 	} else {
 		try {
 			const response = await fetch(request);
@@ -14,12 +15,12 @@ export const routeRequest = async (request, handleError) => {
 				throw Error(response.status);
 			}
 			cache.put(request, response.clone());
-			data = response;
+			data = response.json();
 		} catch (error) {
 			handleError(error);
 		}
 	}
-	return data.json();
+	return data;
 };
 
 const checkRequestOnCache = async request => {
