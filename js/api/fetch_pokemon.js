@@ -1,16 +1,20 @@
 import { routeRequest } from '../cache/cache.js';
+import { handleError } from '../UI/errors.js';
 export const API_URL = 'https://pokeapi.co/api/v2';
 
 export const fetchPokemon = pokemonNameOrId => {
-	return routeRequest(`${API_URL}/pokemon/${pokemonNameOrId}`);
+	return routeRequest(`${API_URL}/pokemon/${pokemonNameOrId}`, handleError);
 };
 
 const fetchPokemonSpecie = pokemonNameOrId => {
-	return routeRequest(`${API_URL}/pokemon-species/${pokemonNameOrId}`);
+	return routeRequest(
+		`${API_URL}/pokemon-species/${pokemonNameOrId}`,
+		handleError
+	);
 };
 
 const fetchEvolutionChain = specie_url => {
-	return routeRequest(specie_url);
+	return routeRequest(specie_url, handleError);
 };
 
 export const fetchPokemonInfo = async pokemonNameOrId => {

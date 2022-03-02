@@ -1,8 +1,8 @@
-import { setInfoCard, resetInfoCard } from './UI/info_card.js';
-import { querySelector, getRandomPokemonIndex } from './UI/utils.js';
+import { querySelector } from './UI/utils.js';
 import { resetErrorMsg } from './UI/errors.js';
 import { handlePagination } from './pagination.js';
 import { handleSearch } from './search.js';
+import { resetInfoCard } from './UI/info_card.js';
 
 export const setPaginationEvents = () => {
 	querySelector('#previous-page').onclick = async e => {
@@ -23,70 +23,51 @@ export const setSearchEvent = () => {
 		const search = e.target.search.value.toLowerCase().trim();
 		e.preventDefault();
 		resetErrorMsg();
-		resetInfoCard();
 		handleSearch(search);
 	};
 };
 
-// querySelector('#random-pokemon').onclick = async e => {
-// 	const randomPokemon = getRandomPokemonIndex();
-// 	resetErrorMsg();
-// 	const { info, specie, evolutionChain } = await fetchPokemonInfo(
-// 		randomPokemon
-// 	);
-// 	const mainInfo = getMainInfo(info);
-// 	const specieDetails = getSpecieDetails(specie);
-// 	const evolutionDetails = getEvolutionDetails(mainInfo.name, evolutionChain);
-// 	const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
-// 	setInfoCard(pokemon);
-// };
+export const setClickConfig = () => {
+	querySelector('#pokemon-info').onclick = e => e.stopPropagation();
 
-// querySelector('#index').onclick = async e => {
-// 	if (e.target.classList.contains('poke-card')) {
-// 		const clicked = e.target.id;
-// 		resetErrorMsg();
-// 		const { info, specie, evolutionChain } = await fetchPokemonInfo(clicked);
-// 		const mainInfo = getMainInfo(info);
-// 		const specieDetails = getSpecieDetails(specie);
-// 		const evolutionDetails = getEvolutionDetails(
-// 			mainInfo.name,
-// 			evolutionChain
-// 		);
-// 		const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
-// 		setInfoCard(pokemon);
-// 	}
-// };
+	querySelector('#close-info').onclick = e => resetInfoCard();
 
-// querySelector('#evolves-from').onclick = async e => {
-// 	const clicked = e.target.innerText;
-// 	const { info, specie, evolutionChain } = await fetchPokemonInfo(clicked);
-// 	const mainInfo = getMainInfo(info);
-// 	const specieDetails = getSpecieDetails(specie);
-// 	const evolutionDetails = getEvolutionDetails(mainInfo.name, evolutionChain);
-// 	const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
-// 	setInfoCard(pokemon);
-// };
+	querySelector('body').onclick = e => {
+		if (
+			e.target !== querySelector('#pokemon-info') &&
+			!e.target.classList.contains('poke-card') &&
+			!querySelector('#pokemon-info').classList.contains('visually-hidden')
+		) {
+			resetInfoCard();
+		}
+	};
+};
 
-// querySelector('#evolves-to').onclick = async e => {
-// 	const clicked = e.target.innerText;
-// 	const { info, specie, evolutionChain } = await fetchPokemonInfo(clicked);
-// 	const mainInfo = getMainInfo(info);
-// 	const specieDetails = getSpecieDetails(specie);
-// 	const evolutionDetails = getEvolutionDetails(mainInfo.name, evolutionChain);
-// 	const pokemon = new Pokemon(mainInfo, specieDetails, evolutionDetails);
-// 	setInfoCard(pokemon);
-// };
+export const setRandomPokemonEvent = () => {
+	querySelector('#random-pokemon').onclick = async e => {
+		resetErrorMsg();
+		handleSearch();
+	};
+};
 
-// querySelector('#pokemon-info').onclick = e => e.stopPropagation();
+export const setMiniatureEvent = () => {
+	querySelector('#index').onclick = async e => {
+		if (e.target.classList.contains('poke-card')) {
+			const clicked = e.target.id;
+			resetErrorMsg();
+			handleSearch(clicked);
+		}
+	};
+};
 
-// querySelector('#close-info').onclick = e => resetInfoCard();
+export const setEvolutionEvents = () => {
+	querySelector('#evolves-from').onclick = async e => {
+		const clicked = e.target.innerText;
+		handleSearch(clicked);
+	};
 
-// querySelector('body').onclick = e => {
-// 	if (
-// 		e.target !== querySelector('#pokemon-info') &&
-// 		!e.target.classList.contains('poke-card') &&
-// 		!querySelector('#pokemon-info').classList.contains('visually-hidden')
-// 	) {
-// 		resetInfoCard();
-// 	}
-// };
+	querySelector('#evolves-to').onclick = async e => {
+		const clicked = e.target.innerText;
+		handleSearch(clicked);
+	};
+};
