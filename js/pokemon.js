@@ -1,5 +1,5 @@
 import { mapPokemon } from './mapppers/pokemon_mapper.js';
-import { resetInfoCard, renderFullPokemon } from './UI/render_full_pokemon.js';
+import { resetInfoCard } from './UI/render_full_pokemon.js';
 import { handleError } from './UI/errors.js';
 import { handleRequest } from './services/requests.js';
 
@@ -33,11 +33,14 @@ const fetchPokemonInfo = async pokemonNameOrId => {
 	return allInfo;
 };
 
-export const handleSearch = async (search = getRandomPokemonIndex()) => {
+export const handleSearch = async (
+	renderCallback,
+	search = getRandomPokemonIndex()
+) => {
 	resetInfoCard();
 	const { pokemon, pokemon_species, evolution_chain } = await fetchPokemonInfo(
 		search
 	);
 	const pokemonAll = mapPokemon(pokemon, pokemon_species, evolution_chain);
-	renderFullPokemon(pokemonAll);
+	renderCallback(pokemonAll);
 };

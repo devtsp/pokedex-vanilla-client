@@ -1,6 +1,5 @@
 import { mapMiniature } from './mapppers/miniature_mapper.js';
 import { mapPage } from './mapppers/page_mapper.js';
-import { renderPage } from './UI/render_page.js';
 import { handleError } from './UI/errors.js';
 import { handleRequest } from './services/requests.js';
 
@@ -17,9 +16,12 @@ const fetchPagination = async direction => {
 	return { pagination, pokemons };
 };
 
-export const handlePagination = async (direction = API_URL + FIRST_PAGE) => {
+export const handlePagination = async (
+	renderCallback,
+	direction = API_URL + FIRST_PAGE
+) => {
 	const { pagination, pokemons } = await fetchPagination(direction);
 	const page = mapPage(pagination);
 	const miniatures = pokemons.map(pokemon => mapMiniature(pokemon));
-	renderPage(page, miniatures);
+	renderCallback(page, miniatures);
 };
