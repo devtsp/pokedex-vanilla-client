@@ -1,7 +1,5 @@
-import { querySelector } from './utils.js';
-
 const renderMiniatures = miniatures => {
-	const $cards = querySelector('.poke-card', 'all');
+	const $cards = document.querySelectorAll('.poke-card');
 	$cards.forEach(($card, index) => {
 		$card.id = miniatures[index].name;
 		$card.children[1].innerText = miniatures[index].name;
@@ -12,8 +10,9 @@ const renderMiniatures = miniatures => {
 };
 
 const setPaginationButtons = page => {
-	querySelector('#previous-page').dataset.direction = page.previousPage;
-	querySelector('#next-page').dataset.direction = page.nextPage;
+	document.querySelector('#previous-page').dataset.direction =
+		page.previousPage;
+	document.querySelector('#next-page').dataset.direction = page.nextPage;
 };
 
 export const renderPage = (page, miniatures) => {

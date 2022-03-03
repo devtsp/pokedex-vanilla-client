@@ -1,7 +1,7 @@
-import { mapPokemon } from './mapppers/pokemon_mapper.js';
-import { resetInfoCard } from './UI/render_full_pokemon.js';
-import { handleError } from './UI/errors.js';
-import { handleRequest } from './services/requests.js';
+import { mapPokemon } from '../mapppers/pokemon_mapper.js';
+import { resetInfoCard } from '../ui/render_full_pokemon.js';
+import { handleError } from '../ui/errors.js';
+import { handleRequest } from './requests.js';
 
 const API_URL = 'https://pokeapi.co/api/v2';
 

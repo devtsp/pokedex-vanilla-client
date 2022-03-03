@@ -1,17 +1,15 @@
-import { querySelector } from './utils.js';
-
 const getElements = () => {
 	return {
-		$pokemonInfo: querySelector('#pokemon-info'),
-		$name: querySelector('#name'),
-		$type: querySelector('#type'),
-		$mainPic: querySelector('#main-pic'),
-		$flavorText: querySelector('#flavor-text'),
-		$abilities: querySelector('#abilities'),
-		$evolvesFrom: querySelector('#evolves-from'),
-		$evolvesTo: querySelector('#evolves-to'),
-		$habitat: querySelector('#habitat'),
-		$shape: querySelector('#shape'),
+		$pokemonInfo: document.querySelector('#pokemon-info'),
+		$name: document.querySelector('#name'),
+		$type: document.querySelector('#type'),
+		$mainPic: document.querySelector('#main-pic'),
+		$flavorText: document.querySelector('#flavor-text'),
+		$abilities: document.querySelector('#abilities'),
+		$evolvesFrom: document.querySelector('#evolves-from'),
+		$evolvesTo: document.querySelector('#evolves-to'),
+		$habitat: document.querySelector('#habitat'),
+		$shape: document.querySelector('#shape'),
 	};
 };
 
