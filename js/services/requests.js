@@ -11,8 +11,8 @@ export const handleRequest = async (request, handleError) => {
 			const response = await fetchApi(request);
 			storeToCache(request, response.clone());
 			return response.json();
-		} catch (error_response) {
-			return handleError(error_response);
+		} catch (error) {
+			return handleError(error.message);
 		}
 	}
 };

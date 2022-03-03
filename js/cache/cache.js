@@ -36,7 +36,6 @@ const refreshCache = () => {
 export const handleCacheVersion = () => {
 	const isFresh = checkCacheFreshness();
 	if (!isFresh) {
-		console.log('refresh');
 		refreshCache();
 	}
 };

@@ -3,6 +3,8 @@ import { resetInfoCard, renderFullPokemon } from './UI/render_full_pokemon.js';
 import { handleError } from './UI/errors.js';
 import { handleRequest } from './services/requests.js';
 
+const API_URL = 'https://pokeapi.co/api/v2';
+
 const getRandomPokemonIndex = () => {
 	return Math.ceil(Math.random() * 898);
 };
