@@ -6,14 +6,18 @@ import {
 	setSearchEvent,
 	setEvolutionEvents,
 	setMiniatureEvent,
-} from './event_handlers.js';
+	setPaginationEvents,
+} from './events.js';
+import { renderPage } from './UI/render_page.js';
+import { handleSearch } from './pokemon.js';
 
 export const initApp = () => {
 	handleCacheVersion();
-	handlePagination();
-	setSearchEvent();
-	setRandomPokemonEvent();
-	setMiniatureEvent();
+	setPaginationEvents(handlePagination);
+	setSearchEvent(handleSearch);
+	setRandomPokemonEvent(handleSearch);
+	setMiniatureEvent(handleSearch);
+	setEvolutionEvents(handleSearch);
 	setClickConfig();
-	setEvolutionEvents();
+	handlePagination();
 };

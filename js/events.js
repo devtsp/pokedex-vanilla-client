@@ -1,29 +1,27 @@
 import { querySelector } from './UI/utils.js';
 import { resetErrorMsg } from './UI/errors.js';
-import { handlePagination } from './pagination.js';
-import { handleSearch } from './pokemon.js';
 import { resetInfoCard } from './UI/render_full_pokemon.js';
 
-export const setPaginationEvents = () => {
+export const setPaginationEvents = handlerCallback => {
 	querySelector('#previous-page').onclick = async e => {
 		const direction = e.target.parentNode.dataset.direction;
 		resetErrorMsg();
-		handlePagination(direction);
+		handlerCallback(direction);
 	};
 
 	querySelector('#next-page').onclick = async e => {
 		const direction = e.target.parentNode.dataset.direction;
 		resetErrorMsg();
-		handlePagination(direction);
+		handlerCallback(direction);
 	};
 };
 
-export const setSearchEvent = () => {
+export const setSearchEvent = handlerCallback => {
 	querySelector('#main-nav form').onsubmit = async e => {
 		const search = e.target.search.value.toLowerCase().trim();
 		e.preventDefault();
 		resetErrorMsg();
-		handleSearch(search);
+		handlerCallback(search);
 	};
 };
 
@@ -43,31 +41,31 @@ export const setClickConfig = () => {
 	};
 };
 
-export const setRandomPokemonEvent = () => {
+export const setRandomPokemonEvent = handlerCallback => {
 	querySelector('#random-pokemon').onclick = async e => {
 		resetErrorMsg();
-		handleSearch();
+		handlerCallback();
 	};
 };
 
-export const setMiniatureEvent = () => {
+export const setMiniatureEvent = handlerCallback => {
 	querySelector('#index').onclick = async e => {
 		if (e.target.classList.contains('poke-card')) {
 			const clicked = e.target.id;
 			resetErrorMsg();
-			handleSearch(clicked);
+			handlerCallback(clicked);
 		}
 	};
 };
 
-export const setEvolutionEvents = () => {
+export const setEvolutionEvents = handlerCallback => {
 	querySelector('#evolves-from').onclick = async e => {
 		const clicked = e.target.innerText;
-		handleSearch(clicked);
+		handlerCallback(clicked);
 	};
 
 	querySelector('#evolves-to').onclick = async e => {
 		const clicked = e.target.innerText;
-		handleSearch(clicked);
+		handlerCallback(clicked);
 	};
 };
