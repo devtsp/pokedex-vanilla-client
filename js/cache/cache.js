@@ -1,46 +1,42 @@
-const keyToCacheName = 'pokedex-cache-version';
-const cacheName = localStorage.getItem(keyToCacheName);
+const key = 'pokedex-cache-version';
 
-export const routeRequest = async (request, handleError) => {
+export const checkOnCache = async request => {
+	const cacheName = localStorage.getItem(key);
 	const cache = await caches.open(cacheName);
-	const existsOnCache = await checkRequestOnCache(request);
-	let data;
-	if (existsOnCache) {
-		const response = await cache.match(request);
-		data = response.json();
-	} else {
-		try {
-			const response = await fetch(request);
-			if (!response.ok) {
-				throw Error(response.status);
-			}
-			cache.put(request, response.clone());
-			data = response.json();
-		} catch (error) {
-			handleError(error);
-		}
-	}
-	return data;
+	return cache.match(request);
 };
 
-const checkRequestOnCache = async request => {
+export const storeToCache = async (request, clonedResponse) => {
+	const cacheName = localStorage.getItem(key);
+	const cache = await caches.open(cacheName);
+	cache.put(request, clonedResponse);
+};
+
+export const getFromCache = async request => {
+	const cacheName = localStorage.getItem(key);
 	const cache = await caches.open(cacheName);
 	return cache.match(request);
 };
 
 const checkCacheFreshness = () => {
+	const cacheName = localStorage.getItem(key);
+	if (!cacheName) {
+		localStorage.setItem(key, Date.now());
+	}
 	const dayInMs = 86400000;
 	return Number(cacheName) + dayInMs > Date.now();
 };
 
 const refreshCache = () => {
+	const cacheName = localStorage.getItem(key);
 	caches.delete(cacheName);
-	localStorage.setItem(keyToCacheName, Date.now());
+	localStorage.setItem(key, Date.now());
 };
 
 export const handleCacheVersion = () => {
 	const isFresh = checkCacheFreshness();
 	if (!isFresh) {
+		console.log('refresh');
 		refreshCache();
 	}
 };

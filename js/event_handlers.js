@@ -1,7 +1,7 @@
 import { querySelector } from './UI/utils.js';
 import { resetErrorMsg } from './UI/errors.js';
 import { handlePagination } from './pagination.js';
-import { handleSearch } from './search.js';
+import { handleSearch } from './pokemon.js';
 import { resetInfoCard } from './UI/render_full_pokemon.js';
 
 export const setPaginationEvents = () => {

@@ -1,12 +1,24 @@
-import { fetchPagination } from './api/fetch_pagination.js';
 import { setPaginationEvents } from './event_handlers.js';
 import { mapMiniature } from './mapppers/miniature_mapper.js';
 import { mapPage } from './mapppers/page_mapper.js';
 import { renderPage } from './UI/render_page.js';
+import { handleError } from './UI/errors.js';
+import { handleRequest } from './services/requests.js';
 
-const FIRST_PAGE = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=12';
+const API_URL = 'https://pokeapi.co/api/v2/';
+const FIRST_PAGE = 'pokemon?offset=0&limit=12';
 
-export const handlePagination = async (direction = FIRST_PAGE) => {
+const fetchPagination = async direction => {
+	const pagination = await handleRequest(direction, handleError);
+	const pokemons = await Promise.all(
+		pagination.results.map(async result => {
+			return await handleRequest(result.url, handleError);
+		})
+	);
+	return { pagination, pokemons };
+};
+
+export const handlePagination = async (direction = API_URL + FIRST_PAGE) => {
 	const { pagination, pokemons } = await fetchPagination(direction);
 	const page = mapPage(pagination);
 	const miniatures = pokemons.map(pokemon => mapMiniature(pokemon));

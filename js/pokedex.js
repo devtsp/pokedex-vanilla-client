@@ -8,7 +8,7 @@ import {
 	setMiniatureEvent,
 } from './event_handlers.js';
 
-const initApp = () => {
+export const initApp = () => {
 	handleCacheVersion();
 	handlePagination();
 	setSearchEvent();
@@ -17,7 +17,3 @@ const initApp = () => {
 	setClickConfig();
 	setEvolutionEvents();
 };
-
-window.addEventListener('DOMContentLoaded', () => {
-	initApp();
-});
