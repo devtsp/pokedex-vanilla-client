@@ -1,21 +1,20 @@
-const renderMiniatures = miniatures => {
+const renderNames = page => {
 	const $cards = document.querySelectorAll('.poke-card');
 	$cards.forEach(($card, index) => {
-		$card.id = miniatures[index].name;
-		$card.children[1].innerText = miniatures[index].name;
-		$card.children[0].src = miniatures[index].sprite;
-		$card.children[0].alt = miniatures[index].sprite;
+		$card.id = page.pokemonNames[index];
+		$card.children[0].innerText = page.pokemonNames[index];
 	});
 	return $cards;
 };
 
-const setPaginationButtons = page => {
-	document.querySelector('#previous-page').dataset.direction =
-		page.previousPage;
-	document.querySelector('#next-page').dataset.direction = page.nextPage;
+const setPaginationButtons = pageIndexes => {
+	const { previousPage, actualPage, nextPage } = pageIndexes;
+	document.querySelector('#previous-page').dataset.toPage = previousPage || 0;
+	document.querySelector('[data-page]').dataset.page = actualPage || 0;
+	document.querySelector('#next-page').dataset.toPage = nextPage || 1;
 };
 
-export const renderPage = (page, miniatures) => {
-	renderMiniatures(miniatures);
-	setPaginationButtons(page);
+export const renderPage = (page, pageIndexes) => {
+	renderNames(page);
+	setPaginationButtons(pageIndexes);
 };

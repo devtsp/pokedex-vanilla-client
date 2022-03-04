@@ -1,7 +1,5 @@
 export class Page {
-	constructor(previousPage, nextPage, pokemonNames) {
-		this.previousPage = previousPage;
-		this.nextPage = nextPage;
+	constructor(pokemonNames) {
 		this.pokemonNames = pokemonNames;
 	}
 }

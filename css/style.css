@@ -78,8 +78,8 @@ li {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 10px;
-	padding: 10px;
+	margin: 4px;
+	padding: 2px;
 	border: 1px solid rgb(212, 212, 212);
 	border-radius: 5px;
 	background-color: #ff00002c;
@@ -177,19 +177,9 @@ li {
 	:root {
 		font-size: 15px;
 	}
-	.poke-card {
-		margin: 3px;
-		padding: 3px;
-	}
 
 	#pokemon-info {
 		width: 80%;
-	}
-}
-
-@media all and (max-width: 800px) {
-	:root {
-		font-size: 15px;
 	}
 }
 

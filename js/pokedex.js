@@ -1,6 +1,6 @@
 import { handleCacheVersion } from './cache/cache.js';
-import { handlePagination } from './services/pagination.js';
-import { handleSearch } from './services/pokemon.js';
+import { handlePagination } from './ui/handle_pagination.js';
+import { handleSearch } from './ui/handle_search.js';
 import { renderPage } from './ui/render_page.js';
 import { renderFullPokemon, resetInfoCard } from './ui/render_full_pokemon.js';
 import {

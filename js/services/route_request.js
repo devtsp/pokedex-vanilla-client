@@ -1,7 +1,8 @@
 import { fetchApi } from '../api/fetch_api.js';
 import { checkOnCache, getFromCache, storeToCache } from '../cache/cache.js';
+import { handleError } from '../ui/render_errors.js';
 
-export const handleRequest = async (request, handleError) => {
+export const routeRequest = async request => {
 	const existsOnCache = await checkOnCache(request);
 	if (existsOnCache) {
 		const response = await getFromCache(request);

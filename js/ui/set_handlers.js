@@ -1,16 +1,14 @@
-import { resetErrorMsg } from './errors.js';
+import { resetErrorMsg } from './render_errors.js';
 
 export const setPaginationHandlers = (handlerCallback, renderCallback) => {
 	document.querySelector('#previous-page').onclick = async e => {
-		const direction = e.target.parentNode.dataset.direction;
 		resetErrorMsg();
-		handlerCallback(renderCallback, direction);
+		handlerCallback(renderCallback, e);
 	};
 
 	document.querySelector('#next-page').onclick = async e => {
-		const direction = e.target.parentNode.dataset.direction;
 		resetErrorMsg();
-		handlerCallback(renderCallback, direction);
+		handlerCallback(renderCallback, e);
 	};
 };
 
