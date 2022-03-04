@@ -26,6 +26,19 @@
 }
 /* ____________________________________________ */
 
+#loading {
+	background-color: rgba(32, 32, 32, 0.884);
+	color: white;
+	font-family: arial;
+	z-index: 1;
+}
+
+#loading-msg {
+	letter-spacing: 0.2rem;
+}
+
+/* _______________________________________________ */
+
 li {
 	display: inline;
 }

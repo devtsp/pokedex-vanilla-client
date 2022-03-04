@@ -1,5 +1,6 @@
 import { fetchPage } from '../api/pagination.js';
 import { mapPage } from '../mappers/page_mapper.js';
+import { resetErrorMsg } from '../ui/render_errors.js';
 
 const handlePaginationIndexing = e => {
 	const actualPage = document.querySelector('[data-page]').dataset;
@@ -21,6 +22,7 @@ const handlePaginationIndexing = e => {
 };
 
 export const handlePagination = async (renderCallback, e) => {
+	resetErrorMsg();
 	const toPage = e?.target?.parentNode?.dataset?.toPage;
 	const pagination = await fetchPage(toPage);
 	const page = mapPage(pagination);

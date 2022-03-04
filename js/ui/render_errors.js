@@ -1,5 +1,7 @@
+import { handleLoading } from './render_loading.js';
+
 export const handleError = error => {
-	console.log(error);
+	handleLoading();
 	if (error == 404) {
 		document.querySelector('#error-msg').innerText = 'Pokemon not found.';
 	} else {

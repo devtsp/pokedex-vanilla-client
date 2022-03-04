@@ -145,6 +145,19 @@
 			<main
 				class="d-flex flex-column flex-fill justify-content-center align-items-center bg-light-yellow"
 			>
+				<!-- LOADING SPINNER -->
+				<div
+					id="loading"
+					class="position-absolute d-flex align-items-center justify-content-center w-100 h-100 top-0 start-0 visually-hidden"
+				>
+					<div class="text-center">
+						<div class="spinner-border text-light mb-2" role="status">
+							<span class="sr-only"></span>
+						</div>
+						<div id="loading-msg">Loading</div>
+					</div>
+				</div>
+
 				<div id="error-msg" class="alert-danger"></div>
 
 				<!-- PAGINATION NAV -->
