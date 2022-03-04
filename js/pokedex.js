@@ -1,6 +1,6 @@
 import { handleCacheVersion } from './cache/cache.js';
 import { handlePagination } from './services/handle_pagination.js';
-import { handleSearch } from './services/handle_search.js';
+import { handlePokemon } from './services/handle_pokemon.js';
 import { renderPage } from './ui/render_page.js';
 import { renderFullPokemon, resetInfoCard } from './ui/render_full_pokemon.js';
 import {
@@ -15,10 +15,10 @@ import {
 export const initApp = () => {
 	handleCacheVersion();
 	setPaginationHandlers(handlePagination, renderPage);
-	setSearchHandler(handleSearch, renderFullPokemon);
-	setIndexHandler(handleSearch, renderFullPokemon);
-	setRandomPokemonHandler(handleSearch, renderFullPokemon);
-	setEvolutionHandlers(handleSearch, renderFullPokemon);
+	setSearchHandler(handlePokemon, renderFullPokemon);
+	setIndexHandler(handlePokemon, renderFullPokemon);
+	setRandomPokemonHandler(handlePokemon, renderFullPokemon);
+	setEvolutionHandlers(handlePokemon, renderFullPokemon);
 	setCloseInfoHandlers(resetInfoCard);
 	handlePagination(renderPage);
 };

@@ -186,7 +186,7 @@ li {
 
 /* ________________________________________________ */
 
-@media all and (max-width: 576px) {
+@media all and (max-width: 900px) {
 	:root {
 		font-size: 15px;
 	}
@@ -196,7 +196,7 @@ li {
 	}
 }
 
-@media all and (max-width: 360px) {
+@media all and (max-width: 576px) {
 	#pokemon-info {
 		width: 100%;
 	}

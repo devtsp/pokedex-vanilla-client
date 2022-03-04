@@ -1,25 +1,25 @@
-export const setPaginationHandlers = (handlerCallback, renderCallback) => {
+export const setPaginationHandlers = (handlerCB, renderCB) => {
 	document.querySelector('#previous-page').onclick = async e => {
-		handlerCallback(renderCallback, e);
+		handlerCB(renderCB, e);
 	};
 
 	document.querySelector('#next-page').onclick = async e => {
-		handlerCallback(renderCallback, e);
+		handlerCB(renderCB, e);
 	};
 };
 
-export const setSearchHandler = (handlerCallback, renderCallback) => {
+export const setSearchHandler = (handlerCB, renderCB) => {
 	document.querySelector('#main-nav form').onsubmit = async e => {
 		const search = e.target.search.value.toLowerCase().trim();
 		e.preventDefault();
-		handlerCallback(renderCallback, search);
+		handlerCB(renderCB, search);
 	};
 };
 
-export const setCloseInfoHandlers = resetInfoCallback => {
+export const setCloseInfoHandlers = resetInfoCB => {
 	document.querySelector('#pokemon-info').onclick = e => e.stopPropagation();
 
-	document.querySelector('#close-info').onclick = e => resetInfoCallback();
+	document.querySelector('#close-info').onclick = e => resetInfoCB();
 
 	document.querySelector('body').onclick = e => {
 		if (
@@ -29,34 +29,34 @@ export const setCloseInfoHandlers = resetInfoCallback => {
 				.querySelector('#pokemon-info')
 				.classList.contains('visually-hidden')
 		) {
-			resetInfoCallback();
+			resetInfoCB();
 		}
 	};
 };
 
-export const setRandomPokemonHandler = (handlerCallback, renderCallback) => {
+export const setRandomPokemonHandler = (handlerCB, renderCB) => {
 	document.querySelector('#random-pokemon').onclick = async e => {
-		handlerCallback(renderCallback);
+		handlerCB(renderCB);
 	};
 };
 
-export const setIndexHandler = (handlerCallback, renderCallback) => {
+export const setIndexHandler = (handlerCB, renderCB) => {
 	document.querySelector('#index').onclick = async e => {
 		if (e.target.classList.contains('poke-card')) {
 			const clicked = e.target.id;
-			handlerCallback(renderCallback, clicked);
+			handlerCB(renderCB, clicked);
 		}
 	};
 };
 
-export const setEvolutionHandlers = (handlerCallback, renderCallback) => {
+export const setEvolutionHandlers = (handlerCB, renderCB) => {
 	document.querySelector('#evolves-from').onclick = async e => {
 		const clicked = e.target.innerText;
-		handlerCallback(renderCallback, clicked);
+		handlerCB(renderCB, clicked);
 	};
 
 	document.querySelector('#evolves-to').onclick = async e => {
 		const clicked = e.target.innerText;
-		handlerCallback(renderCallback, clicked);
+		handlerCB(renderCB, clicked);
 	};
 };
