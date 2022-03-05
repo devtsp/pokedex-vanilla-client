@@ -145,20 +145,34 @@
 			<main
 				class="d-flex flex-column flex-fill justify-content-center align-items-center bg-light-yellow"
 			>
+				<!-- LOADING SPINNER -->
+				<div
+					id="loading"
+					class="position-absolute d-flex align-items-center justify-content-center w-100 h-100 top-0 start-0 visually-hidden"
+				>
+					<div class="text-center">
+						<div class="spinner-border text-light mb-2" role="status">
+							<span class="sr-only"></span>
+						</div>
+						<div id="loading-msg">Loading</div>
+					</div>
+				</div>
+
 				<div id="error-msg" class="alert-danger"></div>
 
 				<!-- PAGINATION NAV -->
-				<nav id="pagination">
+				<nav id="pagination" data-page="-1">
 					<ul
 						class="text-black h-100 list-unstyled m-0 d-flex justify-content-center align-items-center"
 					>
 						<li class="px-3">
 							<a
+								data-page="-2"
 								id="previous-page"
 								href="#"
 								class="text-decoration-none text-black fs-1"
-								role="next-page"
-								aria-label="next-page"
+								role="previous-page"
+								aria-label="previous-page"
 							>
 								<i class="bi bi-chevron-left"></i>
 							</a>
@@ -181,6 +195,7 @@
 						</li>
 						<li class="px-3">
 							<a
+								data-page="0"
 								id="next-page"
 								href="#"
 								class="text-decoration-none text-black fs-1"
@@ -194,90 +209,195 @@
 				</nav>
 
 				<!-- CONTENT -->
-				<section>
-					<div id="index">
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
+				<div id="index" class="container w-75">
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
 							</div>
 						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
 							</div>
 						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<img class="img-fluid" />
-									<span>Pokemon</span>
-								</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
 							</div>
 						</div>
 					</div>
-				</section>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card text-center">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</main>
 
 			<!-- FOOTER -->

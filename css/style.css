@@ -26,6 +26,19 @@
 }
 /* ____________________________________________ */
 
+#loading {
+	background-color: rgba(32, 32, 32, 0.884);
+	color: white;
+	font-family: arial;
+	z-index: 1;
+}
+
+#loading-msg {
+	letter-spacing: 0.2rem;
+}
+
+/* _______________________________________________ */
+
 li {
 	display: inline;
 }
@@ -49,6 +62,12 @@ li {
 }
 
 /* ________________________________________________ */
+
+#index {
+	max-width: 576px;
+}
+
+/* _______________________________________________ */
 
 #random-pokemon {
 	height: 60px;
@@ -74,30 +93,20 @@ li {
 /* _______________________________________________ */
 
 .poke-card {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 10px;
-	padding: 10px;
+	margin: 4px;
+	padding: 2px;
 	border: 1px solid rgb(212, 212, 212);
 	border-radius: 5px;
 	background-color: #ff00002c;
 	cursor: pointer;
-}
-
-.poke-card img {
-	display: block;
-	border: 1px solid rgba(255, 255, 255, 0.863);
-	background-color: rgba(255, 255, 255, 0.13);
-	height: auto;
-	image-rendering: pixelated;
-	pointer-events: none;
+	overflow: hidden;
 }
 
 .poke-card span {
 	font-size: 14px;
 	pointer-events: none;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .poke-card:hover {
@@ -173,13 +182,9 @@ li {
 
 /* ________________________________________________ */
 
-@media all and (max-width: 576px) {
+@media all and (max-width: 900px) {
 	:root {
 		font-size: 15px;
-	}
-	.poke-card {
-		margin: 3px;
-		padding: 3px;
 	}
 
 	#pokemon-info {
@@ -187,13 +192,7 @@ li {
 	}
 }
 
-@media all and (max-width: 800px) {
-	:root {
-		font-size: 15px;
-	}
-}
-
-@media all and (max-width: 360px) {
+@media all and (max-width: 576px) {
 	#pokemon-info {
 		width: 100%;
 	}
