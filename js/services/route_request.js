@@ -1,4 +1,3 @@
-import { fetchApi } from '../api/fetch_api.js';
 import { checkOnCache, getFromCache, storeToCache } from '../cache/cache.js';
 
 export const routeRequest = async request => {
@@ -7,7 +6,10 @@ export const routeRequest = async request => {
 		const response = await getFromCache(request);
 		return response.json();
 	} else {
-		const response = await fetchApi(request);
+		const response = await fetch(request);
+		if (!response.ok) {
+			throw Error(response.status);
+		}
 		storeToCache(request, response.clone());
 		return response.json();
 	}

@@ -9,9 +9,9 @@ const renderNames = page => {
 
 const setPaginationButtons = pageIndexes => {
 	const { previousPage, actualPage, nextPage } = pageIndexes;
-	document.querySelector('#previous-page').dataset.toPage = previousPage || 0;
-	document.querySelector('[data-page]').dataset.page = actualPage || 0;
-	document.querySelector('#next-page').dataset.toPage = nextPage || 1;
+	document.querySelector('#previous-page').dataset.page = previousPage;
+	document.querySelector('[data-page]').dataset.page = actualPage;
+	document.querySelector('#next-page').dataset.page = nextPage;
 };
 
 export const renderPage = (page, pageIndexes) => {

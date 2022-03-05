@@ -161,13 +161,13 @@
 				<div id="error-msg" class="alert-danger"></div>
 
 				<!-- PAGINATION NAV -->
-				<nav id="pagination" data-page="0">
+				<nav id="pagination" data-page="-1">
 					<ul
 						class="text-black h-100 list-unstyled m-0 d-flex justify-content-center align-items-center"
 					>
 						<li class="px-3">
 							<a
-								data-to-page="0"
+								data-page="-2"
 								id="previous-page"
 								href="#"
 								class="text-decoration-none text-black fs-1"
@@ -195,7 +195,7 @@
 						</li>
 						<li class="px-3">
 							<a
-								data-to-page="1"
+								data-page="0"
 								id="next-page"
 								href="#"
 								class="text-decoration-none text-black fs-1"
@@ -209,248 +209,195 @@
 				</nav>
 
 				<!-- CONTENT -->
-				<section class="w-75">
-					<div id="index" class="container">
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
+				<div id="index" class="container w-75">
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
 							</div>
 						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
 							</div>
 						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-						</div>
-						<div class="row g-0">
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
-							</div>
-							<div class="col">
-								<div class="poke-card">
-									<span>Pokemon</span>
-								</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
 							</div>
 						</div>
 					</div>
-				</section>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0">
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="poke-card">
+								<span>Pokemon</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</main>
 
 			<!-- FOOTER -->

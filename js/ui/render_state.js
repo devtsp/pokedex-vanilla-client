@@ -11,3 +11,7 @@ export const handleError = error => {
 export const resetErrorMsg = () => {
 	return (document.querySelector('#error-msg').innerText = '');
 };
+
+export const handleLoading = () => {
+	document.querySelector('#loading').classList.toggle('visually-hidden');
+};
