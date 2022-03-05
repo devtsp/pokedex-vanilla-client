@@ -1,5 +1,5 @@
 import { handleCacheVersion } from './cache/cache.js';
-import { handlePagination, handlePokemon } from './pokedex_helpers.js';
+import { handlePagination, handlePokemon } from './services/pokedex_service.js';
 
 export const initApp = () => {
 	handleCacheVersion();
