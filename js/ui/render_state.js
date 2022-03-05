@@ -1,4 +1,4 @@
-export const handleError = error => {
+export const renderError = error => {
 	if (error.message == 404) {
 		document.querySelector('#error-msg').innerText = 'Pokemon not found.';
 	} else {
@@ -8,10 +8,10 @@ export const handleError = error => {
 	return error;
 };
 
-export const resetErrorMsg = () => {
+export const resetError = () => {
 	return (document.querySelector('#error-msg').innerText = '');
 };
 
-export const handleLoading = () => {
+export const toggleLoading = () => {
 	document.querySelector('#loading').classList.toggle('visually-hidden');
 };

@@ -1,8 +1,4 @@
-import {
-	resetErrorMsg,
-	handleError,
-	handleLoading,
-} from './ui/render_state.js';
+import { resetError, renderError, toggleLoading } from './ui/render_state.js';
 import { renderFullPokemon, resetInfoCard } from './ui/render_full_pokemon.js';
 import { renderPage } from './ui/render_page.js';
 import {
@@ -19,11 +15,11 @@ const getRndmPokeId = () => {
 };
 
 export const handlePokemon = async (pokemonName = getRndmPokeId()) => {
-	handleLoading();
-	resetErrorMsg();
+	toggleLoading();
+	resetError();
 	resetInfoCard();
 	if (pokemonName == false) {
-		handleLoading();
+		toggleLoading();
 		return;
 	}
 	try {
@@ -35,22 +31,22 @@ export const handlePokemon = async (pokemonName = getRndmPokeId()) => {
 		const pokemonAll = mapPokemon(pokemon, pokemon_species, evolution_chain);
 		renderFullPokemon(pokemonAll);
 	} catch (error) {
-		handleError(error);
+		renderError(error);
 		return;
 	} finally {
-		handleLoading();
+		toggleLoading();
 	}
 };
 
 export const handlePagination = async e => {
-	resetErrorMsg();
+	resetError();
 	const toRender = calculatePages(e);
 	try {
 		const pagination = await fetchPage(toRender.actualPage);
 		const page = mapPage(pagination);
 		renderPage(page, toRender);
 	} catch (error) {
-		handleError(error);
+		renderError(error);
 		return;
 	}
 };
