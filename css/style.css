@@ -93,30 +93,20 @@ li {
 /* _______________________________________________ */
 
 .poke-card {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	margin: 4px;
 	padding: 2px;
 	border: 1px solid rgb(212, 212, 212);
 	border-radius: 5px;
 	background-color: #ff00002c;
 	cursor: pointer;
-}
-
-.poke-card img {
-	display: block;
-	border: 1px solid rgba(255, 255, 255, 0.863);
-	background-color: rgba(255, 255, 255, 0.13);
-	height: auto;
-	image-rendering: pixelated;
-	pointer-events: none;
+	overflow: hidden;
 }
 
 .poke-card span {
 	font-size: 14px;
 	pointer-events: none;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .poke-card:hover {
