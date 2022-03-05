@@ -1,14 +1,14 @@
-import { resetError, renderError, toggleLoading } from './ui/render_state.js';
-import { renderFullPokemon, resetInfoCard } from './ui/render_full_pokemon.js';
-import { renderPage } from './ui/render_page.js';
+import { resetError, renderError, toggleLoading } from '../ui/render_state.js';
+import { renderFullPokemon, resetInfoCard } from '../ui/render_full_pokemon.js';
+import { renderPage } from '../ui/render_page.js';
 import {
 	fetchPokemon,
 	fetchPokemonSpecie,
 	fetchEvolutionChain,
 	fetchPage,
-} from './api/requests.js';
-import { mapPokemon } from './mappers/pokemon_mapper.js';
-import { mapPage } from './mappers/page_mapper.js';
+} from '../api/requests.js';
+import { mapPokemon } from '../mappers/pokemon_mapper.js';
+import { mapPage } from '../mappers/page_mapper.js';
 
 const getRndmPokeId = () => {
 	return Math.ceil(Math.random() * 898);
