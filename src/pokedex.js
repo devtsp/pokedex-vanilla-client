@@ -1,7 +1,7 @@
-import { handleCacheVersion } from './cache/cache.js';
-import { handlePagination, handlePokemon } from './services/pokedex_service.js';
+import { handleCacheVersion } from './storage/storage.js';
+import { handlePagination, handlePokemon } from './services/pokedex.js';
 
-export const initApp = () => {
+export const initPokedex = () => {
 	handleCacheVersion();
 
 	document.querySelector('#previous-page').onclick = async e => {
@@ -35,7 +35,8 @@ export const initApp = () => {
 	};
 
 	document.querySelector('#random-pokemon').onclick = async e => {
-		handlePokemon();
+		const generateRandomId = () => Math.ceil(Math.random() * 898);
+		handlePokemon(generateRandomId());
 	};
 
 	document.querySelector('#index').onclick = async e => {

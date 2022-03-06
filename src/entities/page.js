@@ -1,5 +1,6 @@
 export class Page {
-	constructor(pokemonNames) {
+	constructor(page, pokemonNames) {
+		this.page = page;
 		this.pokemonNames = pokemonNames;
 	}
 }
