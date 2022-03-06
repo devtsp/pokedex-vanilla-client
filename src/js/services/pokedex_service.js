@@ -16,7 +16,12 @@ import { mapPokemon } from '../mappers/pokemon_mapper.js';
 import { mapPage } from '../mappers/page_mapper.js';
 
 export const getPokemon = async pokemonNameOrId => {
-	const pokemonStored = getPokemonFromStorage(pokemonNameOrId);
+	let pokemonStored;
+	try {
+		pokemonStored = getPokemonFromStorage(pokemonNameOrId);
+	} catch (error) {
+		pokemonStored = null;
+	}
 	let pokemon;
 	if (!pokemonStored) {
 		const pokemon_info = await fetchPokemon(pokemonNameOrId);
@@ -32,7 +37,12 @@ export const getPokemon = async pokemonNameOrId => {
 };
 
 export const getPage = async (pageNumber, numberOfPokemons) => {
-	const pageStored = getPageFromStorage(pageNumber);
+	let pageStored;
+	try {
+		pageStored = getPageFromStorage(pageNumber);
+	} catch (error) {
+		pageStored = null;
+	}
 	let page;
 	if (!pageStored) {
 		const pagination = await fetchPage(pageNumber, numberOfPokemons);
