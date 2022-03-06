@@ -2,7 +2,7 @@ const API_URL = 'https://pokeapi.co/api/v2';
 
 export const fetchPage = (pageNumber, numberOfPokemons) => {
 	const offset = numberOfPokemons * pageNumber;
-	const paginationUrl = `${API_URL}/pokemon?offset=${offset}&limit=${factor}`;
+	const paginationUrl = `${API_URL}/pokemon?offset=${offset}&limit=${numberOfPokemons}`;
 	return fetch(paginationUrl);
 };
 

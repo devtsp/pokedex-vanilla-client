@@ -17,21 +17,30 @@ import { mapPage } from '../mappers/page_mapper.js';
 
 export const getPokemon = async pokemonNameOrId => {
 	const pokemonStored = getPokemonFromStorage(pokemonNameOrId);
+	let pokemon;
 	if (!pokemonStored) {
 		const pokemon_info = await fetchPokemon(pokemonNameOrId);
 		const pokemon_species = await fetchPokemonSpecie(pokemonNameOrId);
 		const evolutionEndpoint = pokemon_species.evolution_chain.url;
 		const evolution_chain = await fetchEvolutionChain(evolutionEndpoint);
-		const pokemon = mapPokemon(pokemon_info, pokemon_species, evolution_chain);
+		pokemon = mapPokemon(pokemon_info, pokemon_species, evolution_chain);
 		savePokemonToStorage(pokemon);
+	} else {
+		pokemon = pokemonStored;
 	}
+	return pokemon;
 };
 
 export const getPage = async (pageNumber, numberOfPokemons) => {
-	const pageStored = getPageFromStorage(pageNumber, numberOfPokemons);
+	const pageStored = getPageFromStorage(pageNumber);
+	let page;
 	if (!pageStored) {
-		const pageContents = await fetchPage(pokemonNameOrId);
-		const page = mapPage(pageNumber, pageContents);
+		const response = await fetchPage(pageNumber, numberOfPokemons);
+		const pagination = await response.json();
+		page = mapPage(pageNumber, pagination);
 		savePageToStorage(page);
+	} else {
+		page = pageStored;
 	}
+	return page;
 };
