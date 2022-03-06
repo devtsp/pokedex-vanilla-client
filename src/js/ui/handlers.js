@@ -36,7 +36,7 @@ export const setPokemonHandlers = (showPokemon, resetPokemon) => {
 		showPokemon(clicked);
 	};
 	document.querySelector('#pokemon-info').onclick = e => e.stopPropagation();
-	document.querySelector('#close-info').onclick = e => resetPokemon(false);
+	document.querySelector('#close-info').onclick = e => resetPokemon();
 	document.querySelector('body').onclick = e => {
 		if (
 			e.target !== document.querySelector('#pokemon-info') &&
@@ -45,7 +45,7 @@ export const setPokemonHandlers = (showPokemon, resetPokemon) => {
 				.querySelector('#pokemon-info')
 				.classList.contains('visually-hidden')
 		) {
-			resetPokemon(false);
+			resetPokemon();
 		}
 	};
 };
