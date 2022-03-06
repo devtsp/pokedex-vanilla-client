@@ -13,7 +13,7 @@ const getElements = () => {
 	};
 };
 
-export const renderFullPokemon = pokemon => {
+export const renderPokemon = pokemon => {
 	const elements = getElements();
 
 	elements.$pokemonInfo.classList.remove('visually-hidden');
@@ -45,7 +45,7 @@ export const renderFullPokemon = pokemon => {
 	return elements;
 };
 
-export const resetInfoCard = () => {
+export const resetPokemon = () => {
 	const elements = getElements();
 
 	elements.$pokemonInfo.classList.add('visually-hidden');

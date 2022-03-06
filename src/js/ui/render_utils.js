@@ -1,4 +1,5 @@
 export const renderError = error => {
+	console.log(error.message);
 	if (error.message == 404) {
 		document.querySelector('#error-msg').innerText = 'Pokemon not found.';
 	} else {
