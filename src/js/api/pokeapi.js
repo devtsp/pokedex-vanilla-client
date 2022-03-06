@@ -1,19 +1,27 @@
 const API_URL = 'https://pokeapi.co/api/v2';
 
-export const fetchPage = (pageNumber, numberOfPokemons) => {
+export const fetchPage = async (pageNumber, numberOfPokemons) => {
 	const offset = numberOfPokemons * pageNumber;
 	const paginationUrl = `${API_URL}/pokemon?offset=${offset}&limit=${numberOfPokemons}`;
-	return fetch(paginationUrl);
+	return await fetchApi(paginationUrl);
 };
 
-export const fetchPokemon = pokemonNameOrId => {
-	return fetch(`${API_URL}/pokemon/${pokemonNameOrId}`);
+export const fetchPokemon = async pokemonNameOrId => {
+	return await fetchApi(`${API_URL}/pokemon/${pokemonNameOrId}`);
 };
 
-export const fetchPokemonSpecie = pokemonNameOrId => {
-	return fetch(`${API_URL}/pokemon-species/${pokemonNameOrId}`);
+export const fetchPokemonSpecie = async pokemonNameOrId => {
+	return await fetchApi(`${API_URL}/pokemon-species/${pokemonNameOrId}`);
 };
 
-export const fetchEvolutionChain = evolution_endpoint => {
-	return fetch(evolution_endpoint);
+export const fetchEvolutionChain = async evolution_endpoint => {
+	return await fetchApi(evolution_endpoint);
+};
+
+const fetchApi = async request => {
+	const response = await fetch(request);
+	if (!response.ok) {
+		throw Error(response.status);
+	}
+	return response.json();
 };

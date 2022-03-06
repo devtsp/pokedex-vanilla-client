@@ -1,11 +1,13 @@
 export const setPaginationHandlers = showPage => {
 	document.querySelector('#previous-page').onclick = async e => {
-		const destinationPage = e.target.parentNode.id;
-		showPage(destinationPage);
+		const destinationPage = +e.target.parentNode.dataset.page;
+		const calculatedPage = destinationPage > 25 ? 0 : destinationPage;
+		showPage(calculatedPage);
 	};
 	document.querySelector('#next-page').onclick = async e => {
-		const destinationPage = e.target.parentNode.id;
-		showPage(destinationPage);
+		const destinationPage = +e.target.parentNode.dataset.page;
+		const calculatedPage = destinationPage < 0 ? 25 : destinationPage;
+		showPage(calculatedPage);
 	};
 };
 

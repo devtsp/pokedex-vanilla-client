@@ -6,18 +6,12 @@ import { renderError, resetError, toggleLoading } from './ui/render_utils.js';
 import { setPaginationHandlers, setPokemonHandlers } from './ui/handlers.js';
 
 const showPage = async destinationPage => {
-	const POKEMONS_PER_PAGE = 33;
-	const pageIndexes = {
-		actual: destinationPage,
-		previous: destinationPage - 1,
-		next: destinationPage + 1,
-	};
 	resetError();
+	const POKEMONS_PER_PAGE = 33;
 	try {
-		const pokemonNames = await getPage(destinationPage, POKEMONS_PER_PAGE);
-		renderPage(pokemonNames, pageIndexes);
+		const page = await getPage(destinationPage, POKEMONS_PER_PAGE);
+		renderPage(page);
 	} catch (error) {
-		throw Error(error.stack);
 		renderError(error);
 	}
 };
@@ -29,7 +23,6 @@ const showPokemon = async pokemonNameOrId => {
 		const pokemon = await getPokemon(pokemonNameOrId);
 		renderPokemon(pokemon);
 	} catch (error) {
-		throw Error(error.stack);
 		renderError(error);
 	} finally {
 		toggleLoading();

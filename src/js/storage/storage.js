@@ -15,7 +15,9 @@ export const savePokemonToStorage = pokemonEntity => {
 
 export const getPageFromStorage = pageNumber => {
 	const cache = JSON.parse(localStorage.getItem(pokedexCache));
-	return cache.pages.filter(pageEntity => pageEntity.page == pageNumber)[0];
+	return cache.pages.filter(
+		pageEntity => pageEntity.actualPage == pageNumber
+	)[0];
 };
 
 export const savePageToStorage = pageEntity => {

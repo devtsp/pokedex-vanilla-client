@@ -1,6 +1,10 @@
 export class Page {
-	constructor(page, pokemonNames) {
-		this.page = page;
+	constructor(pageIndexes, pokemonNames) {
+		this.pageIndexes = {
+			previous: pageIndexes.previous,
+			actual: pageIndexes.actual,
+			next: pageIndexes.next,
+		};
 		this.pokemonNames = pokemonNames;
 	}
 }

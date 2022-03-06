@@ -35,8 +35,7 @@ export const getPage = async (pageNumber, numberOfPokemons) => {
 	const pageStored = getPageFromStorage(pageNumber);
 	let page;
 	if (!pageStored) {
-		const response = await fetchPage(pageNumber, numberOfPokemons);
-		const pagination = await response.json();
+		const pagination = await fetchPage(pageNumber, numberOfPokemons);
 		page = mapPage(pageNumber, pagination);
 		savePageToStorage(page);
 	} else {
