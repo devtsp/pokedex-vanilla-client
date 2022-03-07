@@ -54,28 +54,28 @@ describe('Interactions', function () {
 		cy.get(this.close).click();
 		cy.get(this.info).should('have.class', 'visually-hidden');
 	});
-	it('Type and searches for: "error"', function () {
+	it('Type and searches for: "error": should show proper error message, also checks loading screen works properly', function () {
 		cy.get(this.input).clear().type('error');
 		cy.get(this.form).submit();
 		cy.get(this.info).should('have.class', 'visually-hidden');
 		cy.get(this.error).should('have.text', 'Pokemon not found.');
 		cy.get(this.info).should('have.class', 'visually-hidden');
 	});
-	it('Type a number of pokemon out of range (> 898) = 1000', function () {
+	it('Type a number of pokemon out of range (> 898) = 1000, should allow submit but show error', function () {
 		cy.get(this.input).clear().type('1000');
 		cy.get(this.form).submit();
 		cy.get(this.info).should('have.class', 'visually-hidden');
 		cy.get(this.error).should('have.text', 'Pokemon not found.');
 		cy.get(this.info).should('have.class', 'visually-hidden');
 	});
-	it('Type a number of pokemon in range (< 858) = 500', function () {
+	it('Type a number of pokemon in range (< 858) = 500, should display corresponding pokemon', function () {
 		cy.get(this.input).clear().type('500');
 		cy.get(this.form).submit();
 		cy.get(this.error).should('not.have.text', 'Pokemon not found.');
 		cy.get(this.info).should('not.have.class', 'visually-hidden');
 		cy.get(this.close).click();
 	});
-	it('Gets random pokemon and closes by clicking outside the card', function () {
+	it('Checks fetch random pokemon function works properly also verifies info card will close when clicking anywhere outside the info card', function () {
 		cy.get(this.random).click();
 		cy.get(this.input).click();
 		cy.get(this.info).should('have.class', 'visually-hidden');
@@ -84,7 +84,7 @@ describe('Interactions', function () {
 		cy.get(this.input).clear();
 		cy.get('input:invalid').should('have.attr', 'name', 'search');
 	});
-	it('Checks pagination', function () {
+	it('Checks pagination does scroll the page after interaction', function () {
 		cy.get(this.first_pokemon).invoke('text').should('eq', 'bulbasaur');
 		cy.get(this.next).click();
 		cy.get(this.first_pokemon).invoke('text').should('not.eq', 'bulbasaur');
@@ -103,8 +103,8 @@ describe('Interactions', function () {
 		cy.get(this.form).submit();
 		cy.get(this.prevolution).invoke('text').should('eq', 'wartortle');
 		cy.get(this.prevolution).click();
-		cy.get('[data-cy=name]').invoke('text').should('eq', 'wartortle');
-		cy.get('[data-cy=evolves-from]').invoke('text').should('eq', 'squirtle');
-		cy.get('[data-cy=evolves-to]').invoke('text').should('eq', 'blastoise');
+		cy.get(this.name).invoke('text').should('eq', 'wartortle');
+		cy.get(this.prevolution).invoke('text').should('eq', 'squirtle');
+		cy.get(this.evolution).invoke('text').should('eq', 'blastoise');
 	});
 });
