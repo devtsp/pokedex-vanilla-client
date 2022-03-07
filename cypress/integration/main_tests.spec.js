@@ -57,6 +57,7 @@ describe('Interactions', function () {
 	it('Type and searches for: "error": should show proper error message, also checks loading screen works properly', function () {
 		cy.get(this.input).clear().type('error');
 		cy.get(this.form).submit();
+		cy.get(this.loading).should('not.have.class', 'visually-hidden');
 		cy.get(this.info).should('have.class', 'visually-hidden');
 		cy.get(this.error).should('have.text', 'Pokemon not found.');
 		cy.get(this.info).should('have.class', 'visually-hidden');

@@ -10,7 +10,6 @@ const showPage = async destinationPage => {
 	const POKEMONS_PER_PAGE = 33;
 	try {
 		const page = await getPage(destinationPage, POKEMONS_PER_PAGE);
-		console.log(page);
 		renderPage(page);
 	} catch (error) {
 		renderError(error);
@@ -22,7 +21,6 @@ const showPokemon = async pokemonNameOrId => {
 	toggleLoading();
 	try {
 		const pokemon = await getPokemon(pokemonNameOrId);
-		console.log(pokemon);
 		renderPokemon(pokemon);
 	} catch (error) {
 		renderError(error);
