@@ -1,6 +1,7 @@
 export class Pokemon {
 	constructor(info) {
 		this.name = info.name;
+		this.number = info.number;
 		this.type = info.type;
 		this.abilities = info.abilities;
 		this.imageUrl = info.imgUrl;

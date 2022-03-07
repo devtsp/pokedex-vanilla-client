@@ -1,0 +1,10 @@
+{
+	"name": "pikachu",
+	"type": "electric",
+	"imageUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+	"flavorText": "When several of these POKéMON gather, their electricity could build and cause lightning storms.",
+	"habitat": "forest",
+	"shape": "quadruped",
+	"evolvesFrom": "pichu",
+	"evolvesTo": "raichu"
+}

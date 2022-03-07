@@ -3,10 +3,17 @@
 	"version": "1.0.0",
 	"description": "An UI to manipulate https://pokeapi.co/api/v2 resources",
 	"main": "babel.config.js",
+	"devDependencies": {
+		"@babel/core": "^7.17.2",
+		"@babel/preset-env": "^7.16.11",
+		"babel-jest": "^27.5.1",
+		"cypress": "^9.5.1",
+		"jest": "^27.5.1",
+		"jsdom": "^19.0.0"
+	},
 	"scripts": {
-		"test": "jest --collectCoverage",
-		"cache-clear": "jest --clearCache",
-		"test-watch": "jest --watch"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"cypress": "cypress open"
 	},
 	"repository": {
 		"type": "git",
@@ -18,14 +25,5 @@
 	"bugs": {
 		"url": "https://github.com/devtsp/pokedex/issues"
 	},
-	"homepage": "https://github.com/devtsp/pokedex#readme",
-	"devDependencies": {
-		"@babel/core": "^7.17.2",
-		"@babel/preset-env": "^7.16.11",
-		"babel-jest": "^27.5.1",
-		"jest": "^27.5.1"
-	},
-	"dependencies": {
-		"jsdom": "^19.0.0"
-	}
+	"homepage": "https://github.com/devtsp/pokedex#readme"
 }

@@ -25,7 +25,8 @@ const getSpecieDetails = pokemon_species => {
 	const flavorText = flavorTextRaw.replace(/[\n\f]/g, ' ');
 	const habitat = pokemon_species.habitat?.name;
 	const shape = pokemon_species.shape?.name;
-	const specieDetails = { flavorText, habitat, shape };
+	const number = pokemon_species.order;
+	const specieDetails = { flavorText, habitat, shape, number };
 	return specieDetails;
 };
 
@@ -51,10 +52,12 @@ const getEvolutionDetails = (pokemon, evolution_chain) => {
 
 export const mapPokemon = (pokemon, pokemon_species, evolution_chain) => {
 	const { name, type, habilities, imgUrl } = getMainInfo(pokemon);
-	const { flavorText, habitat, shape } = getSpecieDetails(pokemon_species);
+	const { flavorText, habitat, shape, number } =
+		getSpecieDetails(pokemon_species);
 	const { evolvesFrom, evolvesTo } = getEvolutionDetails(name, evolution_chain);
 	const pokemonInfo = {
 		name,
+		number,
 		type,
 		habilities,
 		imgUrl,

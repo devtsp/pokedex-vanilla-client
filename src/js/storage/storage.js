@@ -1,9 +1,11 @@
 const pokedexCache = 'pokedex-cache';
 
-export const getPokemonFromStorage = pokemonName => {
+export const getPokemonFromStorage = pokemonNameOrId => {
 	const cache = JSON.parse(localStorage.getItem(pokedexCache));
 	const storedPokemon = cache.pokemons.filter(
-		pokemonEntity => pokemonEntity.name == pokemonName
+		pokemonEntity =>
+			pokemonEntity.name == pokemonNameOrId ||
+			pokemonEntity.number == pokemonNameOrId
 	)[0];
 	if (!storedPokemon) {
 		throw Error({ message: 404 });
@@ -20,7 +22,7 @@ export const savePokemonToStorage = pokemonEntity => {
 export const getPageFromStorage = pageNumber => {
 	const cache = JSON.parse(localStorage.getItem(pokedexCache));
 	const storedPage = cache.pages.filter(
-		pageEntity => pageEntity.actualPage == pageNumber
+		pageEntity => pageEntity.pageIndexes.actual == pageNumber
 	)[0];
 	if (!storedPage) {
 		throw Error({ message: 404 });

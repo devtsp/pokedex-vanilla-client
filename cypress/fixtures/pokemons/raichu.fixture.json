@@ -1,0 +1,9 @@
+{
+	"name": "raichu",
+	"type": "electric",
+	"imageUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png",
+	"flavorText": "Its long tail serves as a ground to protect itself from its own high voltage power.",
+	"habitat": "forest",
+	"shape": "upright",
+	"evolvesFrom": "pikachu"
+}
