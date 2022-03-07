@@ -8,6 +8,7 @@
 		"@babel/preset-env": "^7.16.11",
 		"babel-jest": "^27.5.1",
 		"cypress": "^9.5.1",
+		"cypress-localstorage-commands": "^1.7.0",
 		"jest": "^27.5.1",
 		"jsdom": "^19.0.0"
 	},

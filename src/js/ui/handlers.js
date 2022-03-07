@@ -14,6 +14,7 @@ export const setPaginationHandlers = showPage => {
 export const setPokemonHandlers = (showPokemon, resetPokemon) => {
 	document.querySelector('#main-nav form').onsubmit = async e => {
 		const search = e.target.search.value.toLowerCase().trim();
+		console.log(search);
 		e.preventDefault();
 		showPokemon(search);
 	};
