@@ -1,5 +1,7 @@
-import { initPokedex } from './pokedex.js';
+import initPokedex from './pokedex.js';
 
 window.addEventListener('DOMContentLoaded', () => {
 	initPokedex();
 });
+
+// initPokedex();

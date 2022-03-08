@@ -29,7 +29,7 @@ const showPokemon = async pokemonNameOrId => {
 	}
 };
 
-export const initPokedex = () => {
+export default initPokedex = () => {
 	handleCacheVersion();
 	setPaginationHandlers(showPage);
 	setPokemonHandlers(showPokemon, resetPokemon);
