@@ -5,12 +5,19 @@ import { renderPokemon, resetPokemon } from './ui/render_pokemon.js';
 import { renderError, resetError, toggleLoading } from './ui/render_utils.js';
 import { setPaginationHandlers, setPokemonHandlers } from './ui/handlers.js';
 
-const showPage = async destinationPage => {
+const showPage = async targetPage => {
 	resetError();
 	const POKEMONS_PER_PAGE = 33;
+	switch (targetPage) {
+		case -1:
+			targetPage = 25;
+			break;
+		case 26:
+			targetPage = 0;
+	}
 	try {
-		const page = await getPage(destinationPage, POKEMONS_PER_PAGE);
-		console.log(JSON.stringify(page));
+		const page = await getPage(targetPage, POKEMONS_PER_PAGE);
+		// console.log(JSON.stringify(page));
 		renderPage(page);
 	} catch (error) {
 		renderError(error);
