@@ -10,6 +10,7 @@ const showPage = async destinationPage => {
 	const POKEMONS_PER_PAGE = 33;
 	try {
 		const page = await getPage(destinationPage, POKEMONS_PER_PAGE);
+		console.log(JSON.stringify(page));
 		renderPage(page);
 	} catch (error) {
 		renderError(error);
