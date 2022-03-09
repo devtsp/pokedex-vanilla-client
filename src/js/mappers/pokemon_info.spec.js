@@ -4,7 +4,11 @@ import {
 	getEvolutionDetails,
 	Pokemon,
 } from '../pokemon_info';
-import { info, specie, evolutionChain } from './fixtures/pokemon_info.fixture';
+import {
+	info,
+	specie,
+	evolutionChain,
+} from '../ui/__tests__/fixtures/pokemon_info.fixture';
 
 describe('getMainInfo()', () => {
 	test('returns name, type, abilities and pic', () => {

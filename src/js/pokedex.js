@@ -21,6 +21,7 @@ const showPokemon = async pokemonNameOrId => {
 	toggleLoading();
 	try {
 		const pokemon = await getPokemon(pokemonNameOrId);
+		// console.log(JSON.stringify(pokemon));
 		renderPokemon(pokemon);
 	} catch (error) {
 		renderError(error);

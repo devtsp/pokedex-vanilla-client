@@ -13,5 +13,7 @@ export const resetError = () => {
 };
 
 export const toggleLoading = () => {
-	return document.querySelector('#loading').classList.toggle('visually-hidden');
+	const loadingView = document.querySelector('#loading');
+	loadingView.classList.toggle('visually-hidden');
+	return loadingView;
 };

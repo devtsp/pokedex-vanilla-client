@@ -24,7 +24,6 @@ export const getPokemon = async pokemonNameOrId => {
 		const evolutionEndpoint = pokemon_species.evolution_chain.url;
 		const evolution_chain = await fetchEvolutionChain(evolutionEndpoint);
 		const pokemon = mapPokemon(pokemon_info, pokemon_species, evolution_chain);
-		console.log(pokemon);
 		savePokemonToStorage(pokemon);
 		return pokemon;
 	}
