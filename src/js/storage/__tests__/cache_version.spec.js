@@ -2,7 +2,13 @@
  *  @jest-environment jsdom
  */
 
-import { handleCacheVersion } from '../cache_version';
+import {
+	handleCacheVersion,
+	savePageToStorage,
+	getPageFromStorage,
+	savePokemonToStorage,
+	getPokemonFromStorage,
+} from '../storage.js';
 
 const fakeLocalStorage = (function () {
 	let store = {};
@@ -12,52 +18,63 @@ const fakeLocalStorage = (function () {
 			return store[key] || null;
 		},
 		setItem(key, value) {
-			store[key] = value.toString();
+			store[key] = value;
 		},
 		removeItem(key) {
 			delete store[key];
-		},
-		clear() {
-			store = {};
 		},
 		store,
 	};
 })();
 
-const fakeCache = (function () {
-	let caches = {};
-	return {
-		delete(key) {
-			delete caches[key];
-		},
-	};
-})();
-
-let storageGlobal;
-
-describe('ceckCacheVersion()', () => {
+describe('handleCacheVersion()', () => {
 	beforeAll(() => {
 		Object.defineProperty(window, 'localStorage', {
 			value: fakeLocalStorage,
 		});
-		Object.defineProperty(window, 'caches', {
-			value: fakeCache,
-		});
 	});
-	test('sets cache version with a timestamp on local storage when it is missing', () => {
-		expect(localStorage.store).toEqual({});
-		storageGlobal = handleCacheVersion(localStorage);
-		expect(storageGlobal.store).toHaveProperty('pokedex-cache-version');
+	test('Creates new pokedex-cache object with timestamp if missing on page first load', () => {
+		expect(localStorage.store).not.toHaveProperty('pokedex-cache');
+		handleCacheVersion();
+		expect(localStorage.store).toHaveProperty('pokedex-cache');
 	});
-	test('if the cache stills fresh (less than a day has passed) the local storage keeps the version reference as it is', () => {
-		const storagePartial = handleCacheVersion(storageGlobal);
-		expect(storagePartial.store).toEqual(storageGlobal.store);
+	test('If cache is fresh (< 24hs passed) the storage is not modified', () => {
+		handleCacheVersion();
+		const cacheStamp = localStorage.getItem('pokedex-cache');
+		handleCacheVersion();
+		expect(localStorage.getItem('pokedex-cache')).toEqual(cacheStamp);
 	});
-	test('if the cache is outdated (24hs have passed), the reference in storage is updated with the newer timestamp', () => {
-		storageGlobal.setItem('pokedex-cache-version', 100);
-		const oldVersion = JSON.stringify(storageGlobal.store);
-		const storagePartial = handleCacheVersion(storageGlobal);
-		const newVersion = JSON.stringify(storagePartial.store);
-		expect(oldVersion).not.toEqual(newVersion);
+	test('If cache is outdated (24hs have passed), a new cache is created and the older one deleted', () => {
+		localStorage.setItem(
+			'pokedex-cache',
+			JSON.stringify({ version: 100, pokemons: [], pages: [] })
+		);
+		const cacheStamp = localStorage.getItem('pokedex-cache');
+		handleCacheVersion();
+		expect(localStorage.getItem('pokedex-cache')).not.toEqual(cacheStamp);
+	});
+});
+
+describe('Pokemon storage', () => {
+	handleCacheVersion();
+	test('savePokemonToStorage()', () => {
+		const saved = savePokemonToStorage({ name: 123 });
+		expect(saved).toEqual({ name: 123 });
+	});
+	test('getPokemonFromStorage()', () => {
+		const got = getPokemonFromStorage('123');
+		expect(got).toEqual({ name: 123 });
+	});
+});
+
+describe('Page storage', () => {
+	handleCacheVersion();
+	test('savePageToStorage()', () => {
+		const saved = savePageToStorage({ pageIndexes: { actual: 3 } });
+		expect(saved).toEqual({ pageIndexes: { actual: 3 } });
+	});
+	test('getPageFromStorage()', () => {
+		const got = getPageFromStorage('3');
+		expect(got).toEqual({ pageIndexes: { actual: 3 } });
 	});
 });
