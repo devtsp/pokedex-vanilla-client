@@ -3,9 +3,9 @@
  */
 
 import { renderError, resetError, toggleLoading } from '../render_utils.js';
-import { index } from '../../__fixtures__/index.js';
+import { body } from './fixtures/document_body';
 
-document.body.innerHTML = index;
+document.body.innerHTML = body;
 
 describe('renderError()', () => {
 	test('Shows error message "pokemon not found" on 404', () => {
