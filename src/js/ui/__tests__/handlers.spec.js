@@ -3,9 +3,9 @@
  */
 
 import { setPokemonHandlers, setPaginationHandlers } from '../handlers.js';
-import { index } from '../../__fixtures__/index.js';
+import { body } from './fixtures/document_body.js';
 
-document.body.innerHTML = index;
+document.body.innerHTML = body;
 
 describe('setPaginationHandlers()', () => {
 	test('Set all necesary event handlers to page navigation controls', () => {

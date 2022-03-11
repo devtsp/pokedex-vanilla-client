@@ -3,10 +3,9 @@
  */
 
 import { renderPokemon, resetPokemon } from '../render_pokemon.js';
+import { body } from './fixtures/document_body.js';
 
-import { index } from '../../__fixtures__/index.js';
-
-document.body.innerHTML = index;
+document.body.innerHTML = body;
 
 const pikachuObject = {
 	'name': 'pikachu',

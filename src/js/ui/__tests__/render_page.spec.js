@@ -3,11 +3,10 @@
  */
 
 import { renderPage } from '../render_page.js';
-import { page0 } from '../../__fixtures__/page0.js';
-import { page3 } from '../../__fixtures__/page3.js';
-import { index } from '../../__fixtures__/index.js';
+import { page3 } from './fixtures/page3.js';
+import { body } from './fixtures/document_body.js';
 
-document.body.innerHTML = index;
+document.body.innerHTML = body;
 
 const page3parsed = JSON.parse(page3);
 describe('renderPage()', () => {

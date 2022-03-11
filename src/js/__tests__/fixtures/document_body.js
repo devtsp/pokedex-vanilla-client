@@ -1,4 +1,4 @@
-export const index = `<body>
+export const body = `<body>
 <div id="viewport" class="vw-100 vh-100 d-flex flex-column">
   <!-- POKEMON INFO ________________________________________-->
   <div

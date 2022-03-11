@@ -5,7 +5,9 @@
 import { initPokedex } from '../pokedex.js';
 import { handleCacheVersion } from '../storage/storage.js';
 import { setPaginationHandlers, setPokemonHandlers } from '../ui/handlers.js';
-import { index } from '../__fixtures__/index.js';
+import { body } from './fixtures/document_body.js';
+
+document.body.innerHTML = body;
 
 jest.mock('../ui/handlers.js', () => {
 	return {
@@ -22,7 +24,6 @@ jest.mock('../storage/storage.js', () => {
 	};
 });
 
-document.body.innerHTML = index;
 test('Pokedex checks cache version and call handler setters', () => {
 	initPokedex();
 	expect(handleCacheVersion).toHaveBeenCalled();
