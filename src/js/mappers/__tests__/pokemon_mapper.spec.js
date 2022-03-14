@@ -26,5 +26,13 @@ describe('mapPokemon()', () => {
 	test('Selects necessary fields through helpers and instanciates a Pokemon', () => {
 		const pokemon = mapPokemon(info, specie, evolution_chain);
 		expect(pokemon).toEqual(pikachuMapped);
+		info.name = 'pichu';
+		const pokemonB = mapPokemon(info, specie, evolution_chain);
+		expect(pokemonB.evolvesFrom).toBe(undefined);
+		expect(pokemonB.evolvesTo).toBe('pikachu');
+		info.name = 'raichu';
+		const pokemonC = mapPokemon(info, specie, evolution_chain);
+		expect(pokemonC.evolvesFrom).toBe('pikachu');
+		expect(pokemonC.evolvesTo).toBe(undefined);
 	});
 });

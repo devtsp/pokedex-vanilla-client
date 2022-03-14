@@ -19,8 +19,10 @@ const showPage = async targetPage => {
 		const page = await getPage(targetPage, POKEMONS_PER_PAGE);
 		// console.log(JSON.stringify(page));
 		renderPage(page);
+		return page;
 	} catch (error) {
 		renderError(error);
+		return error;
 	}
 };
 
@@ -31,16 +33,18 @@ const showPokemon = async pokemonNameOrId => {
 		const pokemon = await getPokemon(pokemonNameOrId);
 		// console.log(JSON.stringify(pokemon));
 		renderPokemon(pokemon);
+		return pokemon;
 	} catch (error) {
 		renderError(error);
+		return error;
 	} finally {
 		toggleLoading();
 	}
 };
 
-export const initPokedex = () => {
+export const initPokedex = async () => {
 	handleCacheVersion();
 	setPaginationHandlers(showPage);
 	setPokemonHandlers(showPokemon, resetPokemon);
-	showPage(0);
+	return showPage(0);
 };

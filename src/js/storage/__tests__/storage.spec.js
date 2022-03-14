@@ -65,6 +65,10 @@ describe('Pokemon storage', () => {
 		const got = getPokemonFromStorage('123');
 		expect(got).toEqual({ name: 123 });
 	});
+
+	test('getPokemonFromStorage() throws error if pokemon not in storage', () => {
+		expect(() => getPokemonFromStorage('error')).toThrow();
+	});
 });
 
 describe('Page storage', () => {
@@ -76,5 +80,9 @@ describe('Page storage', () => {
 	test('getPageFromStorage()', () => {
 		const got = getPageFromStorage('3');
 		expect(got).toEqual({ pageIndexes: { actual: 3 } });
+	});
+
+	test('getPageFromStorage() throws error if page not in storage', () => {
+		expect(() => getPageFromStorage('error')).toThrow();
 	});
 });

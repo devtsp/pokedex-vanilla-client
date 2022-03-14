@@ -1,4 +1,4 @@
-export const body = `<body>
+export const body = `
 <div id="viewport" class="vw-100 vh-100 d-flex flex-column">
   <!-- POKEMON INFO ________________________________________-->
   <div
@@ -88,6 +88,7 @@ export const body = `<body>
           required
         />
         <button
+          type="submit"
           aria-label="search"
           role="search"
           class="position-absolute end-0 top-50 translate-middle-y"
@@ -389,4 +390,4 @@ export const body = `<body>
   crossorigin="anonymous"
 ></script>
 <script src="src/js/index.js" type="module"></script>
-</body>`;
+`;

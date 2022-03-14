@@ -3,10 +3,17 @@
  */
 
 import '../index.js';
-jest.mock('../pokedex.js', () => jest.fn());
+import { initPokedex } from '../pokedex.js';
+
+jest.mock('../pokedex.js', () => {
+	return {
+		__esModule: true,
+		initPokedex: jest.fn(),
+	};
+});
 
 test('Initialize pokedex', () => {
-	document.addEventListener('DOMContentLoaded', () => {
-		expect(initPokedex).toHaveBeenCalledTimes(1);
+	window.addEventListener('DOMContentLoaded', () => {
+		expect(initPokedex).toHaveBeenCalled();
 	});
 });
