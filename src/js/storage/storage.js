@@ -17,6 +17,7 @@ export const savePokemonToStorage = pokemonEntity => {
 	const cache = JSON.parse(localStorage.getItem(pokedexCache));
 	cache.pokemons.push(pokemonEntity);
 	localStorage.setItem(pokedexCache, JSON.stringify(cache));
+	return JSON.parse(localStorage.getItem(pokedexCache)).pokemons.pop();
 };
 
 export const getPageFromStorage = pageNumber => {
@@ -34,6 +35,7 @@ export const savePageToStorage = pageEntity => {
 	const cache = JSON.parse(localStorage.getItem(pokedexCache));
 	cache.pages.push(pageEntity);
 	localStorage.setItem(pokedexCache, JSON.stringify(cache));
+	return JSON.parse(localStorage.getItem(pokedexCache)).pages.pop();
 };
 
 const createFreshCache = () => {

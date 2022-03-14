@@ -1,20 +1,29 @@
 const setPaginationButtons = pageIndexes => {
 	const { previous, actual, next } = pageIndexes;
-	document.querySelector('#previous-page').dataset.page = previous;
-	document.querySelector('[data-page]').dataset.page = actual;
-	document.querySelector('#next-page').dataset.page = next;
+	const $paginationElements = {
+		$previousElement: document.querySelector('#previous-page'),
+		$actualElement: document.querySelector('[data-page]'),
+		$nextElement: document.querySelector('#next-page'),
+	};
+	const { $previousElement, $actualElement, $nextElement } =
+		$paginationElements;
+	$previousElement.dataset.page = previous;
+	$actualElement.dataset.page = actual;
+	$nextElement.dataset.page = next;
+	return $paginationElements;
 };
 
 const renderNames = pokemonNames => {
-	const $cards = document.querySelectorAll('.poke-card');
-	$cards.forEach(($card, index) => {
-		$card.id = pokemonNames[index];
-		$card.children[0].innerText = pokemonNames[index];
+	const $pokemons = document.querySelectorAll('.poke-card');
+	$pokemons.forEach(($pokemon, index) => {
+		$pokemon.id = pokemonNames[index];
+		$pokemon.children[0].innerText = pokemonNames[index];
 	});
-	return $cards;
+	return $pokemons;
 };
 
 export const renderPage = page => {
-	setPaginationButtons(page.pageIndexes);
-	renderNames(page.pokemonNames);
+	const $paginationElements = setPaginationButtons(page.pageIndexes);
+	const $pokemonElements = renderNames(page.pokemonNames);
+	return { $paginationElements, $pokemonElements };
 };

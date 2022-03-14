@@ -1,42 +1,70 @@
-export const setPaginationHandlers = showPage => {
-	document.querySelector('#previous-page').onclick = async e => {
-		const destinationPage = +e.target.parentNode.dataset.page;
-		const calculatedPage = destinationPage < 0 ? 25 : destinationPage;
-		showPage(calculatedPage);
-	};
-	document.querySelector('#next-page').onclick = async e => {
-		const destinationPage = +e.target.parentNode.dataset.page;
-		const calculatedPage = destinationPage > 25 ? 0 : destinationPage;
-		showPage(calculatedPage);
+const getPaginationElements = () => {
+	return {
+		$previousButton: document.querySelector('#previous-page'),
+		$nextButton: document.querySelector('#next-page'),
 	};
 };
 
+const getPokemonElements = () => {
+	return {
+		$searchForm: document.querySelector('#main-nav form'),
+		$randomButton: document.querySelector('#random-pokemon'),
+		$index: document.querySelector('#index'),
+		$evolvesFromButton: document.querySelector('#evolves-from'),
+		$evolvesToButton: document.querySelector('#evolves-to'),
+		$closeButton: document.querySelector('#close-info'),
+	};
+};
+
+export const setPaginationHandlers = showPage => {
+	const { $previousButton, $nextButton } = getPaginationElements();
+	$previousButton.onclick = async e => {
+		const targetPage = +e.target.parentNode.dataset.page;
+		showPage(targetPage);
+	};
+	$nextButton.onclick = async e => {
+		const targetPage = +e.target.parentNode.dataset.page;
+		showPage(targetPage);
+	};
+	return getPaginationElements();
+};
+
 export const setPokemonHandlers = (showPokemon, resetPokemon) => {
-	document.querySelector('#main-nav form').onsubmit = async e => {
+	const {
+		$searchForm,
+		$randomButton,
+		$index,
+		$evolvesFromButton,
+		$evolvesToButton,
+		$closeButton,
+	} = getPokemonElements();
+
+	$searchForm.onsubmit = async e => {
 		const search = e.target.search.value.toLowerCase().trim();
 		e.preventDefault();
 		showPokemon(search);
 	};
-	document.querySelector('#random-pokemon').onclick = async e => {
+	$randomButton.onclick = async e => {
 		const generateRandomId = () => Math.ceil(Math.random() * 898);
 		showPokemon(generateRandomId());
 	};
-	document.querySelector('#index').onclick = async e => {
+	$index.onclick = async e => {
 		if (e.target.classList.contains('poke-card')) {
 			const clicked = e.target.id;
 			showPokemon(clicked);
 		}
 	};
-	document.querySelector('#evolves-from').onclick = async e => {
+	$evolvesFromButton.onclick = async e => {
 		const clicked = e.target.innerText;
 		showPokemon(clicked);
 	};
-	document.querySelector('#evolves-to').onclick = async e => {
+	$evolvesToButton.onclick = async e => {
 		const clicked = e.target.innerText;
 		showPokemon(clicked);
 	};
+	$closeButton.onclick = e => resetPokemon();
+
 	document.querySelector('#pokemon-info').onclick = e => e.stopPropagation();
-	document.querySelector('#close-info').onclick = e => resetPokemon();
 	document.querySelector('body').onclick = e => {
 		if (
 			e.target !== document.querySelector('#pokemon-info') &&
@@ -48,4 +76,6 @@ export const setPokemonHandlers = (showPokemon, resetPokemon) => {
 			resetPokemon();
 		}
 	};
+
+	return getPokemonElements();
 };

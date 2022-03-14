@@ -1,11 +1,11 @@
 export const renderError = error => {
+	let errorMessage = document.querySelector('#error-msg').innerText;
 	if (error.message == 404) {
-		document.querySelector('#error-msg').innerText = 'Pokemon not found.';
+		errorMessage = 'Pokemon not found.';
 	} else {
-		document.querySelector('#error-msg').innerText =
-			'Something went wrong. Please, try again later.';
+		errorMessage = 'Something went wrong. Please, try again later.';
 	}
-	return error;
+	return errorMessage;
 };
 
 export const resetError = () => {
@@ -13,5 +13,7 @@ export const resetError = () => {
 };
 
 export const toggleLoading = () => {
-	document.querySelector('#loading').classList.toggle('visually-hidden');
+	const loadingView = document.querySelector('#loading');
+	loadingView.classList.toggle('visually-hidden');
+	return loadingView;
 };
