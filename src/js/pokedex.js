@@ -17,7 +17,6 @@ const showPage = async targetPage => {
 	}
 	try {
 		const page = await getPage(targetPage, POKEMONS_PER_PAGE);
-		// console.log(JSON.stringify(page));
 		renderPage(page);
 		return page;
 	} catch (error) {
@@ -31,7 +30,6 @@ const showPokemon = async pokemonNameOrId => {
 	toggleLoading();
 	try {
 		const pokemon = await getPokemon(pokemonNameOrId);
-		// console.log(JSON.stringify(pokemon));
 		renderPokemon(pokemon);
 		return pokemon;
 	} catch (error) {

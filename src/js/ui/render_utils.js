@@ -1,9 +1,9 @@
 export const renderError = error => {
-	let errorMessage = document.querySelector('#error-msg').innerText;
+	let errorMessage = document.querySelector('#error-msg');
 	if (error.message == 404) {
-		errorMessage = 'Pokemon not found.';
+		errorMessage.innerText = 'Pokemon not found.';
 	} else {
-		errorMessage = 'Something went wrong. Please, try again later.';
+		errorMessage.innerText = 'Something went wrong. Please, try again later.';
 	}
 	return errorMessage;
 };
